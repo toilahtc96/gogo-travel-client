@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import routes from "./routes";
+import LoginAdmin from "@/pages/login-admin/index.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -9,6 +10,10 @@ const router = createRouter({
       component: () => import("@/layouts/dynamic/index.vue"),
       children: routes,
     },
+    {
+      path: "/admin-login",
+      component: LoginAdmin
+    }
   ],
 });
 
