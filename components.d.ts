@@ -16,8 +16,8 @@ declare module '@vue/runtime-core' {
     AMenuItemGroup: typeof import('ant-design-vue/es')['MenuItemGroup']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SiteContent: typeof import('./src/components/SiteContent/index.vue')['default']
-    SiteFooter: typeof import('./src/components/SiteFooter/index.vue')['default']
-    SiteHeader: typeof import('./src/components/SiteHeader/index.vue')['default']
+    // SiteContent: typeof import('./src/components/SiteContent/index.vue')['default']
+    // SiteFooter: typeof import('./src/components/SiteFooter/index.vue')['default']
+    // SiteHeader: typeof import('./src/components/SiteHeader/index.vue')['default']
   }
 }

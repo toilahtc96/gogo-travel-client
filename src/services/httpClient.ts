@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = import.meta.env.API_URL;
+axios.defaults.baseURL = 'http://localhost:8088';
 axios.defaults.headers.common["Content-Type"] = "application/json";
 
 axios.interceptors.request.use(
@@ -11,6 +11,7 @@ axios.interceptors.request.use(
 
     const accessToken = "";
 
+    console.log(axios.defaults.baseURL)
     if (accessToken) {
       request.headers.Authorization = `Bearer ${accessToken}`;
     }
