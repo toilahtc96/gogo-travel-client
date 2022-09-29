@@ -1,4 +1,4 @@
-export type LoginRequestType {
+export type LoginRequestType = {
     username: String;
     password: String;
 }
