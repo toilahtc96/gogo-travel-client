@@ -41,33 +41,25 @@
 import {reactive, onMounted} from "vue";
 import { Form, FormItem, Input, InputPassword } from 'ant-design-vue';
 import { vAutofocus } from "@/directives/vAutofocus.js";
-import axios from '@/services/httpClient';
-const apiUrl = import.meta.env.API_URL;
-
+import { AuthenticationService } from "@/services/authenticate";
+const authenticationService = new AuthenticationService();
 /*formState*/
 const formState = reactive({
-  username: '',
-  password: '',
+  username: 'conght96',
+  password: '123456',
   remember: false
 });
 
-const onFinish = () => {
-  axios.post(`/api/v1/authentication/login`, {
-    username: formState.username,
-    password: formState.password
-  }).then(data => {
-    debugger;
-  }).catch(error => {
-    if(error.response.status !== 200) {
-      alert(error.response.data.Login)
-    }
+const onFinish =  function() {
+   authenticationService.login({
+    'username': formState.username,
+    'password': formState.password
   })
 }
 
 const onFinishFailed = () => {
 }
 
-onMounted( () => {
-    console.log(apiurl)
+onMounted(() => {
 })
 </script>

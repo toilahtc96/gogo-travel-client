@@ -9,10 +9,18 @@ const router = createRouter({
       path: "/",
       component: () => import("@/layouts/dynamic/index.vue"),
       children: routes,
+      beforeEnter: () => {
+        if(!localStorage.getItem("accessToken")){
+          router.push("/admin-login");
+        }
+      }
     },
     {
       path: "/admin-login",
-      component: LoginAdmin
+      component: LoginAdmin,
+      beforeEnter: () => {
+        localStorage.removeItem("accessToken");
+      }
     }
   ],
 });

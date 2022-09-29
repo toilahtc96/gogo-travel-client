@@ -8,10 +8,7 @@ axios.interceptors.request.use(
     if (!request.headers) {
       return request;
     }
-
-    const accessToken = "";
-
-    console.log(axios.defaults.baseURL)
+    const accessToken = localStorage.getItem("accessToken");
     if (accessToken) {
       request.headers.Authorization = `Bearer ${accessToken}`;
     }
