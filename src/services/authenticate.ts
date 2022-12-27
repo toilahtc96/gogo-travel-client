@@ -11,7 +11,7 @@ export class AuthenticationService {
                 message.error("Has error when login! Please contact developer");
             } else {
                 localStorage.setItem("accessToken",data.data.accessToken);
-                window.location.href="/"
+                window.location.href="/admin"
             } 
         }).catch((err: any)=> { 
             message.error("Has error call login! Please contact developer");

@@ -9,23 +9,33 @@ import {
 
 <template>
   <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
-    <div class="logo" />
+    <div class  ="logo" />
+    <div id="app">
     <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
-      <a-menu-item key="1">nav 1</a-menu-item>
+      <a-sub-menu key="company">
+        <template #title>Company</template>
+          <a-menu-item key="companies">
+            <router-link to="/admin/company">Company</router-link>
+          </a-menu-item>
+          <a-menu-item key="add-company">
+            <router-link to="/admin/company/add">Add Company</router-link>
+          </a-menu-item>
+      </a-sub-menu>
       <a-menu-item key="2">nav 2</a-menu-item>
       <a-menu-item key="3">nav 3</a-menu-item>
-      <a-sub-menu key="sub1">
-        <template #title>Navigation Three - Submenu</template>
-        <a-menu-item-group title="Item 1">
-          <a-menu-item key="setting:1">Option 1</a-menu-item>
-          <a-menu-item key="setting:2">Option 2</a-menu-item>
-        </a-menu-item-group>
-        <a-menu-item-group title="Item 2">
-          <a-menu-item key="setting:3">Option 3</a-menu-item>
-          <a-menu-item key="setting:4">Option 4</a-menu-item>
+      <a-sub-menu key="address">
+        <template #title>Address</template>
+        <a-menu-item-group title="Setup Address">
+          <a-menu-item key="address-list">
+            <router-link to="/admin/address">Address</router-link>
+          </a-menu-item>
+          <a-menu-item key="address-add">
+            <router-link to="/admin/address/add"> Add Address </router-link>
+          </a-menu-item>
         </a-menu-item-group>
       </a-sub-menu>
     </a-menu>
+    </div>
   </a-layout-header>
 </template>
 

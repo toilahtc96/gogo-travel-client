@@ -7,6 +7,6 @@ const counterStore = useCounterStore();
 
 <template>
   <div>
-    <router-view></router-view>
+    HOME PAGES
   </div>
 </template>
