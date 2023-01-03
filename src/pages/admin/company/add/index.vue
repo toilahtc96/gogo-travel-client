@@ -34,7 +34,6 @@ const onFinish = (values: any) => {
     .then(
       (data) => {
         if (data && data.status === 204) {
-          debugger;
           message.info("Success")
           router.push("/admin/company")
         } else {

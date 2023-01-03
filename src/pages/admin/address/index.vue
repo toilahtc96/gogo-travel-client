@@ -23,7 +23,6 @@ const addressService = new AddressService();
 let listAddress = await addressService.getListAddressActive();
 onUpdated(() => {
   addressService.getListAddressActive().then((data) => {
-    debugger;
     listAddress = data;
   }).then(()=> {
     listAddress = [];

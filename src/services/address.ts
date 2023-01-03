@@ -21,12 +21,13 @@ export class AddressService {
             return axios.get(`/api/v1/address/get-by-id?id=` + id, this.config).then((data) => {
                 return data.data;
             }).catch((err) => {
-                debugger;
+                
                 message.error("Has error when get address by Id! " + id);
             })
         }
     }
     editAddress = (address: Address) => {
+        
         return axios.post(`/api/v1/address/edit`, address, this.config).then((data) => {
             return data;
         }).catch((err) => {
@@ -42,7 +43,7 @@ export class AddressService {
     }
     getByType = (type: AddressType) => {
         return axios.get(`api/v1/address/get-by-type?type=`+type, this.config).then((data) => {
-            debugger;
+            
             return data.data;
         }).catch((err) => {
             message.error("Has error when get address by type");

@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 import { Ref, ref, onMounted, reactive, watch, computed, onActivated, onRenderTriggered, onUpdated } from 'vue'
-import { Company } from '../../../type/Company';
 import { CompanyService } from '../../../services/company';
-import type { TableColumnsType } from 'ant-design-vue';
-import router from '@/router/router';
+import { List, TableColumnsType } from 'ant-design-vue';
 
+const defaultCompanyPage = ref({
+  page: 0,
+  size: 5
+});
+let spinning = ref({ data: false });
 const columns: TableColumnsType = [
   { title: 'Full Name', width: 300, dataIndex: 'name', key: 'name', fixed: 'left' },
   { title: 'Code', width: 100, dataIndex: 'code', key: 'code', fixed: 'left' },
@@ -22,29 +25,63 @@ const columns: TableColumnsType = [
 ];
 
 const companyService = new CompanyService();
-let listCompanyActive = await companyService.getListCompayActive();
-const test = () => {
-  alert(1)
-}
-onUpdated(() => {
-  companyService.getListCompayActive().then((data) => {
-    listCompanyActive = data;
-  }).then(()=> {
-    listCompanyActive = [];
+let companyActives = ref({
+  listData: []
+});
+onMounted(async () => {
+spinning.value.data=true;  
+  companyService.getListCompayActive(defaultCompanyPage.value.page, defaultCompanyPage.value.size).then(data => {
+    companyActives.value = { ...companyActives.value, listData: data };
+  }).then(()=>{
+    spinning.value.data=false;
+  });
+  companyService.getAll().then((data) => {
+    setTotal(data.length);
+  }).then(() => {
+    spinning.value.data=false;
   });
 })
-watch(()=> listCompanyActive, ()=> {
-  console.log(listCompanyActive)
+let pageSetting = ref({
+  current: new Number(1),
+  total: new Number(0),
+});
+
+const setTotal = (total: Number) => {
+  pageSetting.value.total = total;
+}
+
+const change = async (page: Number, pageSize: Number) => {
+  spinning.value.data=true;
+  companyService.getListCompayActive(page, pageSize).then((data) => {
+    companyActives.value = { ...companyActives.value, listData: data };
+    spinning.value.data=false;
+  });
+  companyService.getAll().then((data) => {
+    setTotal(data.length);
+  });
+}
+const showSizeChange = (current: number, size: number) => {
+  debugger;
+  defaultCompanyPage.value.size=size;
+
+}
+watch(() => companyActives.value.listData, (oldData, newData) => {
+})
+watch(() => pageSetting.value.total, (oldData, newData) => {
 })
 </script>
 
 <template>
-  <router-view></router-view>
-  <a-table :columns="columns" :data-source="listCompanyActive" :scroll="{ x: 1300, y: 1000 }">
-    <template #bodyCell="{ column, record }">
-      <template v-if="column.key === 'operation'">
-        <router-link :to="{ name: 'admin-company-edit', params: { id: record.id } }"><a>edit </a></router-link>
+  <a-spin :spinning="spinning.data">
+    <a-table :columns="columns" :data-source="companyActives.listData" :scroll="{ x: 1300, y: 1000 }">
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.key === 'operation'">
+          <router-link v-if="record.id" :to="{ name: 'admin-company-edit', params: { id: record.id } }"><a>edit
+            </a></router-link>
+        </template>
       </template>
-    </template>
-  </a-table>
+    </a-table>
+  </a-spin>
+  <Pagination :current="pageSetting.current" :total="pageSetting.total" @change="change"
+    :pageSize="defaultCompanyPage.size" @showSizeChange="showSizeChange" />
 </template>

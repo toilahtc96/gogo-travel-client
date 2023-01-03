@@ -39,31 +39,29 @@ const routes: Array<RouteRecordRaw> = [
       }
       next(!noToken);
     },
-    children: [
-      {
-        name: "admin-company-edit",
-        path: "edit/:id",
-        meta: { needsAuth: true },
-        component: EditCompany,
-        beforeEnter: (to, from, next) => {
-          const noToken: boolean = !localStorage.getItem("accessToken");
-          if (noToken) {
-            message.error("You need Login!");
-            router.push("/admin-login")
-          }
-          next(!noToken);
-        }
-      }
-    ]
   },
   {
     name: "admin-company-add",
     path: "/admin/company/add",
     meta: { needsAuth: true },
     component: AddCompany,
-    beforeEnter: (to, from , next) => {
-      const noToken :boolean = !localStorage.getItem("accessToken");
-      if(noToken) {
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/admin-login")
+      }
+      next(!noToken);
+    }
+  },
+  {
+    name: "admin-company-edit",
+    path: "/admin/company/edit/:id",
+    meta: { needsAuth: true },
+    component: EditCompany,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
         message.error("You need Login!");
         router.push("/admin-login")
       }
@@ -82,32 +80,30 @@ const routes: Array<RouteRecordRaw> = [
         router.push("/admin-login")
       }
       next(!noToken);
-    },
-    children: [
-      {
-        name: "admin-address-edit",
-        path: "edit/:id",
-        meta: { needsAuth: true },
-        component: EditAddress,
-        beforeEnter: (to, from, next) => {
-          const noToken: boolean = !localStorage.getItem("accessToken");
-          if (noToken) {
-            message.error("You need Login!");
-            router.push("/admin-login")
-          }
-          next(!noToken);
-        }
+    }
+  },
+  {
+    name: "admin-address-edit",
+    path: "/admin/address/edit/:id",
+    meta: { needsAuth: true },
+    component: EditAddress,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/admin-login")
       }
-    ]
+      next(!noToken);
+    }
   },
   {
     name: "admin-address-add",
     path: "/admin/address/add",
     meta: { needsAuth: true },
     component: AddAddress,
-    beforeEnter: (to, from , next) => {
-      const noToken :boolean = !localStorage.getItem("accessToken");
-      if(noToken) {
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
         message.error("You need Login!");
         router.push("/admin-login")
       }

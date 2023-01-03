@@ -1,6 +1,5 @@
 import axios from "@/core/httpClient";
 import { Company } from "@/type/Company";
-import { ResponseData } from "@/type/ResponseData";
 import { message } from "ant-design-vue";
 export class CompanyService {
     config = {
@@ -8,8 +7,16 @@ export class CompanyService {
             accessToken: localStorage.getItem("accessToken") || ''
         }
     }
-    getListCompayActive = () => {
-        return axios.get(`/api/v1/company/get-all`, this.config).then((data) => {
+    getListCompayActive(page: Number, size: Number) {
+        return axios.get(`/api/v1/company/get-page`, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken") || ''
+            },
+            params: {
+                page,
+                size
+            }
+        }).then((data) => {
             return data.data;
         }).catch((err) => {
             message.error("Has error when get company data!");
@@ -25,17 +32,28 @@ export class CompanyService {
         }
     }
     editCompany = (company: Company) => {
-        return axios.post(`/api/v1/company/edit`, company).then((data) => {
+        return axios.post(`/api/v1/company/edit`, company, this.config).then((data) => {
             return data;
         }).catch((err) => {
             message.error("Has error when edit company");
         })
     }
     addCompany = (company: Company) => {
-        return axios.post(`/api/v1/company/add`, company).then((data) => {
+        return axios.post(`/api/v1/company/add`, company, this.config).then((data) => {
             return data;
         }).catch((err) => {
             message.error("Has error when add company");
+        })
+    }
+    getAll = () => {
+        return axios.get(`/api/v1/company/get-all`, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken") || ''
+            }
+        }).then((data) => {
+            return data.data;
+        }).catch((err) => {
+            message.error("Has error when get company data!");
         })
     }
 }

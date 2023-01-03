@@ -1,6 +1,8 @@
-export interface Company  {
+import { List } from "lodash";
+
+export interface Company {
     id: number,
-    name : string,
+    name: string,
     code: string,
     provinceCode: string,
     districtCode: string,

@@ -2,15 +2,14 @@
 import { useCounterStore } from "@/stores/counter";
 import { Button as AButton, ButtonGroup as AButtonGroup, MenuItem } from "ant-design-vue";
 import { onMounted, reactive } from "vue";
-import { MenuService } from "@/services/MenuService";
+// import { MenuService } from "@/services/MenuService";
 
 const counterStore = useCounterStore();
-const menuService = new MenuService();
+// const menuService = new MenuService();
 //get menu 
 const listMenuItem = reactive([MenuItem]);
 onMounted(() => {
-  debugger;
-  menuService.getMenu();
+  // menuService.getMenu();
 })
 
 //end 
@@ -18,6 +17,5 @@ onMounted(() => {
 
 <template>
   <div>
-    <router-view></router-view>
   </div>
 </template>

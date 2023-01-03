@@ -8,12 +8,12 @@ const config = {
 export class MenuService {
     
     getMenu = async () => {
-        debugger;
+        
         axios.get(`api/v1/menu/user/`,config)
             .then(data => {
-                debugger;
+                
             }).catch(err => {
-                debugger;
+                
             })
     }
 }

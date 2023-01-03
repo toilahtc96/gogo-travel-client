@@ -14,27 +14,36 @@ const layout = {
 
 const route = useRoute();
 const addressService = new AddressService();
+const spinning = ref<boolean>(false);
+const changeSpinning = () => {
+  spinning.value = !spinning.value;
+}
 let addressChanging;
+const formState = reactive({
+  address: {
+    id: 0,
+    name: '',
+    status: 0,
+  }
+});
 const fetchAddress = () => {
-
   const id = route.params.id;
   if (id) {
+    changeSpinning();
     addressService.getAddressById(id)?.then((data) => {
       addressChanging = data;
-      formState.id = addressChanging.id;
-      formState.name = addressChanging.name;
-      formState.status = addressChanging.status;
+      formState.address.id = addressChanging.id;
+      formState.address.name = addressChanging.name;
+      formState.address.status = addressChanging.status;
+      changeSpinning();
     });
   }
 }
 
-const formState = reactive<Address>({
-    id: 0,
-    name: '',
-    status: 0,
-});
+
 const onFinish = (values: any) => {
-  console.log('Success:', values.address);
+  
+  changeSpinning();
   addressService.editAddress(values.address)
     .then(
       (data) => {
@@ -44,6 +53,7 @@ const onFinish = (values: any) => {
         } else {
           message.error('Has error, Contact to developer')
         }
+        changeSpinning();
       }
     )
     .catch(
@@ -52,7 +62,6 @@ const onFinish = (values: any) => {
 };
 
 const handleChangeStatus = () => {
-
 }
 
 
@@ -70,7 +79,6 @@ function getListAddressByType(type: AddressType) {
       value: province.code,
     }));
     state.dataProvince = dataRender;
-    console.log(state.dataProvince)
   }).catch((err) => {
   }).finally(() => {
     state.fetching = false;
@@ -92,23 +100,24 @@ watch(() => route.params.id, () => {
 
 </script>
 <template>
-  <!-- :validate-messages="validateMessages" -->
-  <a-form :model="formState" v-bind="layout" name="nest-messages" @finish="onFinish">
-    <a-form-item :name="['formState', 'id']" label="Id" :rules="[{ required: true }]" :hidden="true">
-      <a-input-number v-model:value="formState.id" />
-    </a-form-item>
-    <a-form-item :name="['formState', 'name']" label="name" >
-      <a-input v-model:value="formState.name" />
-    </a-form-item>
-    <a-form-item :name="['formstate', 'status']" label="Status">
-      <a-select ref="select" v-model:value="formState.status" style="width: 120px" @change="handleChangeStatus">
-        <a-select-option value="ACTIVE">ACTIVE</a-select-option>
-        <a-select-option value="BLOCK">BLOCK</a-select-option>
-      </a-select>
-    </a-form-item>
-
-    <a-form-item :wrapper-col="{ ...layout.wrapperCol, offset: 8 }">
-      <a-button type="primary" html-type="submit">Submit</a-button>
-    </a-form-item>
-  </a-form>
+  <a-spin :spinning="spinning">
+    <!-- :validate-messages="validateMessages" -->
+    <a-form :model="formState" v-bind="layout" name="nest-messages" @finish="onFinish">
+      <a-form-item :name="['address', 'id']" label="Id" :hidden="true">
+        <a-input-number v-model:value="formState.address.id" />
+      </a-form-item>
+      <a-form-item :name="['address', 'name']" label="name">
+        <a-input v-model:value="formState.address.name" />
+      </a-form-item>
+      <a-form-item :name="['address', 'status']" label="Status">
+        <a-select ref="select" v-model:value="formState.address.status" style="width: 120px" @change="handleChangeStatus">
+          <a-select-option value="ACTIVE">ACTIVE</a-select-option>
+          <a-select-option value="BLOCK">BLOCK</a-select-option>
+        </a-select>
+      </a-form-item>
+      <a-form-item :wrapper-col="{ ...layout.wrapperCol, offset: 8 }">
+        <a-button type="primary" html-type="submit">Submit</a-button>
+      </a-form-item>
+    </a-form>
+  </a-spin>
 </template>

@@ -25,7 +25,6 @@ const formState = reactive({
   },
 });
 const onFinish = (values: any) => {
-  console.log('Success:', values.address);
   addressService.addAddress(values.address)
     .then(
       (data) => {
