@@ -24,6 +24,7 @@ declare module '@vue/runtime-core' {
     Pagination: typeof import('./src/components/Pagination/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchCompanyIndex: typeof import('./src/components/search-company/search-company-index.vue')['default']
     SiteContent: typeof import('./src/components/SiteContent/index.vue')['default']
     SiteFooter: typeof import('./src/components/SiteFooter/index.vue')['default']
     SiteHeader: typeof import('./src/components/SiteHeader/index.vue')['default']

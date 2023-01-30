@@ -3,7 +3,7 @@
     @showSizeChange="showSizeChange" />
 </template>
 <script lang="ts" setup>
-import { defineComponent, ref, watch } from 'vue';
+import { watch } from 'vue';
 const props = defineProps(['current', 'total', 'pageSize'])
 const emit = defineEmits(['change', 'showSizeChange'])
 const change = (page: number, pageSize: number) => {

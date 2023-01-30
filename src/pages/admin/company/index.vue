@@ -2,12 +2,13 @@
 import { Ref, ref, onMounted, reactive, watch, computed, onActivated, onRenderTriggered, onUpdated } from 'vue'
 import { CompanyService } from '../../../services/company';
 import { List, TableColumnsType } from 'ant-design-vue';
+// import SearchCompany from '@/components/search-company/search-company-index.vue';
 
 const defaultCompanyPage = ref({
   page: 0,
   size: 5
 });
-let spinning = ref({ data: false });
+let spinning = ref({ data: true });
 const columns: TableColumnsType = [
   { title: 'Full Name', width: 300, dataIndex: 'name', key: 'name', fixed: 'left' },
   { title: 'Code', width: 100, dataIndex: 'code', key: 'code', fixed: 'left' },
@@ -29,16 +30,16 @@ let companyActives = ref({
   listData: []
 });
 onMounted(async () => {
-spinning.value.data=true;  
+  spinning.value.data = true;
   companyService.getListCompayActive(defaultCompanyPage.value.page, defaultCompanyPage.value.size).then(data => {
     companyActives.value = { ...companyActives.value, listData: data };
-  }).then(()=>{
-    spinning.value.data=false;
+  }).then(() => {
+    spinning.value.data = false;
   });
   companyService.getAll().then((data) => {
     setTotal(data.length);
   }).then(() => {
-    spinning.value.data=false;
+    spinning.value.data = false;
   });
 })
 let pageSetting = ref({
@@ -51,28 +52,36 @@ const setTotal = (total: Number) => {
 }
 
 const change = async (page: Number, pageSize: Number) => {
-  spinning.value.data=true;
+  spinning.value.data = true;
   companyService.getListCompayActive(page, pageSize).then((data) => {
     companyActives.value = { ...companyActives.value, listData: data };
-    spinning.value.data=false;
+    spinning.value.data = false;
   });
   companyService.getAll().then((data) => {
     setTotal(data.length);
   });
 }
 const showSizeChange = (current: number, size: number) => {
-  debugger;
-  defaultCompanyPage.value.size=size;
+  defaultCompanyPage.value.size = size;
 
 }
 watch(() => companyActives.value.listData, (oldData, newData) => {
 })
 watch(() => pageSetting.value.total, (oldData, newData) => {
 })
+const searchCompany = (data: {}) => {
+  spinning.value.data = true;
+  companyService.findCompany(data).then((data) => {
+    companyActives.value = { ...companyActives.value, listData: data };
+  }).then(() => {
+    spinning.value.data = false;
+  });
+}
 </script>
 
 <template>
   <a-spin :spinning="spinning.data">
+    <search-company-index @searchCompany="searchCompany" />
     <a-table :columns="columns" :data-source="companyActives.listData" :scroll="{ x: 1300, y: 1000 }">
       <template #bodyCell="{ column, record }">
         <template v-if="column.key === 'operation'">

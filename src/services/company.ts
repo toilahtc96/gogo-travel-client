@@ -56,4 +56,16 @@ export class CompanyService {
             message.error("Has error when get company data!");
         })
     }
+    findCompany = (data: any) => {
+        return axios.get(`/api/v1/company/get-by-field?`, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken") || ''
+            },
+           params:{ ...data}
+        }).then((data) => {
+            return data.data;
+        }).catch((err) => {
+            message.error("Has error when get company data!");
+        })
+    }
 }

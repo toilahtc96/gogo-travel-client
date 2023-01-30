@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onBeforeMount, onMounted, reactive, Ref, ref, watch } from "vue-demi";
+import { onBeforeMount, onMounted, reactive, Ref, ref, watch } from "vue";
 import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 import { CompanyService } from "@/services/company";
 

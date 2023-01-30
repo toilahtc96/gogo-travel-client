@@ -6,6 +6,9 @@ import EditCompany from '@/pages/admin/company/edit/index.vue';
 import Address from '@/pages/admin/address/index.vue';
 import AddAddress from '@/pages/admin/address/add/index.vue';
 import EditAddress from '@/pages/admin/address/edit/index.vue';
+import Role from '@/pages/admin/role/index.vue';
+import AddRole from '@/pages/admin/role/add/index.vue';
+import EditRole from '@/pages/admin/role/edit/index.vue';
 import About from '@/pages/about/index.vue';
 import Contact from '@/pages/contact/index.vue';
 import AdminHome from '@/pages/admin/index.vue';
@@ -110,7 +113,34 @@ const routes: Array<RouteRecordRaw> = [
       next(!noToken);
     }
   },
-
-];
+  {
+    name: "admin-role",
+    path: "/admin/role",
+    meta: { needsAuth: true },
+    component: Role,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/admin-login")
+      }
+      next(!noToken);
+    }
+  },
+  {
+    name: "admin-role-edit",
+    path: "/admin/role/edit/:id",
+    meta: { needsAuth: true },
+    component: EditRole,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/admin-login")
+      }
+      next(!noToken);
+    }
+  },
+ ];
 
 export default routes;

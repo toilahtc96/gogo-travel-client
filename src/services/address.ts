@@ -48,4 +48,12 @@ export class AddressService {
             message.error("Has error when get address by type");
         })
     }
+    getByParentCode = (code: string) => {
+        return axios.get<Address[]>(`api/v1/address/get-by-parent-code?code=` + code, this.config).then((data) => {
+            return data.data;
+        }).catch((err) => {
+            message.error("Has error when get address by type");
+        })
+    }
+    
 }

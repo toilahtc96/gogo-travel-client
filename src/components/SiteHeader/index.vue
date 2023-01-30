@@ -21,8 +21,7 @@ import {
             <router-link to="/admin/company/add">Add Company</router-link>
           </a-menu-item>
       </a-sub-menu>
-      <a-menu-item key="2">nav 2</a-menu-item>
-      <a-menu-item key="3">nav 3</a-menu-item>
+      <a-menu-item key="roles"> <router-link to="/admin/role">Role</router-link></a-menu-item>
       <a-sub-menu key="address">
         <template #title>Address</template>
         <a-menu-item-group title="Setup Address">
