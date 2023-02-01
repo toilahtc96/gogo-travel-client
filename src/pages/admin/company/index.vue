@@ -1,22 +1,27 @@
 <script lang="ts" setup>
-import { Ref, ref, onMounted, reactive, watch, computed, onActivated, onRenderTriggered, onUpdated } from 'vue'
+import { Ref, ref, onMounted, reactive, watch } from 'vue'
 import { CompanyService } from '../../../services/company';
 import { List, TableColumnsType } from 'ant-design-vue';
+import { Company } from '@/type/Company';
+import { AddressService } from '@/services/address';
+import { AddressType } from '@/type/AddressType';
+import { Address, SearchAddress } from '@/type/Address';
+import { StatusType } from '@/type/StatusType';
 // import SearchCompany from '@/components/search-company/search-company-index.vue';
 
 const defaultCompanyPage = ref({
   page: 0,
-  size: 5
+  size: 10
 });
 let spinning = ref({ data: true });
 const columns: TableColumnsType = [
   { title: 'Full Name', width: 300, dataIndex: 'name', key: 'name', fixed: 'left' },
   { title: 'Code', width: 100, dataIndex: 'code', key: 'code', fixed: 'left' },
-  { title: 'province', dataIndex: 'provinceCode', key: '1' },
-  { title: 'district', dataIndex: 'districtCode', key: '2' },
-  { title: 'precinct', dataIndex: 'precinctCode', key: '3' },
-  { title: 'star', dataIndex: 'star', key: '4' },
-  { title: 'information', dataIndex: 'information', key: '5' },
+  { title: 'province', dataIndex: 'provinceCode', key: 'provinceCode' },
+  { title: 'district', dataIndex: 'districtCode', key: 'districtCode' },
+  { title: 'precinct', dataIndex: 'precinctCode', key: 'precinctCode' },
+  { title: 'star', dataIndex: 'star', key: 'star' },
+  { title: 'information', dataIndex: 'information', key: 'information' },
   {
     title: 'Action',
     key: 'operation',
@@ -25,15 +30,54 @@ const columns: TableColumnsType = [
   },
 ];
 
-const companyService = new CompanyService();
-let companyActives = ref({
-  listData: []
+let dataSearch = ref<SearchAddress>({
+  companyName: '',
+  companyCode: '',
+  provinceCode: '',
+  districtCode: '',
+  precinctCode: '',
+  star: 1,
+  information: '',
+  status: StatusType.ACTIVED,
+  page: defaultCompanyPage.value.page,
+  size: defaultCompanyPage.value.size
 });
+
+const companyService = new CompanyService();
+const addressService = new AddressService();
+let companyActives = ref({
+  listData: ref<[Company]>()
+});
+const getNameOfAddress = (code: string, type: AddressType, item: Company) => {
+  if (code !== '') {
+    addressService.getAddressByTypeAndCode(code, type).then((data: (void | Address)) => {
+      if (data) {
+        switch (type) {
+          case AddressType.PROVINCE:
+            item.provinceCode = data.name;
+            break;
+          case AddressType.DISTRICT:
+            item.districtCode = data.name;
+            break;
+          case AddressType.PRECINCT:
+            item.precinctCode = data.name;
+            break;
+          default: break;
+        }
+      }
+    })
+  }
+}
 onMounted(async () => {
   spinning.value.data = true;
-  companyService.getListCompayActive(defaultCompanyPage.value.page, defaultCompanyPage.value.size).then(data => {
+  companyService.getListCompayActive(defaultCompanyPage.value.page, defaultCompanyPage.value.size).then((data: [Company]) => {
     companyActives.value = { ...companyActives.value, listData: data };
   }).then(() => {
+    companyActives.value.listData?.forEach((item) => {
+      getNameOfAddress(item.provinceCode, AddressType.PROVINCE, item);
+      getNameOfAddress(item.districtCode, AddressType.DISTRICT, item);
+      getNameOfAddress(item.precinctCode, AddressType.PRECINCT, item);
+    })
     spinning.value.data = false;
   });
   companyService.getAll().then((data) => {
@@ -51,15 +95,23 @@ const setTotal = (total: Number) => {
   pageSetting.value.total = total;
 }
 
-const change = async (page: Number, pageSize: Number) => {
+const change = async (page: number, pageSize: number) => {
+  // paging
+  dataSearch.value.page = page;
+  dataSearch.value.size = pageSize;
   spinning.value.data = true;
-  companyService.getListCompayActive(page, pageSize).then((data) => {
+  companyService.findCompany(dataSearch.value).then((data) => {
     companyActives.value = { ...companyActives.value, listData: data };
+  }).then(() => {
+    companyActives.value.listData?.forEach((item) => {
+      getNameOfAddress(item.provinceCode, AddressType.PROVINCE, item);
+      getNameOfAddress(item.districtCode, AddressType.DISTRICT, item);
+      getNameOfAddress(item.precinctCode, AddressType.PRECINCT, item);
+    })
+  }).then(() => {
     spinning.value.data = false;
   });
-  companyService.getAll().then((data) => {
-    setTotal(data.length);
-  });
+  // end paging
 }
 const showSizeChange = (current: number, size: number) => {
   defaultCompanyPage.value.size = size;
@@ -69,14 +121,35 @@ watch(() => companyActives.value.listData, (oldData, newData) => {
 })
 watch(() => pageSetting.value.total, (oldData, newData) => {
 })
-const searchCompany = (data: {}) => {
+const searchCompany = (data: SearchAddress) => {
   spinning.value.data = true;
+  dataSearch.value = data;
+  dataSearch.value.page = defaultCompanyPage.value.page;
+  dataSearch.value.size = defaultCompanyPage.value.size;
+  console.log(2)
   companyService.findCompany(data).then((data) => {
     companyActives.value = { ...companyActives.value, listData: data };
   }).then(() => {
+    companyActives.value.listData?.forEach((item) => {
+      getNameOfAddress(item.provinceCode, AddressType.PROVINCE, item);
+      getNameOfAddress(item.districtCode, AddressType.DISTRICT, item);
+      getNameOfAddress(item.precinctCode, AddressType.PRECINCT, item);
+    })
+  }).then(() => {
     spinning.value.data = false;
+    let allData = data;
+    allData.size = 9999999;
+    allData.page = 0;
+    console.log(3)
+    companyService.findCompany(allData).then((data) => {
+      setTotal(data?.length ? data?.length : 0);
+    }).then(() => {
+      spinning.value.data = false;
+    });
   });
+
 }
+
 </script>
 
 <template>

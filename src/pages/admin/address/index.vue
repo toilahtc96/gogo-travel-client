@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Ref, ref, onMounted, reactive, watch, computed, onActivated, onRenderTriggered, onUpdated } from 'vue'
 import { Address } from '../../../type/Address';
-import {AddressService } from '../../../services/address';
+import { AddressService } from '../../../services/address';
 import type { TableColumnsType } from 'ant-design-vue';
 import router from '@/router/router';
 
@@ -20,12 +20,27 @@ const columns: TableColumnsType = [
 ];
 
 const addressService = new AddressService();
-let listAddress = await addressService.getListAddressActive();
+let listAddress = ref<Address[]>();
+
+onMounted(() => {
+  addressService.getListAddressActive().then((data: (Address[] | void)) => {
+    if (data ) {
+      listAddress.value = data;
+    }
+  }).then(() => {
+
+  });
+})
+
 onUpdated(() => {
-  addressService.getListAddressActive().then((data) => {
-    listAddress = data;
-  }).then(()=> {
-    listAddress = [];
+  addressService.getListAddressActive().then((data: (Address[] | void)) => {
+    debugger;
+    if (data ) {
+      debugger;
+      listAddress.value = data;
+    }
+  }).then(() => {
+
   });
 })
 </script>

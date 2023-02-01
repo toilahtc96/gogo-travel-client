@@ -5,6 +5,7 @@ import { AddressService } from "@/services/address";
 import { message } from "ant-design-vue";
 import router from "@/router/router";
 import { AddressType } from "@/type/AddressType";
+import { StatusType } from "@/type/StatusType";
 const addressService = new AddressService();
 const layout = {
   labelCol: { span: 4 },
@@ -16,7 +17,7 @@ const formState = reactive({
     type: AddressType.PROVINCE,
     name: '',
     parentId: '',
-    status: 'ACTIVED',
+    status: StatusType.ACTIVED
   },
 });
 const onFinish = (values: any) => {
@@ -90,8 +91,9 @@ const getAndBuildParentValue = (data: AddressType) => {
     </a-form-item> -->
     <a-form-item :name="['address', 'status']" label="Status">
       <a-select ref="select" v-model:value="formState.address.status" style="width: 15%" @change="handleChangeStatus">
-        <a-select-option value="ACTIVED">Actived</a-select-option>
-        <a-select-option value="DISABLED">Disabled</a-select-option>
+        <a-select-option v-for="data in StatusType" :key="data" :value="data">{{
+                        data
+                    }}</a-select-option>
       </a-select>
     </a-form-item>
 

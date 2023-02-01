@@ -2,8 +2,9 @@
 <script lang="ts" setup>
 import { AddressService } from "@/services/address";
 import { AddressType } from "@/type/AddressType";
-import { Address } from "@/type/Address";
+import { Address, SearchAddress } from "@/type/Address";
 import { onBeforeMount, onMounted, reactive, Ref, ref, watch } from "vue";
+import { StatusType } from "@/type/StatusType";
 const addressService = new AddressService();
 const emit = defineEmits(['searchCompany'])
 const layout = {
@@ -12,9 +13,9 @@ const layout = {
 };
 const formItemStyle = {
     labelCol3: { width: '40%', },
-    labelColInput3: { width: '80%', float: 'left' },
+    labelColInput3: { width: '100%', float: 'left' },
 };
-const formState = ref({
+const formState = ref<SearchAddress>({
     companyName: '',
     companyCode: '',
     provinceCode: '',
@@ -22,10 +23,12 @@ const formState = ref({
     precinctCode: '',
     star: -1,
     information: '',
-    status: 'ACTIVED'
+    status: StatusType.ACTIVED,
+    page: 0,
+    size: 5
 })
 const onFinish = () => {
-  emit('searchCompany', formState.value);
+    emit('searchCompany', formState.value);
 }
 let listProvince = ref<Address[]>();
 
@@ -92,8 +95,9 @@ const changeDistrict = (value: string) => {
             </a-form-item>
             <a-form-item :name="['status']" label="Status" :style="formItemStyle.labelCol3" style="float:left">
                 <a-select ref="select" v-model:value="formState.status" style="width: 120px">
-                    <a-select-option value="ACTIVED">Active</a-select-option>
-                    <a-select-option value="DISABLED">Disable</a-select-option>
+                    <a-select-option v-for="data in StatusType" :key="data" :value="data">{{
+                        data
+                    }}</a-select-option>
                 </a-select>
             </a-form-item>
             <div style="width:100%; float:left; text-align: center;">

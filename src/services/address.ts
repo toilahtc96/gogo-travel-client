@@ -10,7 +10,7 @@ export class AddressService {
         }
     }
     getListAddressActive = () => {
-        return axios.get(`/api/v1/address/get-all`, this.config).then((data) => {
+        return axios.get<Address[]>(`/api/v1/address/get-all`, this.config).then((data) => {
             return data.data;
         }).catch((err) => {
             message.error("Has error when get address data!");
@@ -55,5 +55,12 @@ export class AddressService {
             message.error("Has error when get address by type");
         })
     }
-    
+    getAddressByTypeAndCode = (code: string, type: AddressType) => {
+        return axios.get<Address>(`api/v1/address/get-by-code-and-type?code =` + code + "&type=" + type, this.config).then((data) => {
+            return data.data;
+        }).catch((err) => {
+            message.error("Has error when get address by type");
+        })
+    }
+
 }

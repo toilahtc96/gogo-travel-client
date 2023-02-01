@@ -6,6 +6,7 @@ import { RoleService } from "@/services/role";
 import { Role } from '@/type/Role';
 import { message } from "ant-design-vue";
 import router from "@/router/router";
+import { StatusType } from "@/type/StatusType";
 const roleService = new RoleService();
 const route = useRoute();
 
@@ -21,7 +22,7 @@ const formState = reactive({
     id: 0,
     name: '',
     code: '',
-    status: 'ACTIVED'
+    status: StatusType.ACTIVED
   },
 });
 const featchRole = () => {
@@ -89,17 +90,17 @@ watch(() => route.params.id, () => {
         <a-input v-model:value="formState.role.name" />
       </a-form-item>
       <a-form-item :name="['role', 'code']" label="Code" :rules="[{ required: true }]">
-        <a-select ref="select" v-model:value="formState.role.code" style="width: 120px" >
+        <a-select ref="select" v-model:value="formState.role.code" style="width: 120px">
           <a-select-option value="ADMIN">Admin</a-select-option>
           <a-select-option value="CANDIDATE">Candidate</a-select-option>
           <a-select-option value="AGENCY">Agency</a-select-option>
         </a-select>
       </a-form-item>
       <a-form-item :name="['role', 'status']" label="Status">
-        <a-select ref="select" v-model:value="formState.role.status" style="width: 120px"
-          @change="handleChangeStatus">
-          <a-select-option value="ACTIVED">Active</a-select-option>
-          <a-select-option value="DISABLED">Disable</a-select-option>
+        <a-select ref="select" v-model:value="formState.role.status" style="width: 120px" @change="handleChangeStatus">
+          <a-select-option v-for="data in StatusType" :key="data" :value="data">{{
+            data
+          }}</a-select-option>
         </a-select>
       </a-form-item>
 

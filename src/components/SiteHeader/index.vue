@@ -8,7 +8,7 @@ import {
 </script>
 
 <template>
-  <a-layout-header :style="{ position: 'fixed', zIndex: 1, width: '100%' }">
+  <a-layout-header :style="{ position: 'fixed', zIndex: 999, width: '100%' }">
     <div class  ="logo" />
     <div id="app">
     <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">

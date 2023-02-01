@@ -14,7 +14,7 @@ import { RouterView } from "vue-router";
       <a-breadcrumb-item>List</a-breadcrumb-item>
       <a-breadcrumb-item>App</a-breadcrumb-item>
     </a-breadcrumb>
-    <div :style="{ background: '#fff', padding: '24px', minHeight: '80vh' }">
+    <div :style="{ background: '#fff', padding: '24px', minHeight: '85vh', paddingBottom: '3%' }">
       <router-view /> 
     </div>
   </a-layout-content>

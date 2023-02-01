@@ -19,8 +19,7 @@ export class RoleService {
         }).then((data) => {
             return data.data;
         }).catch((err) => {
-            debugger;
-            message.error("Has error when get role data!");
+            message.error("Has error when get role data! "+ err);
         })
     }
     getRoleById = (id: any) => {
