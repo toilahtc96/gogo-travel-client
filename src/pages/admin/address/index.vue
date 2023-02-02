@@ -34,9 +34,7 @@ onMounted(() => {
 
 onUpdated(() => {
   addressService.getListAddressActive().then((data: (Address[] | void)) => {
-    debugger;
     if (data ) {
-      debugger;
       listAddress.value = data;
     }
   }).then(() => {

@@ -41,7 +41,7 @@ const featchCompany = () => {
       if (formState.company.provinceCode !== '') {
         changeProvince(formState.company.provinceCode);
       }
-    }).then(()=>{
+    }).then(() => {
       if (formState.company.districtCode !== '') {
         changeDistrict(formState.company.districtCode);
       }
@@ -127,6 +127,9 @@ const changeDistrict = (value: string) => {
     }
   })
 }
+const fixStar = (star: number) => {
+  formState.company.star = star;
+}
 
 </script>
 <template>
@@ -164,7 +167,7 @@ const changeDistrict = (value: string) => {
         </a-select>
       </a-form-item>
       <a-form-item :name="['company', 'star']" label="Star">
-        <a-input-number v-model:value="formState.company.star" />
+        <rate :value="formState.company.star" @change="fixStar" />
       </a-form-item>
       <a-form-item :name="['company', 'information']" label="Infomation">
         <a-input v-model:value="formState.company.information" />

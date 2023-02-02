@@ -81,7 +81,9 @@ const changeDistrict = (value: string) => {
         }
     })
 }
-
+const fixStar = (star: number) => {
+  formState.company.star = star;
+}
 </script>
 <template>
   <!-- :validate-messages="validateMessages" -->
@@ -117,7 +119,7 @@ const changeDistrict = (value: string) => {
     </a-form-item>
 
     <a-form-item :name="['company', 'star']" label="Star">
-      <a-input-number v-model:value="formState.company.star" />
+      <rate :value="formState.company.star" @change="fixStar"/> 
     </a-form-item>
     <a-form-item :name="['company', 'information']" label="Infomation">
       <a-input v-model:value="formState.company.information" />

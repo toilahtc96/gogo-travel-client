@@ -40,9 +40,6 @@ const onFinish = (values: any) => {
 const handleChangeStatus = () => {
 
 }
-watch(() => formState.address.status, (data) => {
-  console.log(data)
-})
 watch(() => formState.address.type, (data) => {
   if (data !== AddressType.PROVINCE) {
     if (data == AddressType.DISTRICT) {
