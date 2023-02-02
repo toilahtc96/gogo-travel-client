@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { Ref, ref, onMounted, reactive, watch } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { CompanyService } from '@/services/company';
-import { List, TableColumnsType } from 'ant-design-vue';
+import { TableColumnsType } from 'ant-design-vue';
 import { Company } from '@/type/Company';
 import { AddressService } from '@/services/address';
 import { AddressType } from '@/type/AddressType';
@@ -10,6 +10,7 @@ import { StatusType } from '@/type/StatusType';
 
 const emit = defineEmits(['setSpin', 'setTotal', 'settingDataSearch', 'setPaging'])
 const props = defineProps(['companyActives', 'defaultCompanyPage', 'dataSearch'])
+let rateInteract = ref<boolean>(true);
 let defaultCompanyPage = ref({
     page: 0,
     size: 10
@@ -144,7 +145,7 @@ defineExpose({
     <a-table :columns="columns" :data-source="companyActives.listData" :scroll="{ x: 1300, y: 1000 }">
         <template #bodyCell="{ column, record }">
             <template v-if="column.key === 'star'">
-                <rate :value="record.star" />
+                <rate :value="record.star" :disabled="rateInteract"/>
             </template>
             <template v-if="column.key === 'operation'">
                 <router-link v-if="record.id" :to="{ name: 'admin-company-edit', params: { id: record.id } }"><a>edit

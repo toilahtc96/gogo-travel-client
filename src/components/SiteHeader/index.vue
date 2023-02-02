@@ -1,10 +1,4 @@
 <script lang="ts" setup>
-import {
-  LayoutHeader as ALayoutHeader,
-  Menu as AMenu,
-  SubMenu as ASubMenu,
-  MenuItem as AMenuItem,
-} from "ant-design-vue";
 </script>
 
 <template>

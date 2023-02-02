@@ -1,10 +1,4 @@
 <script lang="ts" setup>
-import {
-  LayoutContent as ALayoutContent,
-  Breadcrumb as ABreadcrumb,
-  BreadcrumbItem as ABreadcrumbItem,
-} from "ant-design-vue";
-import { RouterView } from "vue-router";
 </script>
 
 <template>

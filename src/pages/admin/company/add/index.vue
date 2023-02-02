@@ -33,7 +33,6 @@ const formState = reactive({
   },
 });
 const onFinish = (values: any) => {
-  console.log('Success:', values.company);
   companyService.addCompany(values.company)
     .then(
       (data) => {

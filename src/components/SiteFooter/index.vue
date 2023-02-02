@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { LayoutFooter as ALayoutFooter } from "ant-design-vue";
 </script>
 
 <template>

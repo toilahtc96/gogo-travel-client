@@ -2,8 +2,8 @@
 <script lang="ts" setup>
 import { AddressService } from "@/services/address";
 import { AddressType } from "@/type/AddressType";
-import { Address, SearchAddress } from "@/type/Address";
-import { onBeforeMount, onMounted, reactive, Ref, ref, watch } from "vue";
+import { SearchAddress } from "@/type/Address";
+import { ref } from "vue";
 import { StatusType } from "@/type/StatusType";
 const addressService = new AddressService();
 const emit = defineEmits(['searchCompany'])
