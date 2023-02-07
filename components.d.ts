@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
     ABreadcrumbItem: typeof import('ant-design-vue/es')['BreadcrumbItem']
     AButton: typeof import('ant-design-vue/es')['Button']
     ACheckbox: typeof import('ant-design-vue/es')['Checkbox']
+    AddCompany: typeof import('./src/components/AddCompany/index.vue')['default']
     AForm: typeof import('ant-design-vue/es')['Form']
     AFormItem: typeof import('ant-design-vue/es')['FormItem']
     AInput: typeof import('ant-design-vue/es')['Input']
@@ -30,7 +31,9 @@ declare module '@vue/runtime-core' {
     ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
     ATable: typeof import('ant-design-vue/es')['Table']
     ATextarea: typeof import('ant-design-vue/es')['Textarea']
+    ComboAddress: typeof import('./src/components/ComboAddress/index.vue')['default']
     Company: typeof import('./src/components/Company/index.vue')['default']
+    EditCompany: typeof import('./src/components/EditCompany/index.vue')['default']
     Pagination: typeof import('./src/components/Pagination/index.vue')['default']
     Rate: typeof import('./src/components/Rate/rate.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
@@ -41,6 +44,7 @@ declare module '@vue/runtime-core' {
     SiteContent: typeof import('./src/components/SiteContent/index.vue')['default']
     SiteFooter: typeof import('./src/components/SiteFooter/index.vue')['default']
     SiteHeader: typeof import('./src/components/SiteHeader/index.vue')['default']
+    StatusElement: typeof import('./src/components/StatusElement/index.vue')['default']
     TableCompany: typeof import('./src/components/TableCompany/index.vue')['default']
   }
 }

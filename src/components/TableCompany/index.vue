@@ -10,7 +10,7 @@ import { StatusType } from '@/type/StatusType';
 
 const emit = defineEmits(['setSpin', 'setTotal', 'settingDataSearch', 'setPaging'])
 const props = defineProps(['companyActives', 'defaultCompanyPage', 'dataSearch'])
-let rateInteract = ref<boolean>(true);
+let rateInteract = ref<boolean>();
 let defaultCompanyPage = ref({
     page: 0,
     size: 10
@@ -72,6 +72,7 @@ onMounted(async () => {
     }).then(() => {
         emit('setSpin', false)
     });
+    rateInteract.value = true;
 })
 
 const getNameOfAddress = (code: string, type: AddressType, item: Company) => {

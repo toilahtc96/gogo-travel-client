@@ -46,7 +46,6 @@ const layout = {
 };
 
 const onFinish = (values: any) => {
-  console.log('Success:', values.role);
   changeSpinning();
   roleService.editRole(values.role)
     .then(
@@ -97,11 +96,7 @@ watch(() => route.params.id, () => {
         </a-select>
       </a-form-item>
       <a-form-item :name="['role', 'status']" label="Status">
-        <a-select ref="select" v-model:value="formState.role.status" style="width: 120px" @change="handleChangeStatus">
-          <a-select-option v-for="data in StatusType" :key="data" :value="data">{{
-            data
-          }}</a-select-option>
-        </a-select>
+        <StatusElement :status="formState.role.status" ref="select" />
       </a-form-item>
 
       <a-form-item :wrapper-col="{ ...layout.wrapperCol, offset: 8 }">

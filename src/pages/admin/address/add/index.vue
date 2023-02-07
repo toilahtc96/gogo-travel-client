@@ -36,10 +36,6 @@ const onFinish = (values: any) => {
       (err) => { message.error(err) }
     )
 };
-
-const handleChangeStatus = () => {
-
-}
 watch(() => formState.address.type, (data) => {
   if (data !== AddressType.PROVINCE) {
     if (data == AddressType.DISTRICT) {
@@ -87,11 +83,7 @@ const getAndBuildParentValue = (data: AddressType) => {
       <a-input v-model:value="formState.address.code" />
     </a-form-item> -->
     <a-form-item :name="['address', 'status']" label="Status">
-      <a-select ref="select" v-model:value="formState.address.status" style="width: 15%" @change="handleChangeStatus">
-        <a-select-option v-for="data in StatusType" :key="data" :value="data">{{
-                        data
-                    }}</a-select-option>
-      </a-select>
+      <StatusElement :status="formState.address.status" ref="select" />
     </a-form-item>
 
     <a-form-item :wrapper-col="{ ...layout.wrapperCol, offset: 8 }">

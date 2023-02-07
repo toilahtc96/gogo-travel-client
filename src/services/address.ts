@@ -38,7 +38,11 @@ export class AddressService {
         return axios.post(`/api/v1/address/add`, address, this.config).then((data) => {
             return data;
         }).catch((err) => {
-            message.error("Has error when add address");
+            if (err.response.data) {
+                message.error(err.response.data);
+            } else {
+                message.error("Has error when add address");
+            }
         })
     }
     getByType = (type: AddressType) => {

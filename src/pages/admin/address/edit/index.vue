@@ -42,7 +42,7 @@ const fetchAddress = () => {
 
 
 const onFinish = (values: any) => {
-  
+
   changeSpinning();
   addressService.editAddress(values.address)
     .then(
@@ -61,25 +61,23 @@ const onFinish = (values: any) => {
     )
 };
 
-const handleChangeStatus = () => {
-}
-
 
 const state = reactive({
-  dataProvince: [],
+  dataProvince: ref<{ label: string; value: any; }[]>(),
   fetching: false,
 });
 
 function getListAddressByType(type: AddressType) {
-  state.dataProvince = [];
+  state.dataProvince = [{
+    label: '',
+    value: ''
+  }];
   state.fetching = true;
   addressService.getByType(type).then((data) => {
-    const dataRender = data.map((province: any) => ({
+    state.dataProvince = data!.map((province: any) => ({
       label: `${province.name}`,
       value: province.code,
     }));
-    state.dataProvince = dataRender;
-  }).catch((err) => {
   }).finally(() => {
     state.fetching = false;
   })
@@ -110,10 +108,7 @@ watch(() => route.params.id, () => {
         <a-input v-model:value="formState.address.name" />
       </a-form-item>
       <a-form-item :name="['address', 'status']" label="Status">
-        <a-select ref="select" v-model:value="formState.address.status" style="width: 120px" @change="handleChangeStatus">
-          <a-select-option value="ACTIVE">ACTIVE</a-select-option>
-          <a-select-option value="BLOCK">BLOCK</a-select-option>
-        </a-select>
+        <StatusElement :status="formState.address.status" ref="select" />
       </a-form-item>
       <a-form-item :wrapper-col="{ ...layout.wrapperCol, offset: 8 }">
         <a-button type="primary" html-type="submit">Submit</a-button>
