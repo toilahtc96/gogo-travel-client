@@ -35,6 +35,7 @@ declare module '@vue/runtime-core' {
     Company: typeof import('./src/components/Company/index.vue')['default']
     EditCompany: typeof import('./src/components/EditCompany/index.vue')['default']
     EditRole: typeof import('./src/components/EditRole/index.vue')['default']
+    ListRole: typeof import('./src/components/ListRole/index.vue')['default']
     Login: typeof import('./src/components/Login/index.vue')['default']
     Pagination: typeof import('./src/components/Pagination/index.vue')['default']
     Rate: typeof import('./src/components/Rate/rate.vue')['default']
