@@ -159,7 +159,6 @@ const formItemStyle = {
 };
 </script>
 <template>
-    <!-- :validate-messages="validateMessages" -->
     <a-spin :spinning="spinning">
         <a-form :model="formState" v-bind="layout" name="nest-messages" @finish="onFinish">
             <a-form-item :name="['company', 'companyId']" label="Id" :rules="[{ required: true }]" :hidden="true">
