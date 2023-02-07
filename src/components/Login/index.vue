@@ -2,6 +2,7 @@
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
 import { AuthenticationService } from "@/services/authenticate";
+import { vAutofocus } from "@/directives/vAutofocus.js"
 const authenticationService = new AuthenticationService();
 /*formState*/
 const formState = ref({

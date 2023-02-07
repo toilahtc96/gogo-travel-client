@@ -1,4 +1,4 @@
-export  const vAutofocus = {
+export const vAutofocus = {
   mounted: (el) => {
     el.focus();
   }
