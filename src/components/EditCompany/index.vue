@@ -171,28 +171,6 @@ const formItemStyle = {
             <a-form-item :name="['company', 'code']" label="Code" :rules="[{ required: true }]">
                 <a-input v-model:value="formState.company.code" />
             </a-form-item>
-            <!-- <a-form-item :name="['company', 'provinceCode']" label="Province">
-        <a-select ref="select" v-model:value="formState.company.provinceCode"
-          @change="changeProvince(formState.company.provinceCode, true)">
-          <a-select-option v-for="data in listProvince" :key="data" :value="data.code">{{
-            data.name
-          }}</a-select-option>
-        </a-select>
-      </a-form-item>
-      <a-form-item :name="['company', 'districtCode']" label="District ">
-        <a-select ref="select" v-model:value="formState.company.districtCode" @change="changeDistrict(formState.company.districtCode, true)">
-          <a-select-option v-for="data in listDistrict" :key="data" :value="data.code">{{
-            data.name
-          }}</a-select-option>
-        </a-select>
-      </a-form-item>
-      <a-form-item :name="['company', 'precinctCode']" label="Precinct">
-        <a-select ref="select" v-model:value="formState.company.precinctCode">
-          <a-select-option v-for="data in listPrecinct" :key="data" :value="data.code">{{
-            data.name
-          }}</a-select-option>
-        </a-select>
-      </a-form-item> -->
             <ComboAddress ref="comboAddress" :provinceCode="formState.company.provinceCode" :districtCode="formState.company.districtCode"
                 :precinctCode="formState.company.precinctCode" @changeAddress="changeAddress"
                 :provinceName="provinceName" :districtName="districtName" :precinctName="precinctName"
