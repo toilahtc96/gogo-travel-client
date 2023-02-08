@@ -34,11 +34,13 @@ declare module '@vue/runtime-core' {
     ATextarea: typeof import('ant-design-vue/es')['Textarea']
     ComboAddress: typeof import('./src/components/ComboAddress/index.vue')['default']
     Company: typeof import('./src/components/Company/index.vue')['default']
+    copy: typeof import('./src/components/TableCompany copy/index.vue')['default']
     EditAddress: typeof import('./src/components/EditAddress/index.vue')['default']
     EditCompany: typeof import('./src/components/EditCompany/index.vue')['default']
     EditRole: typeof import('./src/components/EditRole/index.vue')['default']
     ListAddress: typeof import('./src/components/ListAddress/index.vue')['default']
     ListRole: typeof import('./src/components/ListRole/index.vue')['default']
+    ListUser: typeof import('./src/components/ListUser/index.vue')['default']
     Login: typeof import('./src/components/Login/index.vue')['default']
     Pagination: typeof import('./src/components/Pagination/index.vue')['default']
     Rate: typeof import('./src/components/Rate/rate.vue')['default']
@@ -53,5 +55,6 @@ declare module '@vue/runtime-core' {
     SiteHeader: typeof import('./src/components/SiteHeader/index.vue')['default']
     StatusElement: typeof import('./src/components/StatusElement/index.vue')['default']
     TableCompany: typeof import('./src/components/TableCompany/index.vue')['default']
+    TableUser: typeof import('./src/components/TableUser/index.vue')['default']
   }
 }

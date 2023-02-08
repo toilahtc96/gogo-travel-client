@@ -1,5 +1,3 @@
-import { List } from "lodash";
-
 export interface Company {
     id: number,
     name: string,

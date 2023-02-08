@@ -12,6 +12,7 @@ import EditRole from '@/pages/admin/role/edit/index.vue';
 import About from '@/pages/about/index.vue';
 import Contact from '@/pages/contact/index.vue';
 import AdminHome from '@/pages/admin/index.vue';
+import User from '@/pages/admin/user/index.vue';
 import { message } from "ant-design-vue";
 import router from "./router";
 const routes: Array<RouteRecordRaw> = [
@@ -141,6 +142,48 @@ const routes: Array<RouteRecordRaw> = [
       next(!noToken);
     }
   },
+  {
+    name: "admin-user",
+    path: "/admin/user",
+    meta: { needsAuth: true },
+    component: User,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/admin-login")
+      }
+      next(!noToken);
+    }
+  },
+  // {
+  //   name: "admin-address-edit",
+  //   path: "/admin/address/edit/:id",
+  //   meta: { needsAuth: true },
+  //   component: EditAddress,
+  //   beforeEnter: (to, from, next) => {
+  //     const noToken: boolean = !localStorage.getItem("accessToken");
+  //     if (noToken) {
+  //       message.error("You need Login!");
+  //       router.push("/admin-login")
+  //     }
+  //     next(!noToken);
+  //   }
+  // },
+  // {
+  //   name: "admin-address-add",
+  //   path: "/admin/address/add",
+  //   meta: { needsAuth: true },
+  //   component: AddAddress,
+  //   beforeEnter: (to, from, next) => {
+  //     const noToken: boolean = !localStorage.getItem("accessToken");
+  //     if (noToken) {
+  //       message.error("You need Login!");
+  //       router.push("/admin-login")
+  //     }
+  //     next(!noToken);
+  //   }
+  // },
  ];
 
 export default routes;
