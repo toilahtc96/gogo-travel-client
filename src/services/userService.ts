@@ -20,4 +20,14 @@ export class UserService {
             message.error("Has error when get company data!");
         })
     }
+
+    getUserById = (id: any) => {
+        if (id) {
+            return axios.get(`/api/v1/user/get-by-id?id=` + id, this.config).then((data) => {
+                return data.data;
+            }).catch((err) => {
+                message.error("Has error when get User by Id! " + id);
+            })
+        }
+    }
 }

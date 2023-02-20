@@ -1,4 +1,4 @@
-import { EntityStatus } from "./EntityStatus"
+import { StatusType } from "@/type/StatusType"
 import { MenuType } from "./MenuType"
 
 export type MenuItem = {
@@ -6,6 +6,6 @@ export type MenuItem = {
     parentId: number,
     menuType: MenuType,
     path: string,
-    status: EntityStatus,
+    status: StatusType,
     pathAddressPhysic: string,
 }

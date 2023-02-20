@@ -7,7 +7,7 @@ import router from "@/router/router";
 import { AddressService } from "@/services/address";
 import { AddressType } from "@/type/AddressType";
 import { Address } from "@/type/Address";
-import { EntityStatus } from "@/model/EntityStatus";
+import { StatusType } from "@/type/StatusType";
 const addressService = new AddressService();
 const companyService = new CompanyService();
 const route = useRoute();
@@ -57,7 +57,7 @@ const formState = ref({
         precinctCode: ref<string>(''),
         star: ref<number>(0),
         information: ref<string>(''),
-        status: ref<EntityStatus>(EntityStatus.ACTIVE)
+        status: ref<StatusType>(StatusType.ACTIVED)
     },
 });
 const onFinish = (values: any) => {

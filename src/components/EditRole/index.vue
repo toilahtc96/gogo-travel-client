@@ -32,7 +32,6 @@ const fetchRole = () => {
             roleList = data;
             formState.value.role.id = roleList.id;
             formState.value.role.name = roleList.name;
-            debugger;
             formState.value.role.code = roleList.code;
             formState.value.role.status = roleList.status;
             changeSpinning();
@@ -46,7 +45,6 @@ const layout = {
 
 const onFinish = (values: any) => {
     changeSpinning();
-    debugger;
     roleService.editRole(values.role)
         .then(
             (data) => {

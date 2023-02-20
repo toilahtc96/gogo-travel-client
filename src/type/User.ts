@@ -1,4 +1,5 @@
-import { EntityStatus } from "@/model/EntityStatus";
+import { StatusType } from "./StatusType";
+import dayjs, { Dayjs } from 'dayjs';
 
 export interface User {
     id: number,
@@ -9,11 +10,12 @@ export interface User {
     name: string,
     star: number,
     information: string,
-    status: EntityStatus,
-    birthDay: Date,
+    status: StatusType,
+    birthDay: Dayjs,
     levelId: number,
     experienceYear: number,
     cvLink: string,
     username: string,
     password: string,
+    typeName: string,
 }
