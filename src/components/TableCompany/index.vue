@@ -2,10 +2,11 @@
 import { ref, onMounted, watch } from 'vue'
 import { CompanyService } from '@/services/company';
 import { TableColumnsType } from 'ant-design-vue';
-import { Company } from '@/type/Company';
+import Company from '@/type/Company';
 import { AddressService } from '@/services/address';
 import { AddressType } from '@/type/AddressType';
-import { Address, SearchAddress } from '@/type/Address';
+import { Address } from '@/type/Address';
+import { SearchCompany } from '@/type/SearchCompany';
 import { StatusType } from '@/type/StatusType';
 
 const emit = defineEmits(['setSpin', 'setTotal', 'settingDataSearch', 'setPaging'])
@@ -15,7 +16,7 @@ let defaultCompanyPage = ref({
     page: 0,
     size: 10
 });
-let dataSearch = ref<SearchAddress>({
+let dataSearch = ref<SearchCompany>({
     companyName: '',
     companyCode: '',
     provinceCode: '',
@@ -102,7 +103,7 @@ watch(() => props.companyActives, (data) => {
 watch(() => props.dataSearch, (data) => {
     dataSearch.value = data;
 })
-const searchCompany = (data: SearchAddress) => {
+const searchCompany = (data: SearchCompany) => {
     emit('setSpin', true)
     emit('settingDataSearch', data)
     companyService.findCompany(data).then((data) => {

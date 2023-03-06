@@ -10,7 +10,7 @@ const selectStatus = (value: StatusType) => {
 }
 </script>
 <template>
-    <a-select ref="select" v-model:value="status" style="width: 120px" @change="selectStatus">
+    <a-select ref="select" v-model:value="status" style="width: 120px" @change="selectStatus" allowClear>
         <a-select-option v-for="data in StatusType" :key="data" :value="data">{{
             data
         }}</a-select-option>

@@ -65,7 +65,18 @@ onMounted(async () => {
 
 
 watch(() => props.userActives, (data) => {
-    userActives.value = data;
+    userActives.value.listData = data;
+    userActives.value.listData?.forEach((item) => {
+        if (item.typeId) {
+            getUserTypeById(item.typeId).then(() => {
+                item.typeName = rs.value;
+            })
+        }
+        if (item.birthDay) {
+            item.birthDay = getDateToDatePicker(item.birthDay);
+        }
+    })
+    emit('setSpin', false)
 });
 
 const getCompanyNameById = async (companyId: number) => {
@@ -114,5 +125,5 @@ const getDateToDatePicker = (date: Dayjs) => {
                     </a></router-link>
             </template>
         </template>
-</a-table>
+    </a-table>
 </template>

@@ -9,7 +9,7 @@ const test = (value: RoleType) => {
 }
 </script>
 <template>
-    <a-select ref="select-role" v-model:value="props.role" style="width: 120px" @change="test">
+    <a-select ref="select-role" v-model:value="props.role" style="width: 120px" @change="test" allowClear>
         <a-select-option v-for="data in RoleType" :key="data" :value="data">{{
             data
         }}</a-select-option>

@@ -17,7 +17,7 @@ export class UserService {
         }).then((data) => {
             return data.data;
         }).catch((err) => {
-            message.error("Has error when get company data!");
+            message.error("Has error when get user data!");
         })
     }
 
@@ -29,5 +29,12 @@ export class UserService {
                 message.error("Has error when get User by Id! " + id);
             })
         }
+    }
+    editUser = (user: User) => {
+        return axios.post(`/api/v1/user/edit`, user, this.config).then((data) => {
+            return data;
+        }).catch((err) => {
+            message.error("Has error when edit user");
+        })
     }
 }

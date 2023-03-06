@@ -14,7 +14,7 @@ import { RoleType } from "@/type/RoleType";
 import { LevelName } from "@/type/LevelName";
 import dayjs, { Dayjs } from "dayjs";
 import { CompanyService } from "@/services/company";
-import { Company } from "@/type/Company";
+import Company from "@/type/Company";
 const userService = new UserService();
 const userTypeService = new UserTypeService();
 const companyService = new CompanyService();
@@ -36,10 +36,10 @@ const changeSpinning = () => {
 let formState = ref({
     user: {
         id: undefined,
-        roleId: RoleType.USER,
-        companyId: undefined,
-        typeId: ref(),
-        level: LevelName.JUNIOR,
+        roleId: ref<RoleType>(),
+        companyId: ref<number>(),
+        typeId: ref<UserType>(),
+        level: ref<LevelName>(),
         description: '',
         information: '',
         star: 0,
@@ -47,7 +47,8 @@ let formState = ref({
         experienceYear: undefined,
         cvLink: '',
         birthDay: ref<Dayjs>(),
-        status: StatusType.ACTIVED
+        status: ref<StatusType>(),
+        userTypeCode: ref<UserType>()
     }
 });
 const fetchUser = () => {
@@ -55,6 +56,7 @@ const fetchUser = () => {
     if (id) {
         changeSpinning();
         userService.getUserById(id)?.then((data) => {
+            
             formState.value.user.id = data.id;
             formState.value.user.star = data.star;
             formState.value.user.birthDay = dayjs(data.birthDay);
@@ -63,10 +65,11 @@ const fetchUser = () => {
             formState.value.user.information = data.information;
             formState.value.user.experienceYear = data.experienceYear;
             formState.value.user.name = data.name;
-            formState.value.user.typeId = data.typeId;
             formState.value.user.roleId = data.roleName;
             formState.value.user.companyId = data.companyId;
             formState.value.user.status = data.status;
+            formState.value.user.userTypeCode = data.userTypeCode;
+            formState.value.user.level= data.level;
             changeSpinning();
         }).catch(err => {
             changeSpinning();
@@ -80,11 +83,11 @@ const layout = {
 };
 
 const onFinish = (values: any) => {
-    console.log(formState.value.user)
     changeSpinning();
-    debugger;
-
-    dealService.editDeal(values.deal)
+    if(values.user.birthDay){
+        values.user.birthDay = dayjs(values.user.birthDay).format(dateFormat);
+    }
+    userService.editUser(values.user)
         .then(
             (data) => {
                 if (data && data.status === 204) {
@@ -96,7 +99,7 @@ const onFinish = (values: any) => {
                 changeSpinning();
             }
         ).then(() => {
-            router.replace("/admin/deal")
+            router.replace("/admin/user")
         })
         .catch(
             (err) => { message.error(err) }
@@ -183,13 +186,19 @@ const filterCompany = (input: string) => {
         listCompany.value = { listData: data.data };
     });
 }
+const selectUserType = (value: UserType) =>{
+   formState.value.user.userTypeCode = value;
+}
+const selectCompany = (value: number) => {
+   formState.value.user.companyId = value;
+}
 const dateFormat = "DD/MM/YYYY";
 
 </script>
 <template><!-- :validate-messages="validateMessages" -->
     <a-spin :spinning="spinning">
         <a-form :model="formState" v-bind="layout" name="nest-messages" @finish="onFinish">
-            <a-form-item :name="['user', 'id']" label="Id" :rules="[{ required: true }]" :hidden="false">
+            <a-form-item :name="['user', 'id']" label="Id" :rules="[{ required: true }]" :hidden="true">
                 <a-input-number :value="formState.user.id" />
             </a-form-item>
             <a-form-item :name="['user', 'name']" label="Name">
@@ -199,13 +208,12 @@ const dateFormat = "DD/MM/YYYY";
                 <RoleElement ref="select-role" :role="formState.user.roleId" style="width: 120px"
                     @selectRole="selectRole" />
             </a-form-item>
-
             <a-form-item :name="['user', 'companyId']" label="Company">
-                <SearchCompanySelect ref="select-company" :companyId="formState.user.companyId" style="width: 50%"
-                    :listCompany="listCompany" @filter="filterCompany" />
+                <SearchCompanySelect ref="select-company" :companyId="formState.user.companyId" style="width: 50%" 
+                    :listCompany="listCompany" @filter="filterCompany" @selectCompany="selectCompany" />
             </a-form-item>
-            <a-form-item :name="['user', 'typeId']" label="Type" :rules="[{ required: true }]">
-                <a-input-number v-model:value="formState.user.typeId" />
+            <a-form-item :name="['user', 'userTypeCode']" label="Type" :rules="[{ required: true }]">
+                <UserTypeSelect ref="userTypeSelect"  :userTypeCode="formState.user.userTypeCode"  @selectUserType="selectUserType"/>
             </a-form-item>
             <a-form-item :name="['user', 'level']" label="Level">
                 <LevelNameComponent :levelName="formState.user.level" ref="selectLevelName" @selectLevel="selectLevel" />

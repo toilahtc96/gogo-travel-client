@@ -1,4 +1,5 @@
-export interface Company {
+
+export default interface Company {
     id: number,
     name: string,
     code: string,
@@ -9,3 +10,4 @@ export interface Company {
     information: string,
     status: number,
 }
+

@@ -11,9 +11,6 @@ const change = (page: number, pageSize: number) => {
 const showSizeChange = (current: number, size: number) => {
   emit('showSizeChange', current, size);
 }
-watch(() => props.total, () => {
-
-});
 </script>
 <template>
   <a-pagination v-model:current="current" :total="total" :pageSize="pageSize" style="float:right" @change="change"

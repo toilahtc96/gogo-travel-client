@@ -1,3 +1,5 @@
+import { Ref } from "vue";
+import { AddressType } from "./AddressType";
 import { StatusType } from "./StatusType";
 
 export interface Address  {
@@ -7,13 +9,7 @@ export interface Address  {
     code: string,
 }
 export interface SearchAddress {
-    companyName: string,
-    companyCode: string,
-    provinceCode: string,
-    districtCode: string,
-    precinctCode: string,
-    star: number,
-    information: string,
+    name: string,
     status: StatusType,
     page: number,
     size: number

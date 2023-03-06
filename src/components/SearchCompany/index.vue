@@ -2,7 +2,7 @@
 <script lang="ts" setup>
 import { AddressService } from "@/services/address";
 import { AddressType } from "@/type/AddressType";
-import { SearchAddress } from "@/type/Address";
+import { SearchCompany } from '@/type/SearchCompany';
 import { ref } from "vue";
 import { StatusType } from "@/type/StatusType";
 const addressService = new AddressService();
@@ -15,7 +15,7 @@ const formItemStyle = {
     labelCol3: { width: '50%', },
     labelColInput3: { width: '100%', float: 'left' },
 };
-const formState = ref<SearchAddress>({
+const formState = ref<SearchCompany>({
     companyName: '',
     companyCode: '',
     provinceCode: '',

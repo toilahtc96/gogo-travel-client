@@ -1,15 +1,16 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { Company } from '@/type/Company';
-import { SearchAddress } from '@/type/Address';
+import Company from '@/type/Company';
 import { StatusType } from '@/type/StatusType';
+// import { SearchCompany } from '@/type/SearchCompany';
 
 const tableCompany = ref();
 const defaultCompanyPage = ref({
   page: 0,
   size: 10
 });
-let spinning = ref({ data: true }); let pageSetting = ref({
+let spinning = ref({ data: true }); 
+let pageSetting = ref({
   current: new Number(1),
   total: new Number(0),
 });
@@ -18,7 +19,7 @@ const setTotal = (total: Number) => {
   pageSetting.value.total = total;
 }
 
-let dataSearch = ref<SearchAddress>({
+let dataSearch = ref({
   companyName: '',
   companyCode: '',
   provinceCode: '',
@@ -37,7 +38,7 @@ const setSpin = (spinValue: boolean) => {
 const showSizeChange = (current: number, size: number) => {
   defaultCompanyPage.value.size = size;
 }
-const settingDataSearch = (data: SearchAddress) => {
+const settingDataSearch = (data: any) => {
   dataSearch.value = data;
   dataSearch.value.page = defaultCompanyPage.value.page;
   dataSearch.value.size = defaultCompanyPage.value.size;
@@ -49,7 +50,7 @@ let companyActives = ref({
 const change = async (page: number, pageSize: number) => {
   tableCompany.value.changePage(page, pageSize);
 }
-const searchCompany = (data: SearchAddress) => {
+const searchCompany = (data: any) => {
   data.page = defaultCompanyPage.value.page;
   data.size = defaultCompanyPage.value.size;
   tableCompany.value.searchCompany(data);

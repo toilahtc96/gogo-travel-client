@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { CompanyService } from '@/services/company';
-import { Company } from '@/type/Company';
+import Company from '@/type/Company';
 import type { SelectProps } from 'ant-design-vue';
 import { onMounted, ref, watch } from 'vue';
-const props = defineProps(['listCompany', 'companyId']);
-const emit = defineEmits(['filter']);
+const props = defineProps(['listCompany', 'companyId','style']);
+const emit = defineEmits(['filter','selectCompany']);
 const companyService = new CompanyService();
 let defaultPage = ref({
     page: 0,
@@ -59,8 +59,8 @@ const getCompanyById = (id: number) => {
 let options = ref<SelectProps['options']>([
 
 ]);
-const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
+const handleChange = (value: number) => {
+    emit('selectCompany', value);
 };
 const handleBlur = () => {
     openSelect.value = false;
@@ -97,8 +97,8 @@ var delay = (function () {
 const selectCompany = ref<Element>();
 </script>
 <template>
-    <a-select :loading="loading" v-model:value="companyId" show-search placeholder="Select a company" style="width: 50%"
-        :options="options" :filter-option="filterOption" :open="openSelect" @select="openSelect = false"
+    <a-select :loading="loading" v-model:value="companyId" show-search placeholder="Select a company" :style="props.style"
+        :options="options" :filter-option="filterOption" :open="openSelect" @select="openSelect = false" allowClear
         @mousedown="openSelect = true" @focus="handleFocus" @blur="handleBlur" @change="handleChange" ref="selectCompany"
-        @inputKeyDown="inputKeyDown" />
+        @inputKeyDown="inputKeyDown"/>
 </template>

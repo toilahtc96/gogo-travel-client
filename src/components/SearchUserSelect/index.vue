@@ -37,7 +37,7 @@ const value = ref("");
 const current = ref(2);
 </script>
 <template>
-    <a-select v-model:value="value" show-search placeholder="Select a person" style="width: 200px" :options="options"
+    <a-select v-model:value="value" show-search placeholder="Select a person" style="width: 200px" :options="options" allowClear
         :filter-option="filterOption" @focus="handleFocus" @blur="handleBlur" @change="handleChange">
     </a-select>
 </template>

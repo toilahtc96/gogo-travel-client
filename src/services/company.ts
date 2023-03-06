@@ -1,5 +1,5 @@
 import axios from "@/core/httpClient";
-import { Company } from "@/type/Company";
+import Company from "@/type/Company";
 import { message } from "ant-design-vue";
 export class CompanyService {
     config = {

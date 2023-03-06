@@ -67,4 +67,24 @@ export class AddressService {
         })
     }
 
+    getByTypePaging = (type: AddressType, page: number, size: number) => {
+        return axios.get<Address[]>(`api/v1/address/get-by-type-paging?type=` + type+`&page=`+page+`&size=`+size, this.config).then((data) => {
+            return data.data;
+        }).catch((err) => {
+            message.error("Has error when get address by type");
+        })
+    }
+
+    findAddress = (data: any) => {
+        return axios.get(`/api/v1/address/get-by-field?`, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken") || ''
+            },
+           params:{ ...data}
+        }).then((data) => {
+            return data.data;
+        }).catch((err) => {
+            message.error("Has error when get address data!");
+        })
+    }
 }

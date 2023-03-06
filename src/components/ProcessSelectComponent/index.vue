@@ -10,7 +10,7 @@ const selectProcess = (value: ProcessCode) => {
 }
 </script>
 <template>
-    <a-select ref="select" v-model:value="processCode" style="width: 300px" @click="selectProcess">
+    <a-select ref="select" v-model:value="processCode" style="width: 300px" @click="selectProcess" allowClear>
         <a-select-option v-for="data in ProcessCode" :key="data" :value="data">{{
             data
         }}</a-select-option>

@@ -9,5 +9,5 @@ onMounted(() => {
 const fixStar = (value: number) => { }
 </script>
 <template>
-  <a-rate :value="star" :disabled="isCanAccess" allow-half @change="fixStar" />
+  <a-rate :value="star" :disabled="isCanAccess" @change="fixStar" />
 </template>
