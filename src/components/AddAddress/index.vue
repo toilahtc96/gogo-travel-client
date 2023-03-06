@@ -66,12 +66,12 @@ const getAndBuildParentValue = (data: AddressType) => {
       <a-input v-model:value="formState.address.name" />
     </a-form-item>
     <a-form-item :name="['address', 'type']" label="Type">
-      <a-select ref="select" v-model:value="formState.address.type" style="width: 15%" :rules="[{ required: true }]">
+      <a-select ref="select" v-model:value="formState.address.type" style="width: 15%" :rules="[{ required: true }]" allowClear>
         <a-select-option v-for="data in AddressType" :key="data" :value="data">{{ data }}</a-select-option>
       </a-select>
     </a-form-item>
     <a-form-item :name="['address', 'parentId']" label="Parent">
-      <a-select ref="select" v-model:value="formState.address.parentId" style="width: 15%"
+      <a-select ref="select" v-model:value="formState.address.parentId" style="width: 15%" allowClear
         :rules="[{ required: false }]">
         <a-select-option v-for="data in parentData" :key="data.value"> {{ data.key }} </a-select-option>
       </a-select>
