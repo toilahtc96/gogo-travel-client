@@ -12,10 +12,7 @@ const companyService = new CompanyService();
 const userTypeService = new UserTypeService();
 
 let rateInteract = ref<boolean>();
-let defaultCompanyPage = ref({
-    page: 0,
-    size: 10
-});
+
 const columns: TableColumnsType = [
     { title: 'User Name', width: 200, dataIndex: 'username', key: 'name', fixed: 'left' },
     { title: 'Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left' },
@@ -44,7 +41,7 @@ let userActives = ref({
 });
 onMounted(async () => {
     emit('setSpin', true);
-    userService.getPaging({ ...defaultCompanyPage.value }).then((data: any) => {
+    userService.getPaging({ ...props.defaultCompanyPage }).then((data: any) => {
         userActives.value = { ...userActives.value, listData: data.data };
         userActives.value.listData?.forEach((item) => {
             if (item.typeId) {

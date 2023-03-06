@@ -38,9 +38,6 @@ const setPaging = (page: number, pageSize: number) => {
   defaultCompanyPage.value.size = pageSize;
 }
 const searchUser = (formState: SearchUserForm) => {
-  //todo: tim kiem o day 
-  // setup to userActives
-  // //recheck
   userService.getPaging(formState).then((data) => {
     debugger;
     userActives.value = data.data;
