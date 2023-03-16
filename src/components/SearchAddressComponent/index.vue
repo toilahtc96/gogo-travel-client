@@ -3,7 +3,7 @@
 import { AddressService } from "@/services/address";
 import { AddressType } from "@/type/AddressType";
 import { SearchAddress } from "@/type/Address";
-import { ref, watch } from "vue";
+import { ref, watch, defineProps, defineEmits } from "vue";
 import { StatusType } from "@/type/StatusType";
 const addressService = new AddressService();
 const emit = defineEmits(['searchAddress'])

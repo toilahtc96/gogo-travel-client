@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-
+import { defineEmits, defineProps } from "vue";
 import { StatusType } from "@/type/StatusType";
 
 const props = defineProps(['status'])

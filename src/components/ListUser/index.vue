@@ -39,7 +39,6 @@ const setPaging = (page: number, pageSize: number) => {
 }
 const searchUser = (formState: SearchUserForm) => {
   userService.getPaging(formState).then((data) => {
-    debugger;
     userActives.value = data.data;
     setTotal(data.total);
   }).catch(err => {

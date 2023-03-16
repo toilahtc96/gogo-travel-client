@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 
 import { ProcessCode } from "@/type/ProcessCode";
-import { ref } from "vue";
+import { ref, defineProps } from "vue";
 const props = defineProps(['current'])
 const emit = defineEmits(['editProcess']);
 const current = ref(props.current);

@@ -2,7 +2,7 @@
 import { User } from '@/type/User';
 import { UserType } from '@/type/UserType';
 import type { SelectProps } from 'ant-design-vue';
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref, watch, defineProps, defineEmits } from 'vue';
 const props = defineProps(['listUser']);
 const emit = defineEmits(['filter']);
 onMounted(() => {
@@ -37,7 +37,7 @@ const value = ref("");
 const current = ref(2);
 </script>
 <template>
-    <a-select v-model:value="value" show-search placeholder="Select a person" style="width: 200px" :options="options" allowClear
-        :filter-option="filterOption" @focus="handleFocus" @blur="handleBlur" @change="handleChange">
+    <a-select v-model:value="value" show-search placeholder="Select a person" style="width: 200px" :options="options"
+        allowClear :filter-option="filterOption" @focus="handleFocus" @blur="handleBlur" @change="handleChange">
     </a-select>
 </template>

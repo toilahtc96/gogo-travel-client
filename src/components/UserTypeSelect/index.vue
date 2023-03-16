@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 
 import { UserType } from "@/type/UserType";
-import { watch } from "vue";
+import { watch, defineEmits, defineProps } from "vue";
 
 const props = defineProps(['userTypeCode'])
 const emit = defineEmits(['selectUserType'])

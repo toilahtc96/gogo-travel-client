@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 
 import { ProcessCode } from "@/type/ProcessCode";
-
+import { defineProps } from "vue";
 const props = defineProps(['processCode'])
 const emit = defineEmits(['selectProcess'])
 

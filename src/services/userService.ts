@@ -13,7 +13,7 @@ export class UserService {
             headers: {
                 accessToken: localStorage.getItem("accessToken") || ''
             },
-            params: {...data}
+            params: { ...data }
         }).then((data) => {
             return data.data;
         }).catch((err) => {
@@ -35,6 +35,13 @@ export class UserService {
             return data;
         }).catch((err) => {
             message.error("Has error when edit user");
+        })
+    }
+    getUserByToken = () => {
+        return axios.get(`/api/v1/user/get-user-by-token?accessToken=` + localStorage.getItem("accessToken"), this.config).then((data) => {
+            return data.data;
+        }).catch((err) => {
+            message.error("Has error when get User by token! " );
         })
     }
 }

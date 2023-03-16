@@ -8,6 +8,12 @@ import EditAddress from '@/pages/admin/address/edit/index.vue';
 import Role from '@/pages/admin/role/index.vue';
 import AddRole from '@/pages/admin/role/add/index.vue';
 import EditRole from '@/pages/admin/role/edit/index.vue';
+import Career from '@/pages/admin/career/index.vue';
+import AddCareer from '@/pages/admin/career/add/index.vue';
+import EditCareer from '@/pages/admin/career/edit/index.vue';
+import JobType from '@/pages/admin/jobType/index.vue';
+import AddJobType from '@/pages/admin/jobType/add/index.vue';
+import EditJobType from '@/pages/admin/jobType/edit/index.vue';
 import UserType from '@/pages/admin/userType/index.vue';
 import AddUserType from '@/pages/admin/userType/add/index.vue';
 import AddLevel from '@/pages/admin/level/add/index.vue';
@@ -348,20 +354,90 @@ const routes: Array<RouteRecordRaw> = [
       next(!noToken);
     }
   },
-  // {
-  //   name: "admin-address-add",
-  //   path: "/admin/address/add",
-  //   meta: { needsAuth: true },
-  //   component: AddAddress,
-  //   beforeEnter: (to, from, next) => {
-  //     const noToken: boolean = !localStorage.getItem("accessToken");
-  //     if (noToken) {
-  //       message.error("You need Login!");
-  //       router.push("/login")
-  //     }
-  //     next(!noToken);
-  //   }
-  // },
+  {
+    name: "admin-career",
+    path: "/admin/career",
+    meta: { needsAuth: true },
+    component: Career,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/login")
+      }
+      next(!noToken);
+    }
+  },
+  {
+    name: "admin-career-edit",
+    path: "/admin/career/edit/:id",
+    meta: { needsAuth: true },
+    component: EditCareer,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/login")
+      }
+      next(!noToken);
+    }
+  },
+  {
+    name: "admin-career-add",
+    path: "/admin/career/add",
+    meta: { needsAuth: true },
+    component: AddCareer,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/login")
+      }
+      next(!noToken);
+    }
+  },
+  {
+    name: "admin-job-type",
+    path: "/admin/job-type",
+    meta: { needsAuth: true },
+    component: JobType,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/login")
+      }
+      next(!noToken);
+    }
+  },
+  {
+    name: "admin-job-type-edit",
+    path: "/admin/job-type/edit/:id",
+    meta: { needsAuth: true },
+    component: EditJobType,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/login")
+      }
+      next(!noToken);
+    }
+  },
+  {
+    name: "admin-job-type-add",
+    path: "/admin/job-type/add",
+    meta: { needsAuth: true },
+    component: AddJobType,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/login")
+      }
+      next(!noToken);
+    }
+  },
  ];
 
 export default routes;

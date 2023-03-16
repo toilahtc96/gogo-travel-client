@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { defineComponent, onMounted, ref, watch } from 'vue';
+import { defineComponent, onMounted, ref, watch , defineProps} from 'vue';
 const props = defineProps(['isCanAccess', 'star'])
 const star = ref<number>();
 let isCanAccess = ref<boolean>(false);

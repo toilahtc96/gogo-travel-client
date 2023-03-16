@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { watch } from 'vue';
+import { watch, defineProps } from 'vue';
 const props = defineProps(['current', 'total', 'pageSize'])
 const emit = defineEmits(['change', 'showSizeChange'])
 const change = (page: number, pageSize: number) => {

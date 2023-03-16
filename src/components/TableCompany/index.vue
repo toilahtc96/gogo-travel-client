@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, defineEmits, defineProps } from 'vue'
 import { CompanyService } from '@/services/company';
 import { TableColumnsType } from 'ant-design-vue';
 import Company from '@/type/Company';

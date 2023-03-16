@@ -1,4 +1,4 @@
 export type LoginRequestType = {
-    username: String;
-    password: String;
+    username: string | undefined;
+    password: string | undefined;
 }

@@ -89,7 +89,30 @@
             </a-menu-item>
           </a-menu-item-group>
         </a-sub-menu>
+        <a-sub-menu key="careers">
+          <template #title>Career</template>
+          <a-menu-item-group title="Setup Career">
+            <a-menu-item key="career-list">
+              <router-link to="/admin/career">Career</router-link>
+            </a-menu-item>
+            <a-menu-item key="career-add">
+              <router-link to="/admin/career/add"> Add Career </router-link>
+            </a-menu-item>
+          </a-menu-item-group>
+        </a-sub-menu>
+        <a-sub-menu key="jobtypes">
+          <template #title>Job Type</template>
+          <a-menu-item-group title="Setup Job Type">
+            <a-menu-item key="jobtype-list">
+              <router-link to="/admin/job-type">Job type</router-link>
+            </a-menu-item>
+            <a-menu-item key="jobtype-add">
+              <router-link to="/admin/job-type/add"> Add Job type </router-link>
+            </a-menu-item>
+          </a-menu-item-group>
+        </a-sub-menu>
       </a-menu>
+
     </div>
   </a-layout-header>
 </template>

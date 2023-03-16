@@ -3,7 +3,7 @@ import { AddressService } from '@/services/address';
 import { Address } from '@/type/Address'
 import { AddressType } from '@/type/AddressType';
 import type { SelectProps } from 'ant-design-vue';
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref, watch, defineProps, defineEmits } from 'vue';
 const props = defineProps(['listAddress', 'addressCode', 'addressType','key']);
 const emit = defineEmits(['filter', 'selectAddress']);
 const addressService = new AddressService();

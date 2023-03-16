@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 
 import { RoleType } from "@/type/RoleType";
-
+import { defineProps } from "vue";
 const props = defineProps(['role'])
 const emit = defineEmits(['selectRole'])
 const test = (value: RoleType) => {

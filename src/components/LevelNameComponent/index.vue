@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 
+import { defineProps } from "vue";
 import { LevelName } from "@/type/LevelName";
 
 const props = defineProps(['levelName'])
