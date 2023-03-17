@@ -157,6 +157,9 @@ const formItemStyle = {
     labelCol3: { width: '100%', },
     labelColInput3: { width: '100%', float: 'left' },
 };
+const selectStatus = (value: StatusType)=>{
+    formState.value.company.status= value;
+}
 </script>
 <template>
     <a-spin :spinning="spinning">
@@ -183,7 +186,7 @@ const formItemStyle = {
                 <a-input v-model:value="formState.company.information" />
             </a-form-item>
             <a-form-item :name="['company', 'status']" label="Status" :style="styleInput">
-                <StatusElement :status="formState.company.status" ref="select" />
+                <StatusElement :status="formState.company.status" ref="select"  @selectStatus="selectStatus"/>
             </a-form-item>
             <a-form-item :wrapper-col="{ ...layout.wrapperCol, offset: 8 }" :style="styleInput">
                 <a-button type="primary" html-type="submit">Submit</a-button>

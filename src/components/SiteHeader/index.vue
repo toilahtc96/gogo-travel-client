@@ -3,7 +3,9 @@
 
 <template>
   <a-layout-header :style="{ position: 'fixed', zIndex: 999, width: '100%' }">
-    <div class="logo" />
+    <div class="logo">
+      <img src="@/assets/img/logo/low-res-logo.png" alt="" style="padding-bottom: 25%;">
+    </div>
     <div id="app">
       <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
         <a-sub-menu key="company">
@@ -111,6 +113,17 @@
             </a-menu-item>
           </a-menu-item-group>
         </a-sub-menu>
+        <a-sub-menu key="workingForms">
+          <template #title>Working Form </template>
+          <a-menu-item-group title="Setup Working Form">
+            <a-menu-item key="workingForm-list">
+              <router-link to="/admin/working-form">Working Form</router-link>
+            </a-menu-item>
+            <a-menu-item key="workingForm-add">
+              <router-link to="/admin/working-form/add"> Add Working Form </router-link>
+            </a-menu-item>
+          </a-menu-item-group>
+        </a-sub-menu>
       </a-menu>
 
     </div>
@@ -121,7 +134,6 @@
 .logo {
   width: 120px;
   height: 31px;
-  background: rgba(255, 255, 255, 0.2);
   margin: 16px 24px 16px 0;
   float: left;
 }

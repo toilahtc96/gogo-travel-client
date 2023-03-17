@@ -28,6 +28,7 @@ const formState = ref<SearchCompany>({
     size: 5
 })
 const onFinish = () => {
+    debugger;
     emit('searchCompany', formState.value);
 }
 
@@ -49,6 +50,9 @@ const changeAddress = (data: string, type: AddressType) => {
 let provinceName = ref<string>('province');
 let districtName = ref<string>('district');
 let precinctName = ref<string>('precinct');
+const selectStatus = (value: StatusType) => {
+    formState.value.status = value;
+}
 </script>
 <template>
     <div style="background-color: #f1f1f1;">
@@ -64,7 +68,7 @@ let precinctName = ref<string>('precinct');
                 :precinctCode="formState.precinctCode" @changeAddress="changeAddress" :provinceName="provinceName"
                 :districtName="districtName" :precinctName="precinctName" :formItemStyle="formItemStyle" />
             <a-form-item :name="['status']" label="Status" :style="formItemStyle.labelCol3" style="float:left">
-                <StatusElement :status="formState.status" ref="select" />
+                <StatusElement :status="formState.status" ref="select" @selectStatus="selectStatus" />
             </a-form-item>
             <div style="width:100%; float:left; text-align: center;">
                 <a-button type="primary" html-type="submit">Tìm kiếm</a-button>

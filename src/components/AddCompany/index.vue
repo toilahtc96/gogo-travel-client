@@ -96,6 +96,9 @@ let provinceName = ref<[string,string]>(['company', 'provinceCode']);
 let districtName = ref<[string,string]>(['company', 'districtCode']);
 let precinctName = ref<[string,string]>(['company', 'precinctCode']);
 const styleInput = "float: left; width: 100%;";
+const selectStatus = (value: StatusType)=>{
+    formState.company.status= value;
+}
 </script>
 <template>
     <a-form :model="formState" v-bind="layout" name="nest-messages" @finish="onFinish">
@@ -115,7 +118,7 @@ const styleInput = "float: left; width: 100%;";
             <a-input v-model:value="formState.company.information" />
         </a-form-item>
         <a-form-item :name="['company', 'status']" label="Status"  :style="styleInput">
-            <StatusElement :status="formState.company.status" ref="select" />
+            <StatusElement :status="formState.company.status" ref="select"  @selectStatus="selectStatus"/>
         </a-form-item>
         <a-form-item :wrapper-col="{ ...layout.wrapperCol, offset: 8 }"  :style="styleInput">
             <a-button type="primary" html-type="submit">Submit</a-button>

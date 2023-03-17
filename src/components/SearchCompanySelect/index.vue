@@ -31,17 +31,20 @@ watch(() => props.listCompany, () => {
         openSelect.value = false;
         loading.value = false;
         options.value = [];
+        console.log(options.value);
         Object.values(props.listCompany.listData).forEach((item: any) => {
-            options.value?.push({ value: item.id, label: item.name });
+            options.value?.push({ value: item.id, label: item.name, key: item.id });
         });
         setTimeout(() => {
             openSelect.value = true;
+            console.log(options.value)
         }, 100)
 
     }
 })
 
 watch(() => props.companyId, () => {
+    debugger;
     if (props.companyId) {
         getCompanyById(props.companyId);
     }
@@ -49,7 +52,8 @@ watch(() => props.companyId, () => {
 
 const getCompanyById = (id: number) => {
     companyService.getCompanyById(id)?.then((data) => {
-        if (!options.value?.includes({ value: data.id, label: data.name })) {
+
+        if (options.value?.filter(item => { return item.value == id }).length == 0) {
             options.value?.push({ value: data.id, label: data.name });
         }
     }).then(() => {
@@ -60,6 +64,7 @@ let options = ref<SelectProps['options']>([
 
 ]);
 const handleChange = (value: number) => {
+    companyId.value = value;
     emit('selectCompany', value);
 };
 const handleBlur = () => {
@@ -67,18 +72,10 @@ const handleBlur = () => {
 };
 const handleFocus = () => {
     openSelect.value = true;
-    console.log('focus');
-};
-let inputCancel = ref("");
-const filterOption = (input: string) => {
-
-
-    // return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
 };
 
 let openSelect = ref<boolean>(false);
-const companyId = ref("");
-const current = ref(2);
+const companyId = ref<number>();
 const loading = ref(false);
 const inputKeyDown = (key: KeyboardEvent) => {
     loading.value = true;
@@ -98,7 +95,6 @@ const selectCompany = ref<Element>();
 
 onUpdated(() => {
     if (props.companyId) {
-        // getCompanyById(props.companyId);
         companyId.value = props.companyId;
     }
 })
@@ -107,9 +103,9 @@ onUpdated(() => {
     <div class="country-select">
         <div class="course__sort-inner">
             <a-select :loading="loading" v-model:value="companyId" show-search placeholder="Select a company"
-                :style="props.style" :options="options" :filter-option="filterOption" :open="openSelect"
-                @select="openSelect = false" allowClear @mousedown="openSelect = true" @focus="handleFocus"
-                @blur="handleBlur" @change="handleChange" ref="selectCompany" @inputKeyDown="inputKeyDown" />
+                :style="props.style" :options="options" :open="openSelect" @select="openSelect = false" allowClear
+                @mousedown="openSelect = true" @focus="handleFocus" @blur="handleBlur" @change="handleChange"
+                ref="selectCompany" @inputKeyDown="inputKeyDown" />
         </div>
     </div>
 </template>

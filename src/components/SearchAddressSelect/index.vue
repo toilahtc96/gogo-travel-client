@@ -4,7 +4,7 @@ import { Address } from '@/type/Address'
 import { AddressType } from '@/type/AddressType';
 import type { SelectProps } from 'ant-design-vue';
 import { onMounted, ref, watch, defineProps, defineEmits } from 'vue';
-const props = defineProps(['listAddress', 'addressCode', 'addressType','key']);
+const props = defineProps(['listAddress', 'addressCode', 'addressType', 'key']);
 const emit = defineEmits(['filter', 'selectAddress']);
 const addressService = new AddressService();
 let defaultPage = ref({
@@ -52,7 +52,7 @@ watch(() => props.addressType, () => {
 const getAddressByCode = (code: string, type: AddressType) => {
     addressService.getAddressByTypeAndCode(code, type)?.then((data) => {
         if (data) {
-            if (!options.value?.includes({ value: data.id, label: data.name })) {
+            if (options.value?.filter(item => { return item.value == data.id }).length == 0) {
                 options.value?.push({ value: data.id, label: data.name });
             }
         }
@@ -97,6 +97,6 @@ const selectAddress = ref<Element>();
 <template>
     <a-select :loading="loading" v-model:value="addressCode" show-search placeholder="Select a address" style="width: 50%"
         :options="options" :filter-option="filterOption" :open="openSelect" @select="openSelect = false"
-        @mousedown="openSelect = true"  @blur="handleBlur" @change="handleChange" ref="selectAddress"
-        @inputKeyDown="inputKeyDown" allowClear :key="key"/>
+        @mousedown="openSelect = true" @blur="handleBlur" @change="handleChange" ref="selectAddress"
+        @inputKeyDown="inputKeyDown" allowClear :key="key" />
 </template>

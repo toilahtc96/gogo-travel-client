@@ -14,6 +14,9 @@ import EditCareer from '@/pages/admin/career/edit/index.vue';
 import JobType from '@/pages/admin/jobType/index.vue';
 import AddJobType from '@/pages/admin/jobType/add/index.vue';
 import EditJobType from '@/pages/admin/jobType/edit/index.vue';
+import WorkingForm from '@/pages/admin/WorkingForm/index.vue';
+import AddWorkingForm from '@/pages/admin/WorkingForm/add/index.vue';
+import EditWorkingForm from '@/pages/admin/WorkingForm/edit/index.vue';
 import UserType from '@/pages/admin/userType/index.vue';
 import AddUserType from '@/pages/admin/userType/add/index.vue';
 import AddLevel from '@/pages/admin/level/add/index.vue';
@@ -429,6 +432,48 @@ const routes: Array<RouteRecordRaw> = [
     path: "/admin/job-type/add",
     meta: { needsAuth: true },
     component: AddJobType,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/login")
+      }
+      next(!noToken);
+    }
+  },
+  {
+    name: "admin-working-form",
+    path: "/admin/working-form",
+    meta: { needsAuth: true },
+    component: WorkingForm,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/login")
+      }
+      next(!noToken);
+    }
+  },
+  {
+    name: "admin-working-form-edit",
+    path: "/admin/working-form/edit/:id",
+    meta: { needsAuth: true },
+    component: EditWorkingForm,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/login")
+      }
+      next(!noToken);
+    }
+  },
+  {
+    name: "admin-working-form-add",
+    path: "/admin/working-form/add",
+    meta: { needsAuth: true },
+    component: AddWorkingForm,
     beforeEnter: (to, from, next) => {
       const noToken: boolean = !localStorage.getItem("accessToken");
       if (noToken) {

@@ -53,6 +53,7 @@ const change = async (page: number, pageSize: number) => {
 const searchCompany = (data: any) => {
   data.page = defaultCompanyPage.value.page;
   data.size = defaultCompanyPage.value.size;
+  debugger;
   tableCompany.value.searchCompany(data);
 }
 const setPaging = (page: number, pageSize: number) => {
