@@ -23,7 +23,6 @@ let formState = ref({
     }
 });
 const fetchJobType = () => {
-
     const id = route.params.id;
     if (id) {
         changeSpinning();
@@ -57,10 +56,9 @@ const onFinish = (values: any) => {
             }
         ).then(() => {
             router.replace("/admin/job-type")
+        }).catch((err) => { 
+            message.error(err) 
         })
-        .catch(
-            (err) => { message.error(err) }
-        )
 };
 
 onMounted(() => {

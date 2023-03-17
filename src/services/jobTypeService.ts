@@ -56,4 +56,17 @@ export class JobTypeService {
             message.error("Has error when get all jobType data!");
         })
     }
+
+    findJobType = (data: any) => {
+        return axios.get(`/api/v1/job-type/get-by-field?`, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken") || ''
+            },
+           params:{ ...data}
+        }).then((data) => {
+            return data.data;
+        }).catch((err) => {
+            message.error("Has error when get job type data!");
+        })
+    }
 }
