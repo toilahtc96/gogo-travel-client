@@ -56,4 +56,17 @@ export class CareerService {
             message.error("Has error when get all career data!");
         })
     }
+    
+    findCareer = (data: any) => {
+        return axios.get(`/api/v1/career/get-by-field?`, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken") || ''
+            },
+           params:{ ...data}
+        }).then((data) => {
+            return data.data;
+        }).catch((err) => {
+            message.error("Has error when get career data!");
+        })
+    }
 }

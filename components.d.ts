@@ -97,6 +97,7 @@ declare module '@vue/runtime-core' {
     RouterView: typeof import('vue-router')['RouterView']
     SearchAddressComponent: typeof import('./src/components/SearchAddressComponent/index.vue')['default']
     SearchAddressSelect: typeof import('./src/components/SearchAddressSelect/index.vue')['default']
+    SearchCareerSelect: typeof import('./src/components/SearchCareerSelect/index.vue')['default']
     SearchCompany: typeof import('./src/components/SearchCompany/index.vue')['default']
     SearchCompanySelect: typeof import('./src/components/SearchCompanySelect/index.vue')['default']
     SearchJobTypeSelect: typeof import('./src/components/SearchJobTypeSelect/index.vue')['default']

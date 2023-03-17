@@ -72,6 +72,23 @@ watch(() => route.params.id, () => {
 const selectStatus = (value: StatusType) => {
     formState.value.career.status = value;
 }
+
+let defaultPage = ref({
+    page: 0,
+    size: 10
+});
+let listCareer = ref({
+    listData: ref<[Career]>()
+});
+const filterCareer = (input: string) => {
+    careerService.findCareer({ ...defaultPage.value, name: input }).then((data: any) => {
+        listCareer.value = { listData: data.data };
+    });
+}
+const selectCareer = (value: number) => {
+    formState.value.career.id = value;
+}
+
 </script>
 <template>
     <!-- :validate-messages="validateMessages" -->
@@ -81,10 +98,15 @@ const selectStatus = (value: StatusType) => {
                 <a-input-number :value="formState.career.id" />
             </a-form-item>
             <a-form-item :name="['career', 'name']" label="Name" :rules="[{ required: true }]">
-                <a-input v-model:value="formState.career.name"/>
+                <a-input v-model:value="formState.career.name" />
             </a-form-item>
             <a-form-item :name="['career', 'status']" label="Status">
                 <StatusElement :status="formState.career.status" ref="select" @selectStatus="selectStatus" />
+            </a-form-item>
+
+            <a-form-item :name="['career', 'test']" label="test">
+                <SearchCareerSelect ref="select-career-form" :careerId="formState.career.id" style="width: 50%"
+                    :listCareer="listCareer" @filter="filterCareer" @selectCareer="selectCareer" />
             </a-form-item>
 
             <a-form-item :wrapper-col="{ ...layout.wrapperCol, offset: 8 }">
