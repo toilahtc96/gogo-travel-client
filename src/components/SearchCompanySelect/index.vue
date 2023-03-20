@@ -75,7 +75,7 @@ const handleFocus = () => {
 };
 
 let openSelect = ref<boolean>(false);
-const companyId = ref<number>();
+const companyId = ref<number | undefined>();
 const loading = ref(false);
 const inputKeyDown = (key: KeyboardEvent) => {
     loading.value = true;
@@ -94,9 +94,7 @@ var delay = (function () {
 const selectCompany = ref<Element>();
 
 onUpdated(() => {
-    if (props.companyId) {
-        companyId.value = props.companyId;
-    }
+    companyId.value = props.companyId;
 })
 </script>
 <template>

@@ -103,7 +103,7 @@ let defaultPage = ref({
     size: 10
 });
 onMounted(() => {
-    debugger;
+    
     fetchJob();
 })
 

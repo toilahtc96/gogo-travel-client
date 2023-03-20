@@ -44,9 +44,8 @@ watch(() => props.listCareer, () => {
 })
 
 watch(() => props.careerId, () => {
-    if (props.careerId) {
-        getCareerById(props.careerId);
-    }
+    careerId.value = props.careerId;
+    getCareerById(props.careerId);
 })
 
 const getCareerById = (id: number) => {
@@ -96,9 +95,9 @@ onUpdated(() => {
     <div class="country-select">
         <div class="course__sort-inner">
             <a-select :loading="loading" v-model:value="careerId" show-search placeholder="Select a Career"
-                :style="props.style" :options="options" :open="openSelect"
-                @select="openSelect = false" allowClear @mousedown="openSelect = true" @focus="handleFocus"
-                @blur="handleBlur" @change="handleChange" ref="selectCareer" @inputKeyDown="inputKeyDown" />
+                :style="props.style" :options="options" :open="openSelect" @select="openSelect = false" allowClear
+                @mousedown="openSelect = true" @focus="handleFocus" @blur="handleBlur" @change="handleChange"
+                ref="selectCareer" @inputKeyDown="inputKeyDown" />
         </div>
     </div>
 </template>

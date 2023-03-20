@@ -45,27 +45,16 @@ export class JobService {
             message.error("Has error when add job");
         })
     }
-    // getAll = () => {
-    //     return axios.get(`/api/v1/job/get-all`, {
-    //         headers: {
-    //             accessToken: localStorage.getItem("accessToken") || ''
-    //         }
-    //     }).then((data) => {
-    //         return data.data;
-    //     }).catch((err) => {
-    //         message.error("Has error when get job data!");
-    //     })
-    // }
-    // findCompany = (data: any) => {
-    //     return axios.get(`/api/v1/job/get-by-field?`, {
-    //         headers: {
-    //             accessToken: localStorage.getItem("accessToken") || ''
-    //         },
-    //        params:{ ...data}
-    //     }).then((data) => {
-    //         return data.data;
-    //     }).catch((err) => {
-    //         message.error("Has error when get job data!");
-    //     })
-    // }
+    findJob = (data: any) => {
+        return axios.get(`/api/v1/job/find-by-field?`, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken") || ''
+            },
+           params:{ ...data}
+        }).then((data) => {
+            return data.data;
+        }).catch((err) => {
+            message.error("Has error when get job data!");
+        })
+    }
 }

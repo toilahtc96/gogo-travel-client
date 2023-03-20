@@ -44,9 +44,8 @@ watch(() => props.listJobType, () => {
 })
 
 watch(() => props.jobTypeId, () => {
-    if (props.jobTypeId) {
-        getJobTypeById(props.jobTypeId);
-    }
+    jobTypeId.value = props.jobTypeId;
+    getJobTypeById(props.jobTypeId);
 })
 
 const getJobTypeById = (id: number) => {
@@ -96,9 +95,9 @@ onUpdated(() => {
     <div class="country-select">
         <div class="course__sort-inner">
             <a-select :loading="loading" v-model:value="jobTypeId" show-search placeholder="Select a Job Type"
-                :style="props.style" :options="options" :open="openSelect"
-                @select="openSelect = false" allowClear @mousedown="openSelect = true" @focus="handleFocus"
-                @blur="handleBlur" @change="handleChange" ref="selectJobType" @inputKeyDown="inputKeyDown" />
+                :style="props.style" :options="options" :open="openSelect" @select="openSelect = false" allowClear
+                @mousedown="openSelect = true" @focus="handleFocus" @blur="handleBlur" @change="handleChange"
+                ref="selectJobType" @inputKeyDown="inputKeyDown" />
         </div>
     </div>
 </template>

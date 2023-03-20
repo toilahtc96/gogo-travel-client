@@ -38,8 +38,6 @@ const change = async (page: number, pageSize: number) => {
   tableJob.value.changePage(page, pageSize);
 }
 const searchJob = (data: any) => {
-  data.page = defaultJobPage.value.page;
-  data.size = defaultJobPage.value.size;
   tableJob.value.searchJob(data);
 }
 const setPaging = (page: number, pageSize: number) => {
@@ -51,7 +49,7 @@ const setPaging = (page: number, pageSize: number) => {
 
 <template>
   <a-spin :spinning="spinning.data">
-    <SearchJob @searchJob="searchJob" />
+    <SearchJob @searchJob="searchJob" :defaultJobPage="defaultJobPage"/>
     <TableJob :jobActives="jobActives" :dataSearch="dataSearch" @setSpin="setSpin" @setTotal="setTotal"
       ref="tableJob" :defaultJobPage="defaultJobPage" />
   </a-spin>

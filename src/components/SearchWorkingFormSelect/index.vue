@@ -43,9 +43,8 @@ watch(() => props.listWorkingForm, () => {
 })
 
 watch(() => props.workingFormId, () => {
-    if (props.workingFormId) {
-        getWorkingFormById(props.workingFormId);
-    }
+    workingFormId.value = props.workingFormId;
+    getWorkingFormById(props.workingFormId);
 })
 
 const getWorkingFormById = (id: number) => {
@@ -70,16 +69,8 @@ const handleFocus = () => {
     openSelect.value = true;
     console.log('focus');
 };
-let inputCancel = ref("");
-const filterOption = (input: string) => {
-
-
-    // return option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0;
-};
-
 let openSelect = ref<boolean>(false);
 const workingFormId = ref("");
-const current = ref(2);
 const loading = ref(false);
 const inputKeyDown = (key: KeyboardEvent) => {
     loading.value = true;
@@ -108,7 +99,7 @@ onUpdated(() => {
     <div class="country-select">
         <div class="course__sort-inner">
             <a-select :loading="loading" v-model:value="workingFormId" show-search placeholder="Select a working form"
-                :style="props.style" :options="options" :filter-option="filterOption" :open="openSelect"
+                :style="props.style" :options="options" :open="openSelect"
                 @select="openSelect = false" allowClear @mousedown="openSelect = true" @focus="handleFocus"
                 @blur="handleBlur" @change="handleChange" ref="selectWorkingForm" @inputKeyDown="inputKeyDown" />
         </div>

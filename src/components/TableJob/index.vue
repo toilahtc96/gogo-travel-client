@@ -4,14 +4,13 @@ import { JobService } from '@/services/jobService';
 import { TableColumnsType } from 'ant-design-vue';
 import { Job } from '@/type/Job';
 import { EditTwoTone } from '@ant-design/icons-vue';
+import { SearchJob } from '@/type/SearchJob';
+import { StatusType } from '@/type/StatusType';
 // import { SearchJob } from '@/type/SearchJob';
 
 const emit = defineEmits(['setSpin', 'setTotal', 'settingDataSearch', 'setPaging'])
 const props = defineProps(['jobActives', 'defaultJobPage', 'dataSearch'])
-let defaultJobPage = ref({
-    page: 0,
-    size: 10
-});
+
 // let dataSearch = ref<SearchJob>({
 //     information: '',
 //     status: StatusType.ACTIVED,
@@ -27,7 +26,7 @@ const columns: TableColumnsType = [
     { title: 'Quantity', dataIndex: 'quantity', width: 150, key: 'quantity' },
     { title: 'Min Salary', dataIndex: 'rangeSalaryMin', width: 150, key: 'rangeSalaryMin' },
     { title: 'Max Salary', dataIndex: 'rangeSalaryMax', width: 150, key: 'rangeSalaryMax' },
-    { title: 'Level Name', dataIndex: 'levelName', width: 150,  key: 'levelName' },
+    { title: 'Level Name', dataIndex: 'levelName', width: 150, key: 'levelName' },
     { title: 'Status', dataIndex: 'status', width: 150, key: 'status' },
     { title: 'Custom Range', dataIndex: 'customRange', width: 150, key: 'customRange' },
     {
@@ -44,56 +43,58 @@ let jobActives = ref({
 });
 onMounted(async () => {
     emit('setSpin', true);
-    jobService.getListJobActive(defaultJobPage.value.page, defaultJobPage.value.size).then((data: any) => {
+    jobService.getListJobActive(props.defaultJobPage.page, props.defaultJobPage.size).then((data: any) => {
         jobActives.value = { ...jobActives.value, listData: data.data };
         emit('setTotal', data.total);
     }).then(() => {
         emit('setSpin', false)
     });
 })
-
+const dataSearch = ref<SearchJob>({
+    jobTypeId: undefined,
+    companyId: undefined,
+    rangeSalary: undefined,
+    levelName: undefined,
+    customRange: undefined,
+    careerId: undefined,
+    workingFormId: undefined,
+    information: undefined,
+    status: StatusType.ACTIVED,
+    page: props.defaultJobPage.page,
+    size: props.defaultJobPage.size
+});
 watch(() => props.jobActives, (data) => {
     jobActives.value = data;
 });
-// watch(() => props.dataSearch, (data) => {
-//     dataSearch.value = data;
-// })
-// const searchJob = (data: SearchJob) => {
-// emit('setSpin', true)
-// emit('settingDataSearch', data)
-// jobService.findJob(data).then((data) => {
-//     jobActives.value = { ...jobActives.value, listData: data.data };
-//     emit('setTotal', data.total);
-// }).then(() => {
-//     jobActives.value.listData?.forEach((item) => {
-//         getNameOfAddress(item.provinceCode, AddressType.PROVINCE, item);
-//         getNameOfAddress(item.districtCode, AddressType.DISTRICT, item);
-//         getNameOfAddress(item.precinctCode, AddressType.PRECINCT, item);
-//     })
-// }).then(() => {
-//     emit('setSpin', false)
-// });
-// }
+watch(() => props.dataSearch, (data) => {
+    dataSearch.value = data;
+})
+const searchJob = (data: SearchJob) => {
+    emit('setSpin', true)
+    emit('settingDataSearch', data)
+    jobService.findJob(data).then((result) => {
+        
+        jobActives.value = { ...jobActives.value, listData: result.data };
+        emit('setTotal', result.total);
+    }).finally(() => {
+        emit('setSpin', false)
+    });
+}
 const changePage = async (page: number, pageSize: number) => {
-    // emit('setPaging', page, pageSize)
-    // emit('setSpin', true)
-    // dataSearch.value.page = page;
-    // dataSearch.value.size = pageSize;
-    // jobService.findJob(dataSearch.value).then((data) => {
-    //     jobActives.value = { ...jobActives.value, listData: data.data };
-    //     emit('setTotal', data.total);
-    // }).then(() => {
-    //     jobActives.value.listData?.forEach((item) => {
-    //         getNameOfAddress(item.provinceCode, AddressType.PROVINCE, item);
-    //         getNameOfAddress(item.districtCode, AddressType.DISTRICT, item);
-    //         getNameOfAddress(item.precinctCode, AddressType.PRECINCT, item);
-    //     })
-    // }).then(() => {
-    //     emit('setSpin', false);
-    // });
+    emit('setPaging', page, pageSize)
+    emit('setSpin', true)
+    dataSearch.value.page = page;
+    dataSearch.value.size = pageSize;
+    
+    jobService.findJob(dataSearch.value).then((data) => {
+        jobActives.value = { ...jobActives.value, listData: data.data };
+        emit('setTotal', data.total);
+    }).then(() => {
+        emit('setSpin', false);
+    });
 }
 defineExpose({
-    // searchJob,
+    searchJob,
     changePage
 });
 </script>
