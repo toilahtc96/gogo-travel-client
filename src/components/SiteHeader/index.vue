@@ -124,6 +124,17 @@
             </a-menu-item>
           </a-menu-item-group>
         </a-sub-menu>
+        <a-sub-menu key="jobs">
+          <template #title>Job</template>
+          <a-menu-item-group title="Job Manage">
+            <a-menu-item key="Job-list">
+              <router-link to="/admin/job">Jobs</router-link>
+            </a-menu-item>
+            <a-menu-item key="job-add">
+              <router-link to="/admin/job/add"> Add Job </router-link>
+            </a-menu-item>
+          </a-menu-item-group>
+        </a-sub-menu>
       </a-menu>
 
     </div>

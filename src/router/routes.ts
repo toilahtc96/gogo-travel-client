@@ -32,6 +32,9 @@ import ListProcess from '@/pages/admin/process/index.vue';
 import EditProcess from '@/pages/admin/process/edit/index.vue';
 import ListDeal from '@/pages/admin/deal/index.vue';
 import EditDeal from '@/pages/admin/deal/edit/index.vue';
+import AddJob from '@/pages/admin/job/add/index.vue';
+import EditJob from '@/pages/admin/job/edit/index.vue';
+import Job from '@/pages/admin/job/index.vue';
 import { message } from "ant-design-vue";
 import router from "./router";
 const routes: Array<RouteRecordRaw> = [
@@ -474,6 +477,48 @@ const routes: Array<RouteRecordRaw> = [
     path: "/admin/working-form/add",
     meta: { needsAuth: true },
     component: AddWorkingForm,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/login")
+      }
+      next(!noToken);
+    }
+  },
+  {
+    name: "admin-job",
+    path: "/admin/job",
+    meta: { needsAuth: true },
+    component: Job,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/login")
+      }
+      next(!noToken);
+    }
+  },
+  {
+    name: "admin-job-edit",
+    path: "/admin/job/edit/:id",
+    meta: { needsAuth: true },
+    component: EditJob,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/login")
+      }
+      next(!noToken);
+    }
+  },
+  {
+    name: "admin-job-add",
+    path: "/admin/job/add",
+    meta: { needsAuth: true },
+    component: AddJob,
     beforeEnter: (to, from, next) => {
       const noToken: boolean = !localStorage.getItem("accessToken");
       if (noToken) {
