@@ -24,7 +24,7 @@ const props = defineProps(['DetailsPage'])
                         <li><a href="#"> <i class="icon_star"></i> </a></li>
                      </ul>
                   </div>
-                  <h5><router-link to="/course-details">Development</router-link></h5>
+                  <h5><router-link to="/">Development</router-link></h5>
                   <div class="course__sm-price">
                      <span>$54.00</span>
                   </div>
@@ -48,7 +48,7 @@ const props = defineProps(['DetailsPage'])
                         <li><a href="#"> <i class="icon_star"></i> </a></li>
                      </ul>
                   </div>
-                  <h5><router-link to="/course-details">Data Science</router-link></h5>
+                  <h5><router-link to="/">Data Science</router-link></h5>
                   <div class="course__sm-price">
                      <span>$72.00</span>
                   </div>
@@ -72,7 +72,7 @@ const props = defineProps(['DetailsPage'])
                         <li><a href="#"> <i class="icon_star"></i> </a></li>
                      </ul>
                   </div>
-                  <h5><router-link to="/course-details">UX Design</router-link></h5>
+                  <h5><router-link to="/">UX Design</router-link></h5>
                   <div class="course__sm-price">
                      <span>Free</span>
                   </div>

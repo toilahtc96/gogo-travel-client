@@ -5,7 +5,7 @@ const props = defineProps(['footerBgTwo', 'footerPadding'])
 const getFooterBg = (footerBgTwo: boolean) => {
     // return new URL(imgSrc, import.meta.url).href;
     if (footerBgTwo) {
-        return new URL('../../../../assets/img/logo/logo.png', import.meta.url).href;
+        return new URL('../../../../@/assets/img/logo/logo.png', import.meta.url).href;
     } else {
         return new URL('../../../../assets/img/logo/logo-2.png', import.meta.url).href;
 
@@ -33,9 +33,11 @@ const getFooterBg = (footerBgTwo: boolean) => {
 
                                     <div class="footer__social">
                                         <ul>
-                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li style="margin-left: 0px !important;"><a href="#"><i
+                                                        class="fab fa-facebook-f"></i></a></li>
                                             <li><a href="#" class="tw"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#" class="pin"><i class="fab fa-pinterest-p"></i></a></li>
+                                            <li style="margin-left: 10px;margin-right: 0;"><a href="#" class="pin"><i
+                                                        class="fab fa-pinterest-p"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -108,7 +108,7 @@ const getDateToDatePicker = (date: Dayjs) => {
                 <span v-if="!record.levelId"> </span>
             </template>
             <template v-if="column.key === 'star'">
-                <rate :value="record.star" :isCanAccess="rateInteract" />
+                <Rate :value="record.star" :isCanAccess="rateInteract" />
             </template>
             <template v-if="column.key === 'birthDay'">
                 <a-date-picker v-if="record.birthDay" v-model:value="record.birthDay" :disabled="true" />

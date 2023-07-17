@@ -50,11 +50,11 @@
             </a-menu-item>
           </a-menu-item-group>
         </a-sub-menu>
-        <a-sub-menu key="deal">
-          <template #title>Deal</template>
-          <a-menu-item-group title="Setup Deal">
-            <a-menu-item key="deal">
-              <router-link to="/admin/deal">Deal</router-link>
+        <a-sub-menu key="progress">
+          <template #title>Progress</template>
+          <a-menu-item-group title="Setup Progress">
+            <a-menu-item key="progress">
+              <router-link to="/admin/progress">Progress</router-link>
             </a-menu-item>
           </a-menu-item-group>
         </a-sub-menu>
@@ -69,14 +69,14 @@
             </a-menu-item>
           </a-menu-item-group>
         </a-sub-menu>
-        <a-sub-menu key="process">
-          <template #title>Process</template>
-          <a-menu-item-group title="Setup Process">
-            <a-menu-item key="process">
-              <router-link to="/admin/process">Process</router-link>
+        <a-sub-menu key="step">
+          <template #title>Step</template>
+          <a-menu-item-group title="Setup Step">
+            <a-menu-item key="step">
+              <router-link to="/admin/step">Step</router-link>
             </a-menu-item>
-            <a-menu-item key="process-add">
-              <router-link to="/admin/process/add"> Add Process</router-link>
+            <a-menu-item key="step-add">
+              <router-link to="/admin/step/add"> Add Step</router-link>
             </a-menu-item>
           </a-menu-item-group>
         </a-sub-menu>
@@ -132,6 +132,17 @@
             </a-menu-item>
             <a-menu-item key="job-add">
               <router-link to="/admin/job/add"> Add Job </router-link>
+            </a-menu-item>
+          </a-menu-item-group>
+        </a-sub-menu>
+        <a-sub-menu key="vouchers">
+          <template #title>Voucher</template>
+          <a-menu-item-group title="Voucher Manage">
+            <a-menu-item key="Voucher-list">
+              <router-link to="/admin/voucher">Vouchers</router-link>
+            </a-menu-item>
+            <a-menu-item key="voucher-add">
+              <router-link to="/admin/voucher/add"> Add Voucher </router-link>
             </a-menu-item>
           </a-menu-item-group>
         </a-sub-menu>

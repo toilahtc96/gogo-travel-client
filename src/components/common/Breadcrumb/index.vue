@@ -3,7 +3,7 @@
 const props = defineProps(['title', 'subtitle'])
 
 const getImgUrl = (pic: string) => {
-   return new URL("@/assets/img/page-title/" + pic, import.meta.url).href;
+   return new URL("assets/img/page-title/" + pic, 'http://127.0.0.1:3000/src/').href;
 };
 </script>
 
@@ -16,7 +16,7 @@ const getImgUrl = (pic: string) => {
          <div class="row">
             <div class="col-xxl-12">
                <div class="page__title-wrapper mt-110">
-                  <h3 class="page__title">{{ title }}</h3>
+                  <h3 class="page__title"> {{ title }}</h3>
                   <nav aria-label="breadcrumb">
                      <ol class="breadcrumb">
                         <li class="breadcrumb-item">

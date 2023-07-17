@@ -131,11 +131,11 @@ defineExpose({
 </script>
 
 <style scoped>
-:global(.ant-modal-footer) {
+.ant-modal-footer {
     display: none !important;
 }
 
-:global(.ant-form-item-label) {
+.ant-form-item-label {
     width: 15%;
     text-align: left !important;
 }

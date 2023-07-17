@@ -1,7 +1,6 @@
 import axios from "@/core/httpClient";
 import { User } from "@/type/User";
 import { message } from "ant-design-vue";
-import { List } from "lodash";
 export class UserService {
     config = {
         headers: {
@@ -41,7 +40,7 @@ export class UserService {
         return axios.get(`/api/v1/user/get-user-by-token?accessToken=` + localStorage.getItem("accessToken"), this.config).then((data) => {
             return data.data;
         }).catch((err) => {
-            message.error("Has error when get User by token! " );
+            message.error("Has error when get User by token! ");
         })
     }
 }

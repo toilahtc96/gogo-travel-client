@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-import { DealService } from '@/services/dealService';
+import { ProgressService } from '@/services/progressService';
 import { TableColumnsType } from 'ant-design-vue';
 
 const defaultPage = ref({
@@ -9,10 +9,10 @@ const defaultPage = ref({
 });
 let spinning = ref({ data: false });
 const columns: TableColumnsType = [
-  { title: 'DealId', width: 200, dataIndex: 'id', key: 'id', fixed: 'left' },
+  { title: 'ProgressId', width: 200, dataIndex: 'id', key: 'id', fixed: 'left' },
   { title: 'Agency', width: 200, dataIndex: 'agency', key: 'agency', fixed: 'left' },
   { title: 'Candidate', width: 300, dataIndex: 'candidate', key: 'candidate', fixed: 'left' },
-  { title: 'Process', width: 100, dataIndex: 'process', key: 'process' },
+  { title: 'Step', width: 100, dataIndex: 'step', key: 'step' },
   { title: 'Status', width: 100, dataIndex: 'status', key: 'status' },
   {
     title: 'Action',
@@ -22,14 +22,14 @@ const columns: TableColumnsType = [
   },
 ];
 
-const dealService = new DealService();
-let dealActives = ref({
+const progressService = new ProgressService();
+let progressActives = ref({
   listData: []
 });
 onMounted(async () => {
   spinning.value.data = true;
-  dealService.getListDeal(defaultPage.value.page, defaultPage.value.size).then(data => {
-    dealActives.value = { ...dealActives.value, listData: data.data };
+  progressService.getListProgress(defaultPage.value.page, defaultPage.value.size).then(data => {
+    progressActives.value = { ...progressActives.value, listData: data.data };
     setTotal(data.total);
   }).then(() => {
     spinning.value.data = false;
@@ -46,8 +46,8 @@ const setTotal = (total: Number) => {
 
 const change = async (page: Number, pageSize: Number) => {
   spinning.value.data = true;
-  dealService.getListDeal(page, pageSize).then((data) => {
-    dealActives.value = { ...dealActives.value, listData: data.data };
+  progressService.getListProgress(page, pageSize).then((data) => {
+    progressActives.value = { ...progressActives.value, listData: data.data };
     setTotal(data.total);
     spinning.value.data = false;
   });
@@ -60,10 +60,10 @@ const showSizeChange = (current: number, size: number) => {
 </script>
 <template>
   <a-spin :spinning="spinning.data">
-    <a-table :columns="columns" :data-source="dealActives.listData" :scroll="{ x: 1300, y: 1000 }">
+    <a-table :columns="columns" :data-source="progressActives.listData" :scroll="{ x: 1300, y: 1000 }">
       <template #bodyCell="{ column, record}">
         <template v-if="column.key === 'operation'">
-          <router-link v-if="record.id" :to="{ name: 'admin-deal-edit', params: { id: record.id } }"><a>edit
+          <router-link v-if="record.id" :to="{ name: 'admin-progress-edit', params: { id: record.id } }"><a>edit
           </a></router-link>
         </template>
       </template>

@@ -13,7 +13,7 @@ const testimonialData = ref([
 ])
 const modules = ref([Navigation, EffectFade]);
 const getStyleBG = () => {
-    return '{background:' + new URL('../../../../assets/img/testimonial/testimonial-bg.jpg', import.meta.url).href + "}";
+    return '{background:' + new URL('../../@/assets/img/testimonial/testimonial-bg.jpg', import.meta.url).href + "}";
 }
 </script>
 <template>

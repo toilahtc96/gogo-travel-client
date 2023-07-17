@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, reactive, ref, watch } from "vue-demi";
+import { onMounted, reactive, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { message } from "ant-design-vue";
 import router from "@/router/router";

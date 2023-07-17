@@ -44,7 +44,6 @@ watch(() => props.listCompany, () => {
 })
 
 watch(() => props.companyId, () => {
-    debugger;
     if (props.companyId) {
         getCompanyById(props.companyId);
     }

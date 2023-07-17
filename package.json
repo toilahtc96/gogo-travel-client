@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.1.4",
+    "@ckeditor/ckeditor5-build-classic": "^37.1.0",
+    "@ckeditor/ckeditor5-vue": "^5.1.0",
     "@popperjs/core": "^2.11.6",
     "@types/node": "^18.7.15",
     "ant-design-vue": "^3.2.12",
@@ -17,8 +20,10 @@
     "bootstrap-vue-3": "^0.5.1",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
+    "mvc-es6": "^1.1.1",
     "pinia": "^2.0.21",
     "sass": "^1.54.8",
+    "socket.io-client": "^4.6.1",
     "swiper": "^9.1.0",
     "unplugin-vue-components": "^0.22.4",
     "vue": "^3.2.37",
@@ -27,6 +32,7 @@
   "devDependencies": {
     "@types/lodash-es": "^4.17.6",
     "@vitejs/plugin-vue": "^3.0.3",
+    "ezyfox-es6-client": "^1.2.1",
     "typescript": "^4.6.4",
     "vite": "^3.0.7",
     "vue-tsc": "^0.39.5"

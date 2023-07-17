@@ -3,15 +3,17 @@
 </script>
 <template>
     <Header />
-    <HeroArea/>
-    <Services/>
-    <AboutArea/>
-    <Course/>
-    <WhatArea/>
-    <WhyArea/>
-    <Counter/>
-    <Testimonial/>
-    <Blog/>
-    <Cta/>
-    <Footer footerPadding="true"/>
+    <HeroArea />
+    <Services />
+    <!-- <AboutArea/> -->
+    <JobItem />
+    <WhatArea />
+    <!-- <WhyArea/> -->
+    <Counter />
+    <!-- <Testimonial/> -->
+    <Blog />
+    <!-- <Cta/> -->
+    <!-- <BackTop /> -->
+    <InitChat />
+    <Footer footerPadding="true" />
 </template>

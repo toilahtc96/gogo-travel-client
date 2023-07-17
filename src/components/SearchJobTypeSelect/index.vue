@@ -68,7 +68,7 @@ const handleFocus = () => {
     openSelect.value = true;
 };
 let openSelect = ref<boolean>(false);
-const jobTypeId = ref("");
+const jobTypeId = ref();
 const inputKeyDown = (key: KeyboardEvent) => {
     loading.value = true;
     delay(function () {
@@ -94,7 +94,7 @@ onUpdated(() => {
 <template>
     <div class="country-select">
         <div class="course__sort-inner">
-            <a-select :loading="loading" v-model:value="jobTypeId" show-search placeholder="Select a Job Type"
+            <a-select placeholder="Select Job Type" :loading="loading" v-model:value="jobTypeId" show-search 
                 :style="props.style" :options="options" :open="openSelect" @select="openSelect = false" allowClear
                 @mousedown="openSelect = true" @focus="handleFocus" @blur="handleBlur" @change="handleChange"
                 ref="selectJobType" @inputKeyDown="inputKeyDown" />

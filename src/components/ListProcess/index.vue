@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
-import { ProcessService } from '@/services/processService';
+import { StepService } from '@/services/stepService';
 import { TableColumnsType } from 'ant-design-vue';
 
 const defaultPage = ref({
@@ -20,16 +20,16 @@ const columns: TableColumnsType = [
   },
 ];
 
-const processService = new ProcessService();
-let processActives = ref({
+const stepService = new StepService();
+let stepActives = ref({
   listData: []
 });
 onMounted(async () => {
   spinning.value.data = true;
-  processService.getListProcess(defaultPage.value.page, defaultPage.value.size).then(data => {
+  stepService.getListStep(defaultPage.value.page, defaultPage.value.size).then(data => {
     if (data) {
 
-      processActives.value = { ...processActives.value, listData: data.data };
+      stepActives.value = { ...stepActives.value, listData: data.data };
       setTotal(data.total);
     }
   }).then(() => {
@@ -47,9 +47,9 @@ const setTotal = (total: Number) => {
 
 const change = async (page: Number, pageSize: Number) => {
   spinning.value.data = true;
-  processService.getListProcess(page, pageSize).then((data) => {
+  stepService.getListStep(page, pageSize).then((data) => {
     if (data) {
-      processActives.value = { ...processActives.value, listData: data.data };
+      stepActives.value = { ...stepActives.value, listData: data.data };
       setTotal(data.total);
     }
     spinning.value.data = false;
@@ -63,11 +63,11 @@ const showSizeChange = (current: number, size: number) => {
 </script>
 <template>
   <a-spin :spinning="spinning.data">
-    <a-table :columns="columns" :data-source="processActives.listData" :scroll="{ x: 1300, y: 1000 }">
+    <a-table :columns="columns" :data-source="stepActives.listData" :scroll="{ x: 1300, y: 1000 }">
       <template #bodyCell="{ column, record }">
 
         <template v-if="column.key === 'operation'">
-          <router-link v-if="record.id" :to="{ name: 'admin-process-edit', params: { id: record.id } }"><a>edit
+          <router-link v-if="record.id" :to="{ name: 'admin-step-edit', params: { id: record.id } }"><a>edit
             </a></router-link>
         </template>
       </template>

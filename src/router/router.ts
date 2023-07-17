@@ -7,7 +7,15 @@ import Register from "@/pages/register/index.vue"
 import DynamicLayout from '@/layouts/dynamic/index.vue';
 import Home from "@/pages/user-pages/home/index.vue";
 import About from "@/pages/user-pages/about/index.vue";
+import Contact from "@/pages/user-pages/contact/index.vue";
 import Profile from "@/pages/user-pages/user-profile/index.vue";
+import JobAdd from "@/pages/user-pages/job-add/index.vue";
+import JobDetail1 from "@/pages/user-pages/job-detail-1/index.vue";
+import JobDetail2 from "@/pages/user-pages/job-detail-2/index.vue";
+import Step from "@/pages/user-pages/step/index.vue";
+import Voucher from "@/pages/user-pages/voucher/index.vue";
+import VoucherAddClient from "@/pages/user-pages/voucher/add/index.vue";
+import VoucherEditClient from "@/pages/user-pages/voucher/edit/index.vue";
 import { message } from "ant-design-vue";
 
 const router = createRouter({
@@ -18,7 +26,7 @@ const router = createRouter({
       component: DynamicLayout,
       children: routes
     },
-     {
+    {
       path: "/",
       component: Home
     },
@@ -45,12 +53,59 @@ const router = createRouter({
     },
     {
       path: "/register",
-      component: Signup, 
+      component: Signup,
     },
     {
       name: "about",
       path: "/about",
       component: About,
+    },
+    {
+      name: "contact",
+      path: "/contact",
+      component: Contact,
+    },
+    {
+      name: "job-add",
+      path: "/job-add",
+      component: JobAdd,
+      meta: { needsAuth: true },
+      beforeEnter: (to, from, next) => {
+        const noToken: boolean = !localStorage.getItem("accessToken");
+        if (noToken) {
+          message.error("You need Login!");
+          router.push("/login")
+        }
+        next(!noToken);
+      }
+    },
+    {
+      name: "job-detail-1",
+      path: "/job-detail-1/:id",
+      component: JobDetail1,
+      meta: { needsAuth: true },
+      beforeEnter: (to, from, next) => {
+        const noToken: boolean = !localStorage.getItem("accessToken");
+        if (noToken) {
+          message.error("You need Login!");
+          router.push("/login")
+        }
+        next(!noToken);
+      }
+    },
+    {
+      name: "job-detail",
+      path: "/job-detail-2/:id",
+      component: JobDetail2,
+      meta: { needsAuth: true },
+      beforeEnter: (to, from, next) => {
+        const noToken: boolean = !localStorage.getItem("accessToken");
+        if (noToken) {
+          message.error("You need Login!");
+          router.push("/login")
+        }
+        next(!noToken);
+      },
     },
     {
       name: "profile",
@@ -66,14 +121,70 @@ const router = createRouter({
         next(!noToken);
       }
     },
-   
+    {
+      name: "voucher",
+      path: "/voucher",
+      component: Voucher,
+      meta: { needsAuth: true },
+      beforeEnter: (to, from, next) => {
+        const noToken: boolean = !localStorage.getItem("accessToken");
+        if (noToken) {
+          message.error("You need Login!");
+          router.push("/login")
+        }
+        next(!noToken);
+      }
+    },
+    {
+      name: "add-voucher",
+      path: "/voucher/add",
+      component: VoucherAddClient,
+      meta: { needsAuth: true },
+      beforeEnter: (to, from, next) => {
+        const noToken: boolean = !localStorage.getItem("accessToken");
+        if (noToken) {
+          message.error("You need Login!");
+          router.push("/login")
+        }
+        next(!noToken);
+      }
+    },
+    {
+      name: "voucher-edit",
+      path: "/voucher/edit/:id",
+      component: VoucherEditClient,
+      meta: { needsAuth: true },
+      beforeEnter: (to, from, next) => {
+        const noToken: boolean = !localStorage.getItem("accessToken");
+        if (noToken) {
+          message.error("You need Login!");
+          router.push("/login")
+        }
+        next(!noToken);
+      }
+    },
+    {
+      name: "job-step",
+      path: "/job/step/:id",
+      component: Step,
+      meta: { needsAuth: true },
+      beforeEnter: (to, from, next) => {
+        const noToken: boolean = !localStorage.getItem("accessToken");
+        if (noToken) {
+          message.error("You need Login!");
+          router.push("/login")
+        }
+        next(!noToken);
+      },
+    }
+
   ],
   linkActiveClass: 'active',
   scrollBehavior(to, from, savedPosition) {
-      if(savedPosition) {
-          return savedPosition;
-      }
-      return {left: 0, top: 0 };
+    if (savedPosition) {
+      return savedPosition;
+    }
+    return { left: 0, top: 0 };
   }
 });
 

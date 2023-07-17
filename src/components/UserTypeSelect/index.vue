@@ -10,8 +10,8 @@ const selectUserType = (value: UserType) => {
 }
 </script>
 <template>
-    <a-select ref="select-role" v-model:value="props.userTypeCode" style="width: 120px" @change="selectUserType" allowClear>
-        <a-select-option v-for="data in UserType" :key="data" :value="data">{{
+    <a-select ref="select-role" v-model:value="props.userTypeCode" style="width: 50%" @change="selectUserType" allowClear>
+        <a-select-option v-for="data in UserType" :key="data" :value="data"> {{
             data
         }}</a-select-option>
     </a-select>

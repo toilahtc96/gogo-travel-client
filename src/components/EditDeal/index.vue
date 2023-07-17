@@ -4,7 +4,7 @@ import { useRoute } from "vue-router";
 import { message } from "ant-design-vue";
 import router from "@/router/router";
 import { StatusType } from "@/type/StatusType";
-import { DealService } from "@/services/dealService";
+import { ProgressService } from "@/services/progressService";
 import { UserService } from "@/services/userService";
 import { User } from "@/type/User";
 import { UserTypeService } from "@/services/userTypeService";
@@ -20,31 +20,31 @@ let defaultPage = ref({
     page: 0,
     size: 10
 });
-const dealService = new DealService();
+const progressService = new ProgressService();
 const route = useRoute();
 const spinning = ref<boolean>(false);
 const changeSpinning = () => {
     spinning.value = !spinning.value;
 };
 let formState = ref({
-    deal: {
+    progress: {
         id: 0,
         agencyId: 0,
         candidateId: 0,
-        processId: 0,
+        stepId: 0,
         status: StatusType.ACTIVED
     }
 });
-const fetchDeal = () => {
+const fetchProgress = () => {
     const id = route.params.id;
     if (id) {
         changeSpinning();
-        dealService.getDealById(id)?.then((data) => {
-            formState.value.deal.id = data.id;
-            formState.value.deal.agencyId = data.agencyId;
-            formState.value.deal.processId = data.processId;
-            formState.value.deal.candidateId = data.candidateId;
-            formState.value.deal.status = data.status;
+        progressService.getProgressById(id)?.then((data) => {
+            formState.value.progress.id = data.id;
+            formState.value.progress.agencyId = data.agencyId;
+            formState.value.progress.stepId = data.stepId;
+            formState.value.progress.candidateId = data.candidateId;
+            formState.value.progress.status = data.status;
             changeSpinning();
         });
     }
@@ -55,9 +55,9 @@ const layout = {
 };
 
 const onFinish = (values: any) => {
-    console.log(formState.value.deal)
+    console.log(formState.value.progress)
     changeSpinning();
-    dealService.editDeal(values.deal)
+    progressService.editProgress(values.progress)
         .then(
             (data) => {
                 if (data && data.status === 204) {
@@ -69,7 +69,7 @@ const onFinish = (values: any) => {
                 changeSpinning();
             }
         ).then(() => {
-            router.replace("/admin/deal")
+            router.replace("/admin/progress")
         })
         .catch(
             (err) => { message.error(err) }
@@ -77,7 +77,7 @@ const onFinish = (values: any) => {
 };
 
 onMounted(() => {
-    fetchDeal();
+    fetchProgress();
     getUserTypeId();
 
 })
@@ -110,11 +110,11 @@ const getUserTypeId = () => {
 }
 
 watch(() => route.params.id, () => {
-    fetchDeal();
+    fetchProgress();
 })
 
 const selectStatus = (value: StatusType) => {
-    formState.value.deal.status = value;
+    formState.value.progress.status = value;
 }
 let listAgency = ref({
     listData: ref<[User]>()
@@ -132,31 +132,31 @@ const candidateFilterOption = (input: string, option: any) => {
         return { ...listCandidate.value, listData: data.data };
     });
 }
-const editProcess = (current: number) => {
-    formState.value.deal.processId = current;
-    console.log(formState.value.deal);
+const editStep = (current: number) => {
+    formState.value.progress.stepId = current;
+    console.log(formState.value.progress);
 }
 </script>
 <template>
     <!-- :validate-messages="validateMessages" -->
     <a-spin :spinning="spinning">
         <a-form :model="formState" v-bind="layout" name="nest-messages" @finish="onFinish">
-            <a-form-item :name="['deal', 'id']" label="Id" :rules="[{ required: true }]" :hidden="true">
-                <a-input-number :value="formState.deal.id" />
+            <a-form-item :name="['progress', 'id']" label="Id" :rules="[{ required: true }]" :hidden="true">
+                <a-input-number :value="formState.progress.id" />
             </a-form-item>
 
-            <a-form-item :name="['deal', 'agencyId']" label="Agency" :rules="[{ required: true }]">
-                <!-- <a-input v-model:value="formState.deal.agencyId" /> -->
+            <a-form-item :name="['progress', 'agencyId']" label="Agency" :rules="[{ required: true }]">
+                <!-- <a-input v-model:value="formState.progress.agencyId" /> -->
                 <SearchUserSelect :listUser="listAgency" @filter="agencyFilterOption" />
             </a-form-item>
-            <a-form-item :name="['deal', 'candidateId']" label="Candidate" :rules="[{ required: true }]">
+            <a-form-item :name="['progress', 'candidateId']" label="Candidate" :rules="[{ required: true }]">
                 <SearchUserSelect :listUser="listCandidate" @filter="candidateFilterOption" />
             </a-form-item>
-            <a-form-item :name="['deal', 'processId']" label="Process" :rules="[{ required: true }]">
-                <ProcessDeal :current="formState.deal.processId" @editProcess="editProcess" />
+            <a-form-item :name="['progress', 'stepId']" label="Step" :rules="[{ required: true }]">
+                <StepProgress :current="formState.progress.stepId" @editStep="editStep" />
             </a-form-item>
-            <a-form-item :name="['deal', 'status']" label="Status">
-                <StatusElement :status="formState.deal.status" ref="select" @selectStatus="selectStatus" />
+            <a-form-item :name="['progress', 'status']" label="Status">
+                <StatusElement :status="formState.progress.status" ref="select" @selectStatus="selectStatus" />
             </a-form-item>
 
             <a-form-item :wrapper-col="{ ...layout.wrapperCol, offset: 8 }">

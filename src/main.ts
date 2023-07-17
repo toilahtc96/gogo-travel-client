@@ -11,7 +11,7 @@ import 'bootstrap';
 import BootstrapVue3 from "bootstrap-vue-3";
 import "bootstrap-vue-3/dist/bootstrap-vue-3.css";
 import './assets/scss/main.scss';
-
+import CKEditor from '@ckeditor/ckeditor5-vue';
 const pinia = createPinia();
 const app = createApp(App);
 
@@ -19,4 +19,5 @@ app.use(pinia);
 app.use(router);
 app.use(Antd);
 app.use(BootstrapVue3);
+app.use(CKEditor);
 app.mount("#app");

@@ -18,10 +18,12 @@ const props = defineProps(['jobActives', 'defaultJobPage', 'dataSearch'])
 //     size: defaultJobPage.value.size
 // });
 const columns: TableColumnsType = [
-    { title: 'information', dataIndex: 'information', key: 'information', fixed: 'left', width: 300 },
-    { title: 'Career', dataIndex: 'careerName', key: 'careerName', fixed: 'left', width: 200 },
-    { title: 'Job type', dataIndex: 'jobTypeName', key: 'jobTypeName', fixed: 'left', width: 200 },
-    { title: 'Company Name', dataIndex: 'companyName', key: 'companyName', fixed: 'left', width: 200 },
+    { title: 'title', dataIndex: 'title', key: 'title', fixed: 'left', width: 300 },
+    { title: 'tags', dataIndex: 'tags', key: 'tags', fixed: 'left', width: 300 },
+    { title: 'progress', dataIndex: 'voucherTitle', key: 'voucherTitle', fixed: 'left', width: 300 },
+    { title: 'Career', dataIndex: 'careerName', key: 'careerName', width: 200 },
+    { title: 'Job type', dataIndex: 'jobTypeName', key: 'jobTypeName', width: 200 },
+    { title: 'Company Name', dataIndex: 'companyName', key: 'companyName', width: 200 },
     { title: 'WorkingForm Name', dataIndex: 'workingFormName', width: 150, key: 'workingFormName' },
     { title: 'Quantity', dataIndex: 'quantity', width: 150, key: 'quantity' },
     { title: 'Min Salary', dataIndex: 'rangeSalaryMin', width: 150, key: 'rangeSalaryMin' },

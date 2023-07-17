@@ -101,15 +101,15 @@ const editModelRef = ref();
             <div class="col-xxl-6 col-xl-6 col-lg-6">
                <div class="about__content pl-70 pr-60 pt-25">
                   <div class="section__title-wrapper mb-25">
-                     <h2 class="section__title"><span class="yellow-bg-big">{{ userForm.name }} <img
+                     <h2 class="section__title"><span class="yellow-bg-big"> {{ userForm.name }} <img
                               src="@/assets/img/shape/yellow-bg-2.png" alt="">
                         </span></h2>
-                     <p>{{ userForm.information }}</p>
+                     <p> {{ userForm.information }}</p>
                      <p>Làm việc tại: {{ userForm.companyName }}</p>
                   </div>
                   <div class="about__list mb-35">
                      <ul>
-                        <li class="d-flex align-items-center"> <i class="icon_check"></i>{{ userForm.description }}</li>
+                        <li class="d-flex align-items-center"> <i class="icon_check"></i> {{ userForm.description }}</li>
                         <li class="d-flex align-items-center"> <i class="icon_check"></i>
                            {{ userForm.experienceYear }} năm kinh nghiệm</li>
                         <li class="d-flex align-items-center"> <i class="icon_check"></i> {{ userForm.level }} JAVA</li>

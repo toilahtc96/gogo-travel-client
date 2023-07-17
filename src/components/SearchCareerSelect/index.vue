@@ -68,7 +68,7 @@ const handleFocus = () => {
     openSelect.value = true;
 };
 let openSelect = ref<boolean>(false);
-const careerId = ref("");
+const careerId = ref();
 const inputKeyDown = (key: KeyboardEvent) => {
     loading.value = true;
     delay(function () {

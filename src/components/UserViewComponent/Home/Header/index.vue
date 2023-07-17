@@ -36,8 +36,9 @@ onMounted(() => {
 
 <template>
     <header>
+        <!-- header__transparent -->
         <div id="header-sticky"
-            :class="`${isSticky ? 'header__area header__transparent header__padding-2 sticky' : `${headerShadow ? headerShadow : 'header__area header__transparent header__padding-2'}`}`">
+            :class="`${isSticky ? 'header__area header__padding-2 sticky' : `${headerShadow ? headerShadow : 'header__area header__padding-2'}`}`">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-2 col-sm-4 col-6">
@@ -51,7 +52,7 @@ onMounted(() => {
                                 <nav>
                                     <ul>
                                         <li>
-                                            <router-link to="/courses" class="cat-menu d-flex align-items-center">
+                                            <router-link to="/" class="cat-menu d-flex align-items-center">
                                                 <div class="cat-dot-icon d-inline-block">
                                                     <svg viewBox="0 0 276.2 276.2">
                                                         <g>
@@ -81,11 +82,11 @@ onMounted(() => {
                                                 <span>Category</span>
                                             </router-link>
                                             <ul class="cat-submenu">
-                                                <li><router-link to="/course-details">English Learning</router-link></li>
-                                                <li><router-link to="/course-details">Web Development</router-link></li>
-                                                <li><router-link to="/course-details">Logo Design</router-link></li>
-                                                <li><router-link to="/course-details">Motion Graphics</router-link></li>
-                                                <li><router-link to="/course-details">Video Edition</router-link></li>
+                                                <li><router-link to="/">English Learning</router-link></li>
+                                                <li><router-link to="/">Web Development</router-link></li>
+                                                <li><router-link to="/">Logo Design</router-link></li>
+                                                <li><router-link to="/">Motion Graphics</router-link></li>
+                                                <li><router-link to="/">Video Edition</router-link></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -102,46 +103,46 @@ onMounted(() => {
                                             <router-link to="/">Home</router-link>
                                         </li>
                                         <li class="has-dropdown">
-                                            <router-link to="/courses">Courses</router-link>
+                                            <router-link to="/">Jobs</router-link>
                                             <ul class="submenu">
                                                 <li>
-                                                    <router-link to="/courses">Courses</router-link>
+                                                    <router-link to="/">Jobs</router-link>
                                                 </li>
                                                 <li>
-                                                    <router-link to="/courses-list">Course List</router-link>
+                                                    <router-link to="/">Job List</router-link>
                                                 </li>
                                                 <li>
-                                                    <router-link to="/courses-sidebar">Course sidebar
+                                                    <router-link to="/job-add">Push New Job
                                                     </router-link>
                                                 </li>
                                                 <li>
-                                                    <router-link to="/course-details">Course Details
+                                                    <router-link to="/">Course Details
                                                     </router-link>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li class="has-dropdown">
-                                            <router-link to="/blog">Blog</router-link>
+                                            <router-link to="/voucher">Voucher</router-link>
                                             <ul class="submenu">
-                                                <li><router-link to="/blog">Blog</router-link></li>
-                                                <li><router-link to="/blog-details">Blog Details</router-link></li>
+                                                <li><router-link to="/voucher">Voucher</router-link></li>
+                                                <li><router-link to="/voucher/add">Add New Voucher</router-link></li>
                                             </ul>
                                         </li>
                                         <li class="has-dropdown">
-                                            <router-link to="/courses">Pages</router-link>
+                                            <router-link to="/">Pages</router-link>
                                             <ul class="submenu">
                                                 <li><router-link to="/about">About</router-link></li>
-                                                <li><router-link to="/instructor">Instructor</router-link></li>
+                                                <li><router-link to="/">Instructor</router-link></li>
                                                 <li>
-                                                    <router-link to="/instructor-details">
+                                                    <router-link to="/">
                                                         Instructor Details</router-link>
                                                 </li>
-                                                <li><router-link to="/event-details">Event Details</router-link></li>
-                                                <li><router-link to="/cart">My Cart</router-link></li>
-                                                <li><router-link to="/checkout">Checkout</router-link></li>
+                                                <li><router-link to="/">Event Details</router-link></li>
+                                                <li><router-link to="/">My Cart</router-link></li>
+                                                <li><router-link to="/">Checkout</router-link></li>
                                                 <li><router-link to="/login">Sign In</router-link></li>
                                                 <li><router-link to="/register">Sign Up</router-link></li>
-                                                <li><router-link to="/errorPage">Error</router-link></li>
+                                                <li><router-link to="/">Error</router-link></li>
                                             </ul>
                                         </li>
                                         <li><router-link to="/contact">Contact</router-link></li>
@@ -189,13 +190,13 @@ onMounted(() => {
                             <a @click="menuOption.homeDropdown = !menuOption.homeDropdown">Home</a>
                             <ul class="sub-menu" :class="[menuOption.homeDropdown === true ? 'active' : '',]">
                                 <li>
-                                    <router-link to="/home">Home Style 1</router-link>
+                                    <router-link to="/">Home Style 1</router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/home-two">Home Style 2</router-link>
+                                    <router-link to="/">Home Style 2</router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/home-three">Home Style 3</router-link>
+                                    <router-link to="/">Home Style 3</router-link>
                                 </li>
                             </ul>
                         </li>
@@ -206,17 +207,17 @@ onMounted(() => {
                             <a @click="menuOption.coursesDropdown = !menuOption.coursesDropdown">Courses</a>
                             <ul class="sub-menu" :class="[menuOption.coursesDropdown === true ? 'active' : '',]">
                                 <li>
-                                    <router-link to="/courses">Courses</router-link>
+                                    <router-link to="/">Courses</router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/courses-list">Course List</router-link>
+                                    <router-link to="/">Course List</router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/courses-sidebar">Course sidebar
+                                    <router-link to="/">Course sidebar
                                     </router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/course-details">Course Details
+                                    <router-link to="/">Course Details
                                     </router-link>
                                 </li>
                             </ul>
@@ -228,10 +229,10 @@ onMounted(() => {
                             <a v-on:click="menuOption.blogDropdown = !menuOption.blogDropdown">Blog</a>
                             <ul class="sub-menu" :class="[menuOption.blogDropdown === true ? 'active' : '',]">
                                 <li>
-                                    <router-link to="/blog">Blog</router-link>
+                                    <router-link to="/">Blog</router-link>
                                 </li>
                                 <li>
-                                    <router-link to="/blog-details">Blog Details</router-link>
+                                    <router-link to="/">Blog Details</router-link>
                                 </li>
                             </ul>
                         </li>
@@ -242,17 +243,17 @@ onMounted(() => {
                             <a @click="menuOption.pagesDropDown = !menuOption.pagesDropDown">Pages</a>
                             <ul class="sub-menu" :class="[menuOption.pagesDropDown === true ? 'active' : '',]">
                                 <li><router-link to="/about">About</router-link></li>
-                                <li><router-link to="/instructor">Instructor</router-link></li>
+                                <li><router-link to="/">Instructor</router-link></li>
                                 <li>
-                                    <router-link to="/instructor-details">
+                                    <router-link to="/">
                                         Instructor Details</router-link>
                                 </li>
-                                <li><router-link to="/event-details">Event Details</router-link></li>
-                                <li><router-link to="/cart">My Cart</router-link></li>
-                                <li><router-link to="/checkout">Checkout</router-link></li>
+                                <li><router-link to="/">Event Details</router-link></li>
+                                <li><router-link to="/">My Cart</router-link></li>
+                                <li><router-link to="/">Checkout</router-link></li>
                                 <li><router-link to="/login">Sign In</router-link></li>
                                 <li><router-link to="/register">Sign Up</router-link></li>
-                                <li><router-link to="/errorPage">Error</router-link></li>
+                                <li><router-link to="/">Error</router-link></li>
                             </ul>
                         </li>
 

@@ -180,7 +180,7 @@ const selectStatus = (value: StatusType)=>{
                 @changeDistrict="changeDistrict(formState.company.districtCode, true)" 
                 :formItemStyle="formItemStyle"/>
             <a-form-item :name="['company', 'star']" label="Star" :style="styleInput">
-                <rate :value="formState.company.star" @change="fixStar" />
+                <Rate :value="formState.company.star" @change="fixStar" />
             </a-form-item>
             <a-form-item :name="['company', 'information']" label="Infomation" :style="styleInput">
                 <a-input v-model:value="formState.company.information" />

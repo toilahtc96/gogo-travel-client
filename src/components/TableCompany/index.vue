@@ -147,7 +147,7 @@ defineExpose({
     <a-table :columns="columns" :data-source="companyActives.listData" :scroll="{ x: 1300, y: 1000 }">
         <template #bodyCell="{ column, record }">
             <template v-if="column.key === 'star'">
-                <rate :value="record.star" :isCanAccess="rateInteract"/>
+                <Rate :value="record.star" :isCanAccess="rateInteract"/>
             </template>
             <template v-if="column.key === 'operation'">
                 <router-link v-if="record.id" :to="{ name: 'admin-company-edit', params: { id: record.id } }"><a>edit

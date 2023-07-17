@@ -1,35 +1,35 @@
 <script lang="ts" setup>
 
-import { ProcessCode } from "@/type/ProcessCode";
+import { StepCode } from "@/type/StepCode";
 import { ref, defineProps } from "vue";
 const props = defineProps(['current'])
-const emit = defineEmits(['editProcess']);
+const emit = defineEmits(['editStep']);
 const current = ref(props.current);
-const editProcess = (value: any) => {
+const editStep = (value: any) => {
     switch (value) {
-        case ProcessCode.INIT:
+        case StepCode.INIT:
             current.value = 0;
             break;
-        case ProcessCode.SEND_CV_TO_AGENCY:
+        case StepCode.SEND_CV_TO_AGENCY:
             current.value = 1;
             break;
-        case ProcessCode.SEND_CV_TO_COMPANY:
+        case StepCode.SEND_CV_TO_COMPANY:
             current.value = 2;
             break;
-        case ProcessCode.SUCCESS:
+        case StepCode.SUCCESS:
             current.value = 3;
             break;
-        case ProcessCode.FAIL:
+        case StepCode.FAIL:
             current.value = 4;
             break;
         default:
             break;
     }
-    emit('editProcess', current.value);
+    emit('editStep', current.value);
 }
 </script>
 <template>
     <a-steps :current="current" size="small">
-        <a-step v-for="data in ProcessCode" :key="data" :title="data" @click="editProcess(data)" />
+        <a-step v-for="data in StepCode" :key="data" :title="data" @click="editStep(data)" />
     </a-steps>
 </template>

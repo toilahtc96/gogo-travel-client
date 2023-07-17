@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import { LoginRequestType } from '@/model/LoginRequestType';
 import { AuthenticationService } from '@/services/authenticate';
+
 const authenticationService = new AuthenticationService();
 const doLogin = (value: LoginRequestType) => {
     authenticationService.login(value);
 }
+
 </script>
 
 <template>

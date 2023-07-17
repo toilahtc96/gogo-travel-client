@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, watch, onMounted } from "vue-demi";
+import { ref, watch, onMounted } from "vue";
 import { useRoute, } from "vue-router";
 import { CareerService } from "@/services/careerService";
 

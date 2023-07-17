@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, watch, onMounted } from "vue-demi";
+import { ref, watch, onMounted } from "vue";
 import { useRoute, } from "vue-router";
 import { RoleService } from "@/services/role";
 
@@ -63,7 +63,7 @@ const selectStatus = (value: StatusType) => {
                 <a-input v-model:value="formState.role.name"/>
             </a-form-item>
             <a-form-item :name="['role', 'code']" label="Code" :rules="[{ required: true }]">
-                <RoleElement ref="select-role" :role="formState.role.code" style="width: 120px" @selectRole="selectRole" />
+                <RoleElement ref="select-role" :role="formState.role.code" style="width: 50%" @selectRole="selectRole" />
             </a-form-item>
             <a-form-item :name="['role', 'status']" label="Status">
                 <StatusElement :status="formState.role.status" ref="select" @selectStatus="selectStatus" />

@@ -11,8 +11,8 @@ const selectLevel = (value: LevelName) => {
 }
 </script>
 <template>
-    <a-select ref="select" v-model:value="levelName" style="width: 300px" @change="selectLevel" allowClear>
-        <a-select-option v-for="data in LevelName" :key="data" :value="data">{{
+    <a-select ref="select" v-model:value="levelName" placeholder="Level Require" @change="selectLevel" allowClear>
+        <a-select-option v-for="data in LevelName" :key="data" :value="data"> {{
             data
         }}</a-select-option>
     </a-select>

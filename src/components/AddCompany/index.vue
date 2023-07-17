@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, reactive, ref } from "vue-demi";
+import { onMounted, reactive, ref } from "vue";
 import { CompanyService } from "@/services/company";
 import { message } from "ant-design-vue";
 import { AddressService } from "@/services/address";
@@ -112,7 +112,7 @@ const selectStatus = (value: StatusType)=>{
             :precinctCode="formState.company.precinctCode" @changeAddress="changeAddress" :provinceName="provinceName"
             :districtName="districtName" :precinctName="precinctName" :formItemStyle="formItemStyle"/>
         <a-form-item :name="['company', 'star']" label="Star" :style="styleInput">
-            <rate :value="formState.company.star" @change="fixStar" />
+            <Rate :value="formState.company.star" @change="fixStar" />
         </a-form-item> 
         <a-form-item :name="['company', 'information']" label="Infomation"  :style="styleInput">
             <a-input v-model:value="formState.company.information" />

@@ -1,20 +1,20 @@
 <script lang="ts" setup>
 import router from "@/router/router";
-import { ProcessService } from "@/services/processService";
-import { ProcessCode } from "@/type/ProcessCode";
+import { StepService } from "@/services/stepService";
+import { StepCode } from "@/type/StepCode";
 import { StatusType } from "@/type/StatusType";
 import { message } from "ant-design-vue";
 import { ref } from "vue";
 
 
 const spinning = ref<boolean>(false);
-const processService = new ProcessService();
+const stepService = new StepService();
 const changeSpinning = () => {
     spinning.value = !spinning.value;
 };
 const formState = ref(
     {
-        process: {
+        step: {
             meaning: '',
             code: '',
             status: StatusType.ACTIVED
@@ -27,7 +27,7 @@ const layout = {
 
 const onFinish = (values: any) => {
     changeSpinning();
-    processService.addProcess(values.process)
+    stepService.addStep(values.step)
         .then(
             (data) => {
                 if (data && data.status === 204) {
@@ -39,26 +39,26 @@ const onFinish = (values: any) => {
                 changeSpinning();
             }
         ).then(() => {
-            router.replace("/admin/process")
+            router.replace("/admin/step")
         });
 };
-const selectProcess = (processCode: ProcessCode) => {
-    formState.value.process.code = processCode;
+const selectStep = (stepCode: StepCode) => {
+    formState.value.step.code = stepCode;
 }
 </script>
 <template>
     <!-- :validate-messages="validateMessages" -->
     <a-spin :spinning="spinning">
         <a-form :model="formState" v-bind="layout" name="nest-messages" @finish="onFinish">
-            <a-form-item :name="['process', 'code']" label="Code" :rules="[{ required: true }]">
-                <ProcessSelectComponent :processCode="formState.process.code" ref="selectProcessCode"
-                    @selectProcess="selectProcess" />
+            <a-form-item :name="['step', 'code']" label="Code" :rules="[{ required: true }]">
+                <StepSelectComponent :stepCode="formState.step.code" ref="selectStepCode"
+                    @selectStep="selectStep" />
             </a-form-item>
-            <a-form-item :name="['process', 'meaning']" label="Meaning" :rules="[{ required: true }]">
-                <a-input v-model:value="formState.process.meaning" />
+            <a-form-item :name="['step', 'meaning']" label="Meaning" :rules="[{ required: true }]">
+                <a-input v-model:value="formState.step.meaning" />
             </a-form-item>
-            <a-form-item :name="['process', 'status']" label="Status">
-                <StatusElement :status="formState.process.status" ref="select" />
+            <a-form-item :name="['step', 'status']" label="Status">
+                <StatusElement :status="formState.step.status" ref="select" />
             </a-form-item>
 
             <a-form-item :wrapper-col="{ ...layout.wrapperCol, offset: 8 }">

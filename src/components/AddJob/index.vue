@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onMounted, ref } from "vue-demi";
+import { onMounted, ref } from "vue";
 import { CompanyService } from "@/services/company";
 import { message } from "ant-design-vue";
 import { AddressService } from "@/services/address";
@@ -17,10 +17,12 @@ import { StatusType } from "@/type/StatusType";
 import Company from "@/type/Company";
 import { LevelName } from "@/type/LevelName";
 import { Career } from "@/type/Career";
+import { Voucher } from "@/type/Voucher";
+import { VoucherService } from "@/services/voucherService";
+const voucherService = new VoucherService();
 const companyService = new CompanyService();
 const jobTypeService = new JobTypeService();
 const workingFormService = new WorkingFormService();
-const addressService = new AddressService();
 const careerService = new CareerService();
 const jobService = new JobService();
 const spinning = ref<boolean>(false);
@@ -48,16 +50,22 @@ const formState = ref<Job>({
     information: '',
     status: undefined,
     customRange: false,
+    thumbnail: undefined,
+    title: undefined,
+    voucherId: undefined,
+    tags: undefined,
+    reasonForChoosing: undefined
 });
-const onFinish = (values: Job) => {
-    if (values.rangeSalaryMin && values.rangeSalaryMax) {
-        if (values.rangeSalaryMin > values.rangeSalaryMax) {
+const onFinish = () => {
+
+    if (formState.value.rangeSalaryMin && formState.value.rangeSalaryMax) {
+        if (formState.value.rangeSalaryMin > formState.value.rangeSalaryMax) {
             message.error("Min Salary great than Max Salary");
 
             return;
         }
     }
-    jobService.addJob(values)
+    jobService.addJob(formState.value)
         .then(
             (data) => {
                 if (data && data.status === 204) {
@@ -75,6 +83,7 @@ const onFinish = (values: Job) => {
 onMounted(() => {
     formState.value.rangeSalaryMin = minSalary.value;
     formState.value.rangeSalaryMax = maxSalary.value;
+    formState.value.quantity = 0;
 })
 
 const styleInput = "float: left; width: 100%;";
@@ -141,12 +150,40 @@ const filterCareer = (input: string) => {
 }
 const selectCareer = (value: number) => {
     formState.value.careerId = value;
-}   
+}
+
+const listVoucher = ref({
+    listData: ref<[Voucher]>()
+});
+const filterVoucher = (input: string) => {
+    voucherService.findVoucher({ ...defaultPage.value, title: input }).then((data: any) => {
+        listVoucher.value = { listData: data.data };
+    });
+}
+const addJobTag = (tagsJoin: string) => {
+    formState.value.tags = tagsJoin;
+}
+const addReasonForChoosing = (reasonForChoosingJoin: string) => {
+    formState.value.reasonForChoosing = reasonForChoosingJoin;
+}
+const tagTitle = ref("New Tag");
+const reasonTitle = ref("New Reason");
 </script>
 <template>
     <a-spin :spinning="spinning">
         <a-form :model="formState" v-bind="layout" name="nest-messages" @finish="onFinish">
             <!-- :rules="[{ required: true }]" -->
+            <a-form-item :name="['title']" label="Title" :style="styleInput" :rules="[{ required: true }]">
+                <a-input v-model:value="formState.title" />
+            </a-form-item>
+            <a-form-item :name="['voucherId']" label="Progress" :style="styleInput">
+                <SearchVoucherSelect @filter="filterVoucher" :listVoucher="listVoucher" style="width: 50%"
+                    v-model:value="formState.voucherId" />
+            </a-form-item>
+            <a-form-item :name="['tags']" label="Tag" :style="styleInput">
+                <AddTag style="width: 50%" @resultTag="addJobTag" v-model:value="formState.tags" :title="tagTitle" />
+            </a-form-item>
+
             <a-form-item :name="['companyId']" label="Company" :style="styleInput">
                 <SearchCompanySelect ref="select-company" :companyId="formState.companyId" style="width: 50%"
                     :listCompany="listCompany" @filter="filterCompany" @selectCompany="selectCompany" />
@@ -157,6 +194,9 @@ const selectCareer = (value: number) => {
             <a-form-item :name="['jobTypeId']" label="Job Type" :style="styleInput">
                 <SearchJobTypeSelect ref="select-jobType-form" :jobTypeId="formState.jobTypeId" :listJobType="listJobType"
                     @filter="filterJobType" @selectJobType="selectJobType" />
+            </a-form-item>
+            <a-form-item :name="['reasonForChoosing']" label="Reason For Choosing" :style="styleInput">
+                <AddTag style="width: 50%" @resultTag="addReasonForChoosing" v-model:value="formState.reasonForChoosing" :title="reasonTitle" />
             </a-form-item>
             <a-form-item :name="['workingFormId']" label="Working Form" :style="styleInput">
                 <SearchWorkingFormSelect ref="select-working-form" :workingFormId="formState.workingFormId"
@@ -201,7 +241,7 @@ const selectCareer = (value: number) => {
             </a-form-item>
 
             <a-form-item :wrapper-col="{ ...layout.wrapperCol, offset: 8 }" :style="styleInput">
-                <a-button type="primary" html-type="submit">Submit</a-button>
+                <a-button type="primary" @click="onFinish" html-type="submit">Submit</a-button>
             </a-form-item>
         </a-form>
     </a-spin>

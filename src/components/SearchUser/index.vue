@@ -79,7 +79,7 @@ const chooseExperience = (value: number) => {
                 <UserTypeSelect ref="userTypeSelect" :userTypeCode="formState.userType" @selectUserType="selectUserType" />
             </a-form-item>
             <a-form-item :name="['star']" label="Star" :style="formItemStyle.labelCol3" style="float:left">
-                <rate :value="formState.star" @change="fixStar" />
+                <Rate :value="formState.star" @change="fixStar" />
             </a-form-item>
             <a-form-item :name="['level']" label="Level" :style="formItemStyle.labelCol3" style="float:left">
                 <LevelNameComponent :levelName="formState.level" ref="selectLevelName" @selectLevel="selectLevel" />

@@ -8,8 +8,11 @@
       <a-breadcrumb-item>List</a-breadcrumb-item>
       <a-breadcrumb-item>App</a-breadcrumb-item>
     </a-breadcrumb>
-    <div :style="{ background: '#fff', padding: '24px', minHeight: '85vh', paddingBottom: '3%' }">
-      <router-view /> 
+    <div :style="{
+      background: '#fff', padding: '24px',height: '100vh',
+      overflowY: 'auto', paddingBottom: '3%'
+    }">
+      <router-view />
     </div>
   </a-layout-content>
 </template>

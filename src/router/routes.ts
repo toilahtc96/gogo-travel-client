@@ -28,13 +28,16 @@ import Contact from '@/pages/contact/index.vue';
 import AdminHome from '@/pages/admin/index.vue';
 import User from '@/pages/admin/user/index.vue';
 import ListLevel from '@/pages/admin/level/index.vue';
-import ListProcess from '@/pages/admin/process/index.vue';
-import EditProcess from '@/pages/admin/process/edit/index.vue';
-import ListDeal from '@/pages/admin/deal/index.vue';
-import EditDeal from '@/pages/admin/deal/edit/index.vue';
+import ListStep from '@/pages/admin/step/index.vue';
+import EditStep from '@/pages/admin/step/edit/index.vue';
+import ListProgress from '@/pages/admin/progress/index.vue';
+import EditProgress from '@/pages/admin/progress/edit/index.vue';
 import AddJob from '@/pages/admin/job/add/index.vue';
 import EditJob from '@/pages/admin/job/edit/index.vue';
 import Job from '@/pages/admin/job/index.vue';
+import AddVoucher from '@/pages/admin/voucher/add/index.vue';
+import EditVoucher from '@/pages/admin/voucher/edit/index.vue';
+import Vouchers from '@/pages/admin/voucher/index.vue';
 import { message } from "ant-design-vue";
 import router from "./router";
 const routes: Array<RouteRecordRaw> = [
@@ -263,10 +266,10 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    name: "admin-process",
-    path: "/admin/process",
+    name: "admin-step",
+    path: "/admin/step",
     meta: { needsAuth: true },
-    component: ListProcess,
+    component: ListStep,
     beforeEnter: (to, from, next) => {
       const noToken: boolean = !localStorage.getItem("accessToken");
       if (noToken) {
@@ -277,8 +280,8 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    name: "admin-process-add",
-    path: "/admin/process/add",
+    name: "admin-step-add",
+    path: "/admin/step/add",
     meta: { needsAuth: true },
     component: AddLevel,
     beforeEnter: (to, from, next) => {
@@ -291,10 +294,10 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    name: "admin-process-edit",
-    path: "/admin/process/edit/:id",
+    name: "admin-step-edit",
+    path: "/admin/step/edit/:id",
     meta: { needsAuth: true },
-    component: EditProcess,
+    component: EditStep,
     beforeEnter: (to, from, next) => {
       const noToken: boolean = !localStorage.getItem("accessToken");
       if (noToken) {
@@ -305,10 +308,10 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    name: "admin-deal",
-    path: "/admin/deal",
+    name: "admin-progress",
+    path: "/admin/progress",
     meta: { needsAuth: true },
-    component: ListDeal,
+    component: ListProgress,
     beforeEnter: (to, from, next) => {
       const noToken: boolean = !localStorage.getItem("accessToken");
       if (noToken) {
@@ -319,10 +322,10 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    name: "admin-deal-edit",
-    path: "/admin/deal/edit/:id",
+    name: "admin-progress-edit",
+    path: "/admin/progress/edit/:id",
     meta: { needsAuth: true },
-    component: EditDeal,
+    component: EditProgress,
     beforeEnter: (to, from, next) => {
       const noToken: boolean = !localStorage.getItem("accessToken");
       if (noToken) {
@@ -528,6 +531,48 @@ const routes: Array<RouteRecordRaw> = [
       next(!noToken);
     }
   },
- ];
+  {
+    name: "admin-voucher",
+    path: "/admin/voucher",
+    meta: { needsAuth: true },
+    component: Vouchers,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/login")
+      }
+      next(!noToken);
+    }
+  },
+  {
+    name: "admin-voucher-edit",
+    path: "/admin/voucher/edit/:id",
+    meta: { needsAuth: true },
+    component: EditVoucher,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/login")
+      }
+      next(!noToken);
+    }
+  },
+  {
+    name: "admin-voucher-add",
+    path: "/admin/voucher/add",
+    meta: { needsAuth: true },
+    component: AddVoucher,
+    beforeEnter: (to, from, next) => {
+      const noToken: boolean = !localStorage.getItem("accessToken");
+      if (noToken) {
+        message.error("You need Login!");
+        router.push("/login")
+      }
+      next(!noToken);
+    }
+  }
+];
 
 export default routes;

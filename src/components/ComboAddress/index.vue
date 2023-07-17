@@ -60,21 +60,21 @@ defineExpose({
 <template>
     <a-form-item :name="props.provinceName" label="Province" :style="formItemStyle.labelCol3" style="float:left">
         <a-select ref="select" :value="provinceCode" :style="formItemStyle.labelColInput3" @change="changeProvince" allowClear>
-            <a-select-option v-for="data in listProvince" :key="data" :value="data.code">{{
+            <a-select-option v-for="data in listProvince" :key="data" :value="data.code"> {{
                 data.name
             }}</a-select-option>
         </a-select>
     </a-form-item>
     <a-form-item :name="props.districtName" label="District " :style="formItemStyle.labelCol3" style="float:left">
         <a-select ref="select" :value="districtCode" :style="formItemStyle.labelColInput3" @change="changeDistrict" allowClear>
-            <a-select-option v-for="data in listDistrict" :key="data" :value="data.code">{{
+            <a-select-option v-for="data in listDistrict" :key="data" :value="data.code"> {{
                 data.name
             }}</a-select-option>
         </a-select>
     </a-form-item>
     <a-form-item :name="props.precinctName" label="Precinct" :style="formItemStyle.labelCol3" style="float:left">
         <a-select ref="select" :value="precinctCode" :style="formItemStyle.labelColInput3" @change="changePrecinct" allowClear>
-            <a-select-option v-for="data in listPrecinct" :key="data" :value="data.code">{{
+            <a-select-option v-for="data in listPrecinct" :key="data" :value="data.code"> {{
                 data.name
             }}</a-select-option>
         </a-select>

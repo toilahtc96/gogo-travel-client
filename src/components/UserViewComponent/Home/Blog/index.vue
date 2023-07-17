@@ -46,7 +46,7 @@ const blogData = ref([
                     <div class="section__title-wrapper text-center mb-60">
                         <h2 class="section__title">We share <br>
                             Our <span class="yellow-bg yellow-bg-big">thoughts <img
-                                    src="@/assets/img/shape/yellow-bg.png" alt=""></span>on design</h2>
+                                    src="../../../../assets/img/shape/yellow-bg.png" alt=""></span>on design</h2>
                         <p>You don't have to struggle alone, you've got our assistance and help.</p>
                     </div>
                 </div>
@@ -55,17 +55,18 @@ const blogData = ref([
                 <div v-for="blog in blogData" :key="blog.id" class="col-xxl-4 col-xl-4 col-lg-4 col-md-6">
                     <div class="blog__item white-bg mb-30 transition-3 fix">
                         <div class="blog__thumb w-img fix">
-                            <router-link :to="`/blog-details/${blog.id}`">
-                                <img :src="blog.blogImg" alt="">
-                            </router-link>
+                            <!-- <router-link :to="`/blog-details/${blog.id}`"> -->
+                            <img :src="blog.blogImg" alt="">
+                            <!-- </router-link> -->
                         </div>
                         <div class="blog__content">
                             <div class="blog__tag">
-                                <a href="#" :class="`${blog.color && blog.color}`">{{ blog.category }}</a>
+                                <a href="#" :class="`${blog.color && blog.color}`"> {{ blog.category }}</a>
                             </div>
                             <h3 class="blog__title">
-                                <router-link :to="`/blog-details/${blog.id}`">
-                                    {{ blog.title }}</router-link>
+                                <!-- <router-link :to="`/blog-details/${blog.id}`"> -->
+                                {{ blog.title }}
+                                <!-- </router-link> -->
                             </h3>
 
                             <div class="blog__meta d-flex align-items-center justify-content-between">
@@ -74,12 +75,12 @@ const blogData = ref([
                                         <img :src="blog.author" alt="">
                                     </div>
                                     <div class="blog__author-info">
-                                        <h5>{{ blog.authorName }}</h5>
+                                        <h5> {{ blog.authorName }}</h5>
                                     </div>
                                 </div>
                                 <div class="blog__date d-flex align-items-center">
                                     <i class="fal fa-clock"></i>
-                                    <span>{{ blog.date }}</span>
+                                    <span> {{ blog.date }}</span>
                                 </div>
                             </div>
                         </div>

@@ -70,7 +70,7 @@ const handleFocus = () => {
     console.log('focus');
 };
 let openSelect = ref<boolean>(false);
-const workingFormId = ref("");
+const workingFormId = ref();
 const loading = ref(false);
 const inputKeyDown = (key: KeyboardEvent) => {
     loading.value = true;

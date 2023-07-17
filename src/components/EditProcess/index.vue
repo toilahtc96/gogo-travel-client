@@ -4,16 +4,16 @@ import { useRoute } from "vue-router";
 import { message } from "ant-design-vue";
 import router from "@/router/router";
 import { StatusType } from "@/type/StatusType";
-import { ProcessService } from "@/services/processService";
-import { ProcessCode } from "@/type/ProcessCode";
-const processService = new ProcessService();
+import { StepService } from "@/services/stepService";
+import { StepCode } from "@/type/StepCode";
+const stepService = new StepService();
 const route = useRoute();
 const spinning = ref<boolean>(false);
 const changeSpinning = () => {
     spinning.value = !spinning.value;
 };
 let formState = ref({
-    process: {
+    step: {
         id: 0,
         meaning: '',
         code: '',
@@ -24,11 +24,11 @@ const fetchLevel = () => {
     const id = route.params.id;
     if (id) {
         changeSpinning();
-        processService.getProcessById(id)?.then((data) => {
-            formState.value.process.id = data.id;
-            formState.value.process.meaning = data.meaning;
-            formState.value.process.code = data.code;
-            formState.value.process.status = data.status;
+        stepService.getStepById(id)?.then((data) => {
+            formState.value.step.id = data.id;
+            formState.value.step.meaning = data.meaning;
+            formState.value.step.code = data.code;
+            formState.value.step.status = data.status;
             changeSpinning();
         });
     }
@@ -40,7 +40,7 @@ const layout = {
 
 const onFinish = (values: any) => {
     changeSpinning();
-    processService.editProcess(values.process)
+    stepService.editStep(values.step)
         .then(
             (data) => {
                 if (data && data.status === 204) {
@@ -52,7 +52,7 @@ const onFinish = (values: any) => {
                 changeSpinning();
             }
         ).then(() => {
-            router.replace("/admin/process")
+            router.replace("/admin/step")
         })
         .catch(
             (err) => { message.error(err) }
@@ -68,11 +68,11 @@ watch(() => route.params.id, () => {
 })
 
 //todo:
-const selectProcess = (value: ProcessCode) => {
-    formState.value.process.code = value;
+const selectStep = (value: StepCode) => {
+    formState.value.step.code = value;
 }
 const selectStatus = (value: StatusType) => {
-    formState.value.process.status = value;
+    formState.value.step.status = value;
 }
 
 </script>
@@ -80,18 +80,18 @@ const selectStatus = (value: StatusType) => {
     <!-- :validate-messages="validateMessages" -->
     <a-spin :spinning="spinning">
         <a-form :model="formState" v-bind="layout" name="nest-messages" @finish="onFinish">
-            <a-form-item :name="['process', 'id']" label="Id" :rules="[{ required: true }]" :hidden="true">
-                <a-input-number :value="formState.process.id" />
+            <a-form-item :name="['step', 'id']" label="Id" :rules="[{ required: true }]" :hidden="true">
+                <a-input-number :value="formState.step.id" />
             </a-form-item>
-            <a-form-item :name="['process', 'code']" label="Code" :rules="[{ required: true }]">
-                <ProcessSelectComponent :processCode="formState.process.code" ref="selectProcessCode"
-                    @selectProcess="selectProcess" />
+            <a-form-item :name="['step', 'code']" label="Code" :rules="[{ required: true }]">
+                <StepSelectComponent :stepCode="formState.step.code" ref="selectStepCode"
+                    @selectStep="selectStep" />
             </a-form-item>
-            <a-form-item :name="['process', 'meaning']" label="Meaning" :rules="[{ required: true }]">
-                <a-input v-model:value="formState.process.meaning" />
+            <a-form-item :name="['step', 'meaning']" label="Meaning" :rules="[{ required: true }]">
+                <a-input v-model:value="formState.step.meaning" />
             </a-form-item>
-            <a-form-item :name="['process', 'status']" label="Status">
-                <StatusElement :status="formState.process.status" ref="select" @selectStatus="selectStatus" />
+            <a-form-item :name="['step', 'status']" label="Status">
+                <StatusElement :status="formState.step.status" ref="select" @selectStatus="selectStatus" />
             </a-form-item>
 
             <a-form-item :wrapper-col="{ ...layout.wrapperCol, offset: 8 }">
