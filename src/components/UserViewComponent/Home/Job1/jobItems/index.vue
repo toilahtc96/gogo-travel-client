@@ -1,49 +1,50 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { JobService } from "@/services/jobService";
 import { Job } from "@/type/Job";
 import { JobResponse } from "@/type/JobResponse";
 import { FileService } from "@/services/fileService";
-import { LevelName } from '@/type/LevelName';
 import SocketRequest from '@/components/socket/SocketRequest.js';
-const fileService = new FileService();
 
+const emit = defineEmits(['setTotal','changeSpin']);
+const props = defineProps(['defaultPage']);
+const fileService = new FileService();
 let socketRequest: any = SocketRequest.getInstance();
 const jobService = new JobService();
-let defaultPage = ref({
-   page: 0,
-   size: 10
-});
 let listJob = ref<[JobResponse]>();
 
-jobService.findJob({ ...defaultPage.value }).then((data) => {
-   listJob.value = data.data;
-}).then(() => {
-   listJob.value?.forEach((job, index) => {
-      if (job.thumbnail) {
-         fileService.getSingleImage(job.thumbnail).then((data) => {
-            job.thumbnailAfter = data;
-            job.color = getColor(index);
-         })
-      } else {
-         fileService.getNoImage().then((data) => {
-            job.thumbnailAfter = data;
-            job.color = getColor(index);
-         })
-      }
-      if (job.avatarUrl) {
-         fileService.getSingleImage(job.avatarUrl).then((data) => {
-            job.avatarUrlAfter = data;
-            job.color = getColor(index);
-         })
-      } else {
-         fileService.getNoImage().then((data) => {
-            job.avatarUrlAfter = data;
-            job.color = getColor(index);
-         })
-      }
+const findJob = () => {
+   jobService.findJob({ ...props.defaultPage }).then((data) => {
+      listJob.value = data.data;
+      emit('setTotal', data.total);
+      emit('changeSpin', false);
+   }).then(() => {
+      listJob.value?.forEach((job, index) => {
+         if (job.thumbnail) {
+            // fileService.getSingleImage(job.thumbnail).then((data) => {
+               job.thumbnailAfter = job.thumbnail;
+               job.color = getColor(index);
+            // })
+         } else {
+            fileService.getNoImage().then((data) => {
+               job.thumbnailAfter = data;
+               job.color = getColor(index);
+            })
+         }
+         if (job.avatarUrl) {
+            fileService.getSingleImage(job.avatarUrl).then((data) => {
+               job.avatarUrlAfter = data;
+               job.color = getColor(index);
+            })
+         } else {
+            fileService.getNoImage().then((data) => {
+               job.avatarUrlAfter = data;
+               job.color = getColor(index);
+            })
+         }
+      })
    })
-})
+}
 function getRandomInt(max: number) {
    return Math.floor(Math.random() * max);
 }
@@ -63,6 +64,18 @@ const getColor = (index: number) => {
    }
 }
 const imageStyle = "width: 100%; height: 245px";
+
+const changePage = (page: number, pageSize: number) => {
+   props.defaultPage.page = page;
+   props.defaultPage.pageSize = pageSize;
+   findJob();
+}
+onMounted(() => {
+   findJob();
+})
+defineExpose({
+   changePage,
+});
 </script>
 <template>
    <div class="container">

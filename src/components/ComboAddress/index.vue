@@ -26,7 +26,7 @@ const changeProvince = (value: string) => {
     districtCode.value = '';
     precinctCode.value = '';
     listPrecinct.value = [];
-    addressService.getByParentCode(value).then(data => {
+    addressService.getByTypeAndParentCode(AddressType.DISTRICT, value).then(data => {
         if (data) {
             listDistrict.value = data;
             emit('changeAddress', value, AddressType.PROVINCE);
@@ -37,7 +37,7 @@ const changeProvince = (value: string) => {
 const changeDistrict = (value: string) => {
     districtCode.value = value;
     precinctCode.value = '';
-    addressService.getByParentCode(value).then(data => {
+    addressService.getByTypeAndParentCode(AddressType.PRECINCT, value).then(data => {
         if (data) {
             listPrecinct.value = data;
             emit('changeAddress', value, AddressType.DISTRICT);
@@ -57,25 +57,34 @@ defineExpose({
 });
 
 </script>
+<style scoped>
+.ant-form-item-label {
+    float: left;
+    display: none;
+}
+</style>
 <template>
-    <a-form-item :name="props.provinceName" label="Province" :style="formItemStyle.labelCol3" style="float:left">
-        <a-select ref="select" :value="provinceCode" :style="formItemStyle.labelColInput3" @change="changeProvince" allowClear>
-            <a-select-option v-for="data in listProvince" :key="data" :value="data.code"> {{
-                data.name
+    <a-form-item :name="props.provinceName" :style="formItemStyle.labelCol3" style="float:left">
+        <a-select ref="select" :value="provinceCode" :style="formItemStyle.labelColInput3" @change="changeProvince"
+            placeholder="Select Province" allowClear>
+            <a-select-option v-for="data in listProvince" :key="data" :value="data.provinceCode"> {{
+                data.provinceName
             }}</a-select-option>
         </a-select>
     </a-form-item>
-    <a-form-item :name="props.districtName" label="District " :style="formItemStyle.labelCol3" style="float:left">
-        <a-select ref="select" :value="districtCode" :style="formItemStyle.labelColInput3" @change="changeDistrict" allowClear>
-            <a-select-option v-for="data in listDistrict" :key="data" :value="data.code"> {{
-                data.name
+    <a-form-item :name="props.districtName" :style="formItemStyle.labelCol3" style="float:left">
+        <a-select ref="select" :value="districtCode" :style="formItemStyle.labelColInput3" @change="changeDistrict"
+            placeholder="Select District" allowClear>
+            <a-select-option v-for="data in listDistrict" :key="data" :value="data.districtCode"> {{
+                data.districtName
             }}</a-select-option>
         </a-select>
     </a-form-item>
-    <a-form-item :name="props.precinctName" label="Precinct" :style="formItemStyle.labelCol3" style="float:left">
-        <a-select ref="select" :value="precinctCode" :style="formItemStyle.labelColInput3" @change="changePrecinct" allowClear>
-            <a-select-option v-for="data in listPrecinct" :key="data" :value="data.code"> {{
-                data.name
+    <a-form-item :name="props.precinctName"  :style="formItemStyle.labelCol3" style="float:left">
+        <a-select ref="select" :value="precinctCode" :style="formItemStyle.labelColInput3" @change="changePrecinct"
+            placeholder="Select Precinct" allowClear>
+            <a-select-option v-for="data in listPrecinct" :key="data" :value="data.precinctCode"> {{
+                data.precinctName
             }}</a-select-option>
         </a-select>
     </a-form-item>

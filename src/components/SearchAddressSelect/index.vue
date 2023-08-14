@@ -21,7 +21,7 @@ onMounted(() => {
         if (listAddress.value.listData) {
             options.value = [];
             Object.values(listAddress.value.listData).forEach((item: Address) => {
-                options.value?.push({ value: item.id, label: item.name });
+                options.value?.push({ value: item.id, label: item.provinceName });
             });
         }
     });
@@ -53,7 +53,7 @@ const getAddressByCode = (code: string, type: AddressType) => {
     addressService.getAddressByTypeAndCode(code, type)?.then((data) => {
         if (data) {
             if (options.value?.filter(item => { return item.value == data.id }).length == 0) {
-                options.value?.push({ value: data.id, label: data.name });
+                options.value?.push({ value: data.id, label: data.provinceName });
             }
         }
     }).then(() => {

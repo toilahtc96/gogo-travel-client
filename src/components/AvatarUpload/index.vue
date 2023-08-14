@@ -25,13 +25,15 @@ const avatarImage = ref<Blob>();
 
 const handleChange = (info: UploadChangeParam) => {
     loading.value = true;
-    fileService.uploadAvatar(info.file.originFileObj).then((imgAddress: string) => {
-        imageAddress.value = imgAddress;
-        emit("setImageUrl", imageAddress.value);
-    }).catch((err) => {
-        loading.value = false;
-        message.error('upload error');
-    });
+    if (info.file.status == 'uploading' && info.event == undefined) {
+        fileService.uploadAvatar(info.file.originFileObj).then((imgAddress: string) => {
+            imageAddress.value = imgAddress;
+            emit("setImageUrl", imageAddress.value);
+        }).catch((err) => {
+            loading.value = false;
+            message.error('upload error');
+        });
+    }
 };
 
 const beforeUpload = (file: any) => {
@@ -69,9 +71,10 @@ defineExpose({
     margin-top: 8px;
     color: #666;
 }
+
 .ant-upload.ant-upload-select.ant-upload-select-picture-card {
-    height:256px !important;
-    width:256px !important;
+    height: 256px !important;
+    width: 256px !important;
 }
 </style>
 

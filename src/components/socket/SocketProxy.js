@@ -42,13 +42,10 @@ class SocketProxy {
 
         let loginSuccessHandler = new Ezy.LoginSuccessHandler();
         loginSuccessHandler.handleLoginSuccess = (data) => {
-            debugger;
             console.log("data: ",data)
             let appAccessData = ["chat-server", []];
             if (this.getClient()) {
                 if (this.getClient().status !== "CONNECTED") {
-
-                    debugger;
                     this.connect();
                 } else {
                     this.getClient().sendRequest(Ezy.Command.APP_ACCESS, appAccessData);

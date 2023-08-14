@@ -15,6 +15,7 @@ import { FileService } from "@/services/fileService";
 import { message } from 'ant-design-vue';
 import { Voucher } from '@/type/Voucher';
 import { VoucherService } from '@/services/voucherService';
+import router from '@/router/router';
 
 const voucherService = new VoucherService();
 const fileService = new FileService();
@@ -43,9 +44,17 @@ const formState = ref<Job>({
    tags: undefined,
    reasonForChoosing: undefined
 });
+const changeSpin = () => {
+   spinning.value = !spinning.value;
+}
+
 const onFinish = () => {
+   changeSpin();
    jobService.addJob(formState.value).then(() => {
       message.info("Add Job Success!");
+   }).then(() => {
+      changeSpin();
+      window.location.href = "/";
    })
 }
 
@@ -115,12 +124,11 @@ const selectCareer = (value: number) => {
 const avatarUploadElement = ref();
 const jobThumbnailImage = ref<string>("");
 const setImageUrl = (imageAddressInServer: string) => {
+   debugger;
    formState.value.thumbnail = imageAddressInServer;
    if (formState.value.thumbnail) {
-      fileService.getSingleImage(formState.value.thumbnail).then((data) => {
-         jobThumbnailImage.value = data;
-         avatarUploadElement.value.setAvatar(jobThumbnailImage.value);
-      })
+      jobThumbnailImage.value = formState.value.thumbnail;
+      avatarUploadElement.value.setAvatar(jobThumbnailImage.value);
    } else {
       fileService.getNoImage().then((data) => {
          jobThumbnailImage.value = data;
@@ -132,6 +140,8 @@ const setImageUrl = (imageAddressInServer: string) => {
 onMounted(() => {
    formState.value.rangeSalaryMin = minSalary.value;
    formState.value.rangeSalaryMax = minSalary.value;
+   formState.value.quantity = 0;
+   formState.value.levelName = LevelName.JUNIOR;
 })
 const listVoucher = ref({
    listData: ref<[Voucher]>()
@@ -187,7 +197,7 @@ const reasonTitle = ref("New Reason");
                            <div class="row">
                               <div class="col-xxl-12">
                                  <div class="contact__form-input">
-                                    <a-form-item :name="['tags']">
+                                    <a-form-item :name="['tags']" :rules="[{ required: true }]">
                                        <AddTag style="width: 50%" @resultTag="addJobTag" v-model:value="formState.tags"
                                           :title="tagTitle" />
                                     </a-form-item>
@@ -199,7 +209,7 @@ const reasonTitle = ref("New Reason");
                            <div class="row">
                               <div class="col-xxl-12">
                                  <div class="contact__form-input">
-                                    <a-form-item :name="['reasonForChoosing']">
+                                    <a-form-item :name="['reasonForChoosing']" :rules="[{ required: true }]">
                                        <AddTag style="width: 50%" @resultTag="addReasonForChoosing"
                                           v-model:value="formState.reasonForChoosing" :title="reasonTitle" />
                                     </a-form-item>
@@ -221,16 +231,22 @@ const reasonTitle = ref("New Reason");
                            <div class="row">
                               <div class="col-xxl-6 col-xl-6 col-md-6">
                                  <div class="contact__form-input">
-                                    <a-form-item :name="['companyId']">
-                                       <SearchCompanySelect ref="select-company" :companyId="formState.companyId"
-                                          :listCompany="listCompany" @filter="filterCompany"
-                                          @selectCompany="selectCompany" />
-                                    </a-form-item>
+                                    <div class="col-xxl-5 col-xl-5 col-md-5" style="float:left;width: 60%;">
+                                       <a-form-item :name="['companyId']" :rules="[{ required: true }]">
+                                          <SearchCompanySelect ref="select-company" :companyId="formState.companyId"
+                                             :listCompany="listCompany" @filter="filterCompany"
+                                             @selectCompany="selectCompany" />
+                                       </a-form-item>
+                                    </div>
+                                    <div class="col-xxl-1 col-xl-1 col-md-1" style="float:left;width: 40%;">
+                                       <a-button type="link" href="/company-add">Or Add New</a-button>
+                                    </div>
                                  </div>
                               </div>
+
                               <div class="col-xxl-6 col-xl-6 col-md-6">
                                  <div class="contact__form-input">
-                                    <a-form-item :name="['jobTypeId']">
+                                    <a-form-item :name="['jobTypeId']" :rules="[{ required: true }]">
                                        <SearchJobTypeSelect ref="select-jobType" :jobTypeId="formState.jobTypeId"
                                           :listJobType="listJobType" @filter="filterJobType"
                                           @selectJobType="selectJobType" />
@@ -253,7 +269,7 @@ const reasonTitle = ref("New Reason");
                            <div class="row">
                               <div class="col-xxl-6 col-xl-6 col-md-6">
                                  <div class="contact__form-input">
-                                    <a-form-item :name="['quantity']">
+                                    <a-form-item :name="['quantity']" :rules="[{ required: true }]">
                                        <a-label>Quantity</a-label>
                                        <a-slider :min="1" :max="20" />
                                     </a-form-item>
@@ -261,7 +277,7 @@ const reasonTitle = ref("New Reason");
                               </div>
                               <div class="col-xxl-6 col-xl-6 col-md-6">
                                  <div class="contact__form-input">
-                                    <a-form-item :name="['levelId']">
+                                    <a-form-item :name="['levelName']" :rules="[{ required: true }]">
                                        <LevelNameComponent :levelName="formState.levelName" ref="selectLevelName"
                                           @selectLevel="selectLevel" />
                                     </a-form-item>
@@ -272,7 +288,7 @@ const reasonTitle = ref("New Reason");
                            <div class="row">
                               <div class="col-xxl-6 col-xl-6 col-md-6">
                                  <div class="contact__form-input">
-                                    <a-form-item :name="['rangeSalaryMin']">
+                                    <a-form-item :name="['rangeSalaryMin']" :rules="[{ required: true }]">
                                        <a-label>Salary From </a-label>
                                        <a-slider v-model:value="minSalary" :min="1" :max="100"
                                           @afterChange="onAfterChangeMinSalary" />
@@ -281,7 +297,7 @@ const reasonTitle = ref("New Reason");
                               </div>
                               <div class="col-xxl-6 col-xl-6 col-md-6">
                                  <div class="contact__form-input">
-                                    <a-form-item :name="['rangeSalaryMax']">
+                                    <a-form-item :name="['rangeSalaryMax']" :rules="[{ required: true }]">
                                        <a-label>To </a-label>
                                        <a-slider v-model:value="maxSalary" :min="1" :max="100"
                                           @afterChange="onAfterChangeMaxSalary" />
@@ -291,7 +307,7 @@ const reasonTitle = ref("New Reason");
                               <div class="row">
                                  <div class="col-xxl-6 col-xl-6 col-md-6">
                                     <div class="contact__form-input">
-                                       <a-form-item :name="['careerId']">
+                                       <a-form-item :name="['careerId']" :rules="[{ required: true }]">
                                           <SearchCareerSelect ref="select-career-form" :careerId="formState.careerId"
                                              :listCareer="listCareer" @filter="filterCareer"
                                              @selectCareer="selectCareer" />
@@ -300,7 +316,7 @@ const reasonTitle = ref("New Reason");
                                  </div>
                                  <div class="col-xxl-6 col-xl-6 col-md-6">
                                     <div class="contact__form-input">
-                                       <a-form-item :name="['workingFormId']">
+                                       <a-form-item :name="['workingFormId']" :rules="[{ required: true }]">
                                           <SearchWorkingFormSelect ref="select-working-form"
                                              :workingFormId="formState.workingFormId" :listWorkingForm="listWorkingForm"
                                              @filter="filterWorkingForm" @selectWorkingForm="selectWorkingForm" />

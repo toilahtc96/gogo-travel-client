@@ -9,6 +9,7 @@ import Home from "@/pages/user-pages/home/index.vue";
 import About from "@/pages/user-pages/about/index.vue";
 import Contact from "@/pages/user-pages/contact/index.vue";
 import Profile from "@/pages/user-pages/user-profile/index.vue";
+import CompanyAdd from "@/pages/user-pages/company-add/index.vue";
 import JobAdd from "@/pages/user-pages/job-add/index.vue";
 import JobDetail1 from "@/pages/user-pages/job-detail-1/index.vue";
 import JobDetail2 from "@/pages/user-pages/job-detail-2/index.vue";
@@ -106,6 +107,34 @@ const router = createRouter({
         }
         next(!noToken);
       },
+    },
+    {
+      name: "company-add",
+      path: "/company-add",
+      component: CompanyAdd,
+      meta: { needsAuth: true },
+      beforeEnter: (to, from, next) => {
+        const noToken: boolean = !localStorage.getItem("accessToken");
+        if (noToken) {
+          message.error("You need Login!");
+          router.push("/login")
+        }
+        next(!noToken);
+      }
+    },
+    {
+      name: "companies",
+      path: "/companies",
+      component: JobAdd,
+      meta: { needsAuth: true },
+      beforeEnter: (to, from, next) => {
+        const noToken: boolean = !localStorage.getItem("accessToken");
+        if (noToken) {
+          message.error("You need Login!");
+          router.push("/login")
+        }
+        next(!noToken);
+      }
     },
     {
       name: "profile",

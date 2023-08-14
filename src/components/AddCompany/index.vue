@@ -59,7 +59,7 @@ onMounted(() => {
 const changeProvince = (value: string) => {
     formState.company.districtCode = '';
     formState.company.precinctCode = '';
-    addressService.getByParentCode(value).then(data => {
+    addressService.getByTypeAndParentCode(AddressType.DISTRICT,value).then(data => {
         if (data) {
             listDistrict.value = data;
         }
@@ -67,7 +67,7 @@ const changeProvince = (value: string) => {
 }
 const changeDistrict = (value: string) => {
     formState.company.precinctCode = '';
-    addressService.getByParentCode(value).then(data => {
+    addressService.getByTypeAndParentCode(AddressType.PRECINCT,value).then(data => {
         if (data) {
             listPrecinct.value = data;
         }

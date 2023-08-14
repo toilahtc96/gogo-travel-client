@@ -51,7 +51,6 @@ watch(() => props.companyId, () => {
 
 const getCompanyById = (id: number) => {
     companyService.getCompanyById(id)?.then((data) => {
-
         if (options.value?.filter(item => { return item.value == id }).length == 0) {
             options.value?.push({ value: data.id, label: data.name });
         }

@@ -2,14 +2,25 @@ import { Ref } from "vue";
 import { AddressType } from "./AddressType";
 import { StatusType } from "./StatusType";
 
-export interface Address  {
+export interface Address {
     id: number,
-    name: string,
+    provinceCode: string | undefined,
+    provinceName: string | undefined,
+    districtCode: string | undefined,
+    districtName: string | undefined,
+    precinctCode: string | undefined,
+    precinctName: string | undefined,
+    type: AddressType,
     status: number,
-    code: string,
 }
 export interface SearchAddress {
-    name: string,
+    provinceCode: string | undefined,
+    provinceName: string | undefined,
+    districtCode: string | undefined,
+    districtName: string | undefined,
+    precinctCode: string | undefined,
+    precinctName: string | undefined,
+    type: AddressType,
     status: StatusType,
     page: number,
     size: number

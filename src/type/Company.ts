@@ -1,13 +1,16 @@
+import { StatusType } from "./StatusType";
 
 export default interface Company {
-    id: number,
-    name: string,
-    code: string,
-    provinceCode: string,
-    districtCode: string,
-    precinctCode: string,
-    star: number,
-    information: string,
-    status: number,
+    id: number|undefined,
+    name:string|undefined,
+    provinceCode: string|undefined,
+    districtCode: string|undefined,
+    precinctCode: string|undefined,
+    provinceName: string|undefined,
+    districtName: string|undefined,
+    precinctName: string|undefined,
+    star: number|undefined,
+    information: string|undefined,
+    status: StatusType|undefined,
 }
 

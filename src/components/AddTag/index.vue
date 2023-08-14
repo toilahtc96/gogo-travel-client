@@ -56,8 +56,9 @@ defineExpose({
     </template>
     <a-input v-if="inputVisible" ref="inputRef" v-model:value="inputValue" type="text" size="small"
         :style="{ width: '78px' }" @blur="handleInputConfirm" @keyup.enter="handleInputConfirm" />
-    <a-tag v-else style="background: #fff; border-style: dashed" @click="showInput">
+    <a-tag v-else style="background: #fff; border-style: dashed" @click="showInput" @keyup.enter="handleInputConfirm">
         <plus-outlined />
         {{ props.title }}
+        
     </a-tag>
 </template>

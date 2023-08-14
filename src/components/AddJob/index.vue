@@ -56,8 +56,8 @@ const formState = ref<Job>({
     tags: undefined,
     reasonForChoosing: undefined
 });
-const onFinish = () => {
-
+const onFinish = (event: Event) => {
+    console.log(event);
     if (formState.value.rangeSalaryMin && formState.value.rangeSalaryMax) {
         if (formState.value.rangeSalaryMin > formState.value.rangeSalaryMax) {
             message.error("Min Salary great than Max Salary");
@@ -183,7 +183,6 @@ const reasonTitle = ref("New Reason");
             <a-form-item :name="['tags']" label="Tag" :style="styleInput">
                 <AddTag style="width: 50%" @resultTag="addJobTag" v-model:value="formState.tags" :title="tagTitle" />
             </a-form-item>
-
             <a-form-item :name="['companyId']" label="Company" :style="styleInput">
                 <SearchCompanySelect ref="select-company" :companyId="formState.companyId" style="width: 50%"
                     :listCompany="listCompany" @filter="filterCompany" @selectCompany="selectCompany" />

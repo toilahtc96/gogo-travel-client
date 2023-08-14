@@ -21,7 +21,9 @@ let addressChanging;
 const formState = reactive({
   address: {
     id: 0,
-    name: '',
+    provinceName: '',
+    districtName: '',
+    precinctName: '',
     status: 0,
   }
 });
@@ -32,7 +34,9 @@ const fetchAddress = () => {
     addressService.getAddressById(id)?.then((data) => {
       addressChanging = data;
       formState.address.id = addressChanging.id;
-      formState.address.name = addressChanging.name;
+      formState.address.provinceName = addressChanging.provinceName;
+      formState.address.districtName = addressChanging.districtName;
+      formState.address.precinctName = addressChanging.precinctName;
       formState.address.status = addressChanging.status;
       changeSpinning();
     });
@@ -102,8 +106,14 @@ watch(() => route.params.id, () => {
       <a-form-item :name="['address', 'id']" label="Id" :hidden="true">
         <a-input-number v-model:value="formState.address.id" />
       </a-form-item>
-      <a-form-item :name="['address', 'name']" label="name">
-        <a-input v-model:value="formState.address.name" />
+      <a-form-item :name="['address', 'provinceName']" label="provinceName">
+        <a-input v-model:value="formState.address.provinceName" />
+      </a-form-item>
+      <a-form-item :name="['address', 'districtName']" label="districtName" v-if="formState.address.districtName">
+        <a-input v-model:value="formState.address.districtName" />
+      </a-form-item>
+      <a-form-item :name="['address', 'precinctName']" label="precinctName" v-if="formState.address.precinctName">
+        <a-input v-model:value="formState.address.precinctName" />
       </a-form-item>
       <a-form-item :name="['address', 'status']" label="Status">
         <StatusElement :status="formState.address.status" ref="select" />

@@ -1,6 +1,32 @@
 
 <script  setup lang="ts">
+import { ref } from 'vue';
 
+const spinning = ref(false);
+const changeSpin = (isSpinning: boolean) => {
+    spinning.value = isSpinning;
+}
+let pageSetting = ref({
+    current: 0,
+    total: 0
+})
+let defaultPage = ref({
+    page: 0,
+    size: 9
+});
+const jobItems = ref();
+const showSizeChange = (current: number, size: number) => {
+    defaultPage.value.size = size;
+}
+const change = async (page: number, pageSize: number) => {
+    changeSpin(true);
+    jobItems.value.changePage(page, pageSize);
+
+}
+const setTotal = (total: number) => {
+
+    pageSetting.value.total = total;
+}
 </script>
 <template>
     <section class="course__area pt-115 pb-120 grey-bg">
@@ -47,7 +73,11 @@
             </div>
             <div class="row grid tab-content">
                 <div className="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
-                    <JobItems/>
+                    <a-spin :spinning="spinning">
+                        <JobItems :defaultPage="defaultPage" ref="jobItems" @setTotal="setTotal" @changeSpin="changeSpin" />
+                    </a-spin>
+                    <Pagination :current="pageSetting.current" :total="pageSetting.total" @change="change"
+                        :pageSize="defaultPage.size" @showSizeChange="showSizeChange" />
                 </div>
             </div>
         </div>

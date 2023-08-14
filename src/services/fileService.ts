@@ -5,7 +5,7 @@ export class FileService {
     config = {
         headers: {
             accessToken: localStorage.getItem("accessToken") || '',
-            ContentType: "multipart/form-data",
+            contentType: "multipart/form-data",
         },
 
     }

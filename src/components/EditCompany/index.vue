@@ -101,7 +101,7 @@ let listPrecinct = ref<Address[]>();
 const changeProvince = (value: string, isResetValue: boolean) => {
     let temp = formState.value.company.districtCode;
     formState.value.company.districtCode = '';
-    addressService.getByParentCode(value).then(data => {
+    addressService.getByTypeAndParentCode(AddressType.DISTRICT,value).then(data => {
         if (data) {
             console.log(temp);
             console.log(formState.value.company);
@@ -117,7 +117,7 @@ const changeProvince = (value: string, isResetValue: boolean) => {
 const changeDistrict = (value: string, isResetValue: boolean) => {
     let temp = formState.value.company.precinctCode;
     formState.value.company.precinctCode = '';
-    addressService.getByParentCode(value).then(data => {
+    addressService.getByTypeAndParentCode(AddressType.PRECINCT,value).then(data => {
         if (data) {
             listPrecinct.value = data;
             if (!isResetValue) {

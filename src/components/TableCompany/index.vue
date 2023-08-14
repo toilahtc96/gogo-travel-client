@@ -31,9 +31,9 @@ let dataSearch = ref<SearchCompany>({
 const columns: TableColumnsType = [
     { title: 'Full Name', width: 300, dataIndex: 'name', key: 'name', fixed: 'left' },
     { title: 'Code', width: 100, dataIndex: 'code', key: 'code', fixed: 'left' },
-    { title: 'province', dataIndex: 'provinceCode', key: 'provinceCode' },
-    { title: 'district', dataIndex: 'districtCode', key: 'districtCode' },
-    { title: 'precinct', dataIndex: 'precinctCode', key: 'precinctCode' },
+    { title: 'province', dataIndex: 'provinceName', key: 'provinceName' },
+    { title: 'district', dataIndex: 'districtName', key: 'districtName' },
+    { title: 'precinct', dataIndex: 'precinctName', key: 'precinctName' },
     { title: 'star', dataIndex: 'star', key: 'star' },
     { title: 'information', dataIndex: 'information', key: 'information' },
     {
@@ -82,13 +82,16 @@ const getNameOfAddress = (code: string, type: AddressType, item: Company) => {
             if (data) {
                 switch (type) {
                     case AddressType.PROVINCE:
-                        item.provinceCode = data.name;
+                        item.provinceCode = data.provinceCode || '';
+                        item.provinceName = data.provinceName || '';
                         break;
                     case AddressType.DISTRICT:
-                        item.districtCode = data.name;
+                        item.districtCode = data.districtCode || '';
+                        item.districtName = data.districtName || '';
                         break;
                     case AddressType.PRECINCT:
-                        item.precinctCode = data.name;
+                        item.precinctCode = data.precinctCode || '';
+                        item.precinctName = data.precinctName || '';
                         break;
                     default: break;
                 }
@@ -107,6 +110,7 @@ const searchCompany = (data: SearchCompany) => {
     emit('setSpin', true)
     emit('settingDataSearch', data)
     companyService.findCompany(data).then((data) => {
+        debugger;
         companyActives.value = { ...companyActives.value, listData: data.data };
         emit('setTotal', data.total);
     }).then(() => {
@@ -116,6 +120,8 @@ const searchCompany = (data: SearchCompany) => {
             getNameOfAddress(item.precinctCode, AddressType.PRECINCT, item);
         })
     }).then(() => {
+        emit('setSpin', false)
+    }).catch((err)=>{
         emit('setSpin', false)
     });
 }

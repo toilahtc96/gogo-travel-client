@@ -52,8 +52,8 @@ export class AddressService {
             message.error("Has error when get address by type");
         })
     }
-    getByParentCode = (code: string) => {
-        return axios.get<Address[]>(`api/v1/address/get-by-parent-code?code=` + code, this.config).then((data) => {
+    getByTypeAndParentCode = (type: AddressType, parentCode: string|undefined) => {
+        return axios.get<Address[]>(`api/v1/address/get-by-type-and-parent-code?parentCode=` + parentCode + "&type=" + type, this.config).then((data) => {
             return data.data;
         }).catch((err) => {
             message.error("Has error when get address by type");
@@ -68,7 +68,7 @@ export class AddressService {
     }
 
     getByTypePaging = (type: AddressType, page: number, size: number) => {
-        return axios.get<Address[]>(`api/v1/address/get-by-type-paging?type=` + type+`&page=`+page+`&size=`+size, this.config).then((data) => {
+        return axios.get<Address[]>(`api/v1/address/get-by-type-paging?type=` + type + `&page=` + page + `&size=` + size, this.config).then((data) => {
             return data.data;
         }).catch((err) => {
             message.error("Has error when get address by type");
@@ -80,7 +80,7 @@ export class AddressService {
             headers: {
                 accessToken: localStorage.getItem("accessToken") || ''
             },
-           params:{ ...data}
+            params: { ...data }
         }).then((data) => {
             return data.data;
         }).catch((err) => {

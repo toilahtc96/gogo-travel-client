@@ -122,6 +122,18 @@ onMounted(() => {
                                             </ul>
                                         </li>
                                         <li class="has-dropdown">
+                                            <router-link to="/">Companies</router-link>
+                                            <ul class="submenu">
+                                                <li>
+                                                    <router-link to="/companies">Company List</router-link>
+                                                </li>
+                                                <li>
+                                                    <router-link to="/company-add">Push New Company
+                                                    </router-link>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="has-dropdown">
                                             <router-link to="/voucher">Voucher</router-link>
                                             <ul class="submenu">
                                                 <li><router-link to="/voucher">Voucher</router-link></li>

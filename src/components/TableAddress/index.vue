@@ -4,15 +4,17 @@ import { Address, SearchAddress } from '@/type/Address';
 import { AddressService } from '@/services/address';
 import type { TableColumnsType } from 'ant-design-vue';
 import { StatusType } from '@/type/StatusType';
+import { AddressType } from '@/type/AddressType';
 
 
 const emit = defineEmits(['setSpin', 'setTotal', 'settingDataSearch', 'setPaging'])
-const props = defineProps(['listAddress', 'defaultCompanyPage', 'dataSearch','defaultPage'])
+const props = defineProps(['listAddress', 'defaultCompanyPage', 'dataSearch', 'defaultPage'])
 const addressService = new AddressService();
 const columns: TableColumnsType = [
-    { title: 'Name', width: 200, dataIndex: 'name', key: 'name', fixed: 'left' },
     { title: 'Type', dataIndex: 'type', key: '1' },
-    { title: 'parentName', dataIndex: 'parentName', key: 'parentName' },
+    { title: 'Province Name', width: 200, dataIndex: 'provinceName', key: 'provinceName', fixed: 'left' },
+    { title: 'District Name', dataIndex: 'districtName', key: 'districtName' },
+    { title: 'Precinct Name', dataIndex: 'precinctName', key: 'precinctName' },
     { title: 'Status', dataIndex: 'status', key: '5' },
     {
         title: 'Action',
@@ -25,7 +27,13 @@ let listAddress = ref({
     listData: ref<[Address]>()
 });
 let dataSearch = ref<SearchAddress>({
-    name: '',
+    provinceCode: undefined,
+    provinceName: undefined,
+    districtCode: undefined,
+    districtName: undefined,
+    precinctCode: undefined,
+    precinctName: undefined,
+    type: AddressType.PROVINCE,
     status: StatusType.ACTIVED,
     page: props.defaultPage.page,
     size: props.defaultPage.size
@@ -48,12 +56,29 @@ onMounted(async () => {
 
 })
 
-const changePage = async (page: number, pageSize: number, name: string) => {
+const changePage = async (
+    page: number,
+    pageSize: number,
+    provinceCode: string,
+    provinceName: string,
+    districtCode: string,
+    districtName: string,
+    precinctCode: string,
+    precinctName: string,
+    type: AddressType
+) => {
     emit('setPaging', page, pageSize)
     emit('setSpin', true)
     dataSearch.value.page = page;
     dataSearch.value.size = pageSize;
-    dataSearch.value.name = name;
+    dataSearch.value.provinceCode = provinceCode;
+    dataSearch.value.provinceName = provinceName;
+    dataSearch.value.districtCode = districtCode;
+    dataSearch.value.districtName = districtName;
+    dataSearch.value.precinctCode = precinctCode;
+    dataSearch.value.precinctName = precinctName;
+    dataSearch.value.type = type;
+    console.log(dataSearch.value);
     addressService.findAddress(dataSearch.value).then((data) => {
         listAddress.value = { ...listAddress.value, listData: data.data };
         emit('setTotal', data.total);
