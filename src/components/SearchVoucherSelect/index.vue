@@ -2,7 +2,7 @@
 import { VoucherService } from '@/services/voucherService';
 import { Voucher } from '@/type/Voucher';
 import type { SelectProps } from 'ant-design-vue';
-import { onMounted, ref, watch, defineProps, defineEmits } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 const props = defineProps(['listVoucher','style']);
 const emit = defineEmits(['filter']);
 const loading = ref(false);

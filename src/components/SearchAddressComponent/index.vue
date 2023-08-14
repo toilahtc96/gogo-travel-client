@@ -2,7 +2,7 @@
 <script lang="ts" setup>
 import { AddressType } from "@/type/AddressType";
 import { SearchAddress } from "@/type/Address";
-import { ref, defineProps, defineEmits } from "vue";
+import { ref } from "vue";
 import { StatusType } from "@/type/StatusType";
 const emit = defineEmits(['searchAddress'])
 const props = defineProps(['defaultPage'])

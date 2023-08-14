@@ -1,6 +1,6 @@
  
 <script setup lang="ts">
-import { defineProps, ref } from 'vue';
+import { ref } from 'vue';
 const props = defineProps(['footerBgTwo', 'footerPadding'])
 const getFooterBg = (footerBgTwo: boolean) => {
     // return new URL(imgSrc, import.meta.url).href;

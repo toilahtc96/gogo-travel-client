@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted, watch, defineEmits, defineProps } from 'vue'
+import { ref, onMounted, watch, } from 'vue'
 import { JobService } from '@/services/jobService';
 import { TableColumnsType } from 'ant-design-vue';
 import { Job } from '@/type/Job';

@@ -2,7 +2,7 @@
 import { AddressService } from "@/services/address";
 import { AddressType } from "@/type/AddressType";
 import { Address } from "@/type/Address";
-import { ref, defineProps } from "vue";
+import { ref } from "vue";
 const emit = defineEmits(['changeAddress'])
 const addressService = new AddressService();
 const props = defineProps(['provinceCode', 'districtCode', 'precinctCode', 'provinceName', 'districtName', 'precinctName', 'formItemStyle']);

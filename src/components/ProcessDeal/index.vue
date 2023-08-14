@@ -1,15 +1,12 @@
 <script lang="ts" setup>
 
 import { StepCode } from "@/type/StepCode";
-import { ref, defineProps } from "vue";
+import { ref } from "vue";
 const props = defineProps(['current'])
 const emit = defineEmits(['editStep']);
 const current = ref(props.current);
 const editStep = (value: any) => {
     switch (value) {
-        case StepCode.INIT:
-            current.value = 0;
-            break;
         case StepCode.SEND_CV_TO_AGENCY:
             current.value = 1;
             break;

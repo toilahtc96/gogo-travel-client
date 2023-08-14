@@ -1,6 +1,6 @@
 <!-- Fullname,code,province,district,precinct,star,information -->
 <script lang="ts" setup>
-import { ref, defineProps, defineEmits } from "vue";
+import { ref } from "vue";
 import { StatusType } from "@/type/StatusType";
 import { SearchVoucherForm } from '@/type/SearchVoucherForm';
 import { voucherType } from '@/type/VoucherType';

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { defineEmits, defineProps, onMounted } from "vue";
 import { voucherType } from "@/type/VoucherType";
 
 const props = defineProps(['voucherTypeSelected'])
@@ -11,7 +10,7 @@ const selectVoucherType = (value: voucherType) => {
 }
 </script>
 <template>
-    <a-select ref="select" v-model:value="voucherTypeSelected" @change="selectVoucherType" allowClear
+    <a-select ref="select" v-model:value="props.voucherTypeSelected" @change="selectVoucherType" allowClear
         placeholder="select voucher type">
         <a-select-option v-for="data in voucherType" :key="data" :value="data"> {{
             data

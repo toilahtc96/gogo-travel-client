@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 
 import { StepCode } from "@/type/StepCode";
-import { defineProps } from "vue";
 const props = defineProps(['stepCode'])
 const emit = defineEmits(['selectStep'])
 

@@ -2,7 +2,7 @@
 import { CompanyService } from '@/services/company';
 import Company from '@/type/Company';
 import type { SelectProps } from 'ant-design-vue';
-import { onMounted, ref, watch, defineProps, defineEmits, onUpdated } from 'vue';
+import { onMounted, ref, watch, onUpdated } from 'vue';
 const props = defineProps(['listCompany', 'companyId', 'style']);
 const emit = defineEmits(['filter', 'selectCompany']);
 const companyService = new CompanyService();

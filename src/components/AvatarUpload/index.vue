@@ -2,7 +2,7 @@
 <script lang="ts" setup>
 import { PlusOutlined, LoadingOutlined } from '@ant-design/icons-vue';
 import { message } from 'ant-design-vue';
-import { ref, watch, defineEmits, defineProps } from 'vue';
+import { ref, watch } from 'vue';
 import type { UploadChangeParam, UploadProps } from 'ant-design-vue';
 import { FileService } from '@/services/fileService';
 

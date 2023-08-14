@@ -2,7 +2,7 @@
 import { JobTypeService } from '@/services/jobTypeService';
 import { JobType } from '@/type/JobType';
 import type { SelectProps } from 'ant-design-vue';
-import { onMounted, ref, watch, defineProps, defineEmits, onUpdated } from 'vue';
+import { onMounted, ref, watch, onUpdated } from 'vue';
 const props = defineProps(['listJobType', 'jobTypeId', 'style']);
 const emit = defineEmits(['filter', 'selectJobType']);
 const loading = ref(false);

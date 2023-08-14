@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted, onUpdated, watch, defineEmits, defineProps } from 'vue'
+import { ref, onMounted, onUpdated, watch } from 'vue'
 import { Address, SearchAddress } from '@/type/Address';
 import { AddressService } from '@/services/address';
 import type { TableColumnsType } from 'ant-design-vue';

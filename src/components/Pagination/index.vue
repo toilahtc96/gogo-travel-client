@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { watch, defineProps } from 'vue';
+import { watch } from 'vue';
 const props = defineProps(['current', 'total', 'pageSize'])
 const emit = defineEmits(['change', 'showSizeChange'])
 const change = (page: number, pageSize: number) => {
@@ -13,6 +13,6 @@ const showSizeChange = (current: number, size: number) => {
 }
 </script>
 <template>
-  <a-pagination v-model:current="current" :total="total" :pageSize="pageSize" style="float:right" @change="change"
+  <a-pagination v-model:current="props.current" :total="total" :pageSize="pageSize" style="float:right" @change="change"
     show-size-changer @showSizeChange="showSizeChange" />
 </template>

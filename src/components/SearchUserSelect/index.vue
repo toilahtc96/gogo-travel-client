@@ -2,7 +2,7 @@
 import { User } from '@/type/User';
 import { UserType } from '@/type/UserType';
 import type { SelectProps } from 'ant-design-vue';
-import { onMounted, ref, watch, defineProps, defineEmits } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 const props = defineProps(['listUser']);
 const emit = defineEmits(['filter']);
 onMounted(() => {

@@ -2,7 +2,7 @@
 import { WorkingFormService } from '@/services/workingFormService';
 import { WorkingForm } from '@/type/WorkingForm';
 import type { SelectProps } from 'ant-design-vue';
-import { onMounted, ref, watch, defineProps, defineEmits, onUpdated } from 'vue';
+import { onMounted, ref, watch, onUpdated } from 'vue';
 const props = defineProps(['listWorkingForm', 'workingFormId', 'style']);
 const emit = defineEmits(['filter', 'selectWorkingForm']);
 const workingFormService = new WorkingFormService();

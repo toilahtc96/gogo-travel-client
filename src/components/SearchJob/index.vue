@@ -1,7 +1,7 @@
 <!-- Fullname,code,province,district,precinct,star,information -->
 <script lang="ts" setup>
 import { SearchJob } from '@/type/SearchJob';
-import { ref, defineProps, defineEmits } from "vue";
+import { ref } from "vue";
 import { StatusType } from "@/type/StatusType";
 import { JobType } from '@/type/JobType';
 import Company from '@/type/Company';

@@ -2,7 +2,7 @@
 import { CareerService } from '@/services/careerService';
 import { Career } from '@/type/Career';
 import type { SelectProps } from 'ant-design-vue';
-import { onMounted, ref, watch, defineProps, defineEmits, onUpdated } from 'vue';
+import { onMounted, ref, watch, onUpdated } from 'vue';
 const props = defineProps(['listCareer', 'careerId', 'style']);
 const emit = defineEmits(['filter', 'selectCareer']);
 const loading = ref(false);

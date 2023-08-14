@@ -2,7 +2,7 @@
 <script lang="ts" setup>
 import { UserService } from "@/services/userService";
 import { SearchUserForm } from '@/type/SearchUserForm';
-import { ref, defineProps, defineEmits } from "vue";
+import { ref } from "vue";
 import { StatusType } from "@/type/StatusType";
 import { UserType } from "@/type/UserType";
 import { LevelName } from "@/type/LevelName";

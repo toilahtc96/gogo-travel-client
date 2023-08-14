@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref, onMounted, watch, defineEmits, defineProps } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { CompanyService } from '@/services/company';
 import { TableColumnsType } from 'ant-design-vue';
 import Company from '@/type/Company';
@@ -51,9 +51,9 @@ let companyActives = ref({
 });
 const getAddressName = () => {
     companyActives.value.listData?.forEach((item) => {
-        getNameOfAddress(item.provinceCode, AddressType.PROVINCE, item);
-        getNameOfAddress(item.districtCode, AddressType.DISTRICT, item);
-        getNameOfAddress(item.precinctCode, AddressType.PRECINCT, item);
+        getNameOfAddress(item.provinceCode == undefined ? '' : item.provinceCode, AddressType.PROVINCE, item);
+        getNameOfAddress(item.districtCode == undefined ? '' : item.districtCode, AddressType.DISTRICT, item);
+        getNameOfAddress(item.precinctCode == undefined ? '' : item.precinctCode, AddressType.PRECINCT, item);
     })
 }
 onMounted(async () => {
@@ -62,9 +62,9 @@ onMounted(async () => {
         companyActives.value = { ...companyActives.value, listData: data };
     }).then(() => {
         companyActives.value.listData?.forEach((item) => {
-            getNameOfAddress(item.provinceCode, AddressType.PROVINCE, item);
-            getNameOfAddress(item.districtCode, AddressType.DISTRICT, item);
-            getNameOfAddress(item.precinctCode, AddressType.PRECINCT, item);
+            getNameOfAddress(item.provinceCode == undefined ? '' : item.provinceCode, AddressType.PROVINCE, item);
+            getNameOfAddress(item.districtCode == undefined ? '' : item.districtCode, AddressType.DISTRICT, item);
+            getNameOfAddress(item.precinctCode == undefined ? '' : item.precinctCode, AddressType.PRECINCT, item);
         })
         emit('setSpin', false)
     });
@@ -115,13 +115,13 @@ const searchCompany = (data: SearchCompany) => {
         emit('setTotal', data.total);
     }).then(() => {
         companyActives.value.listData?.forEach((item) => {
-            getNameOfAddress(item.provinceCode, AddressType.PROVINCE, item);
-            getNameOfAddress(item.districtCode, AddressType.DISTRICT, item);
-            getNameOfAddress(item.precinctCode, AddressType.PRECINCT, item);
+            getNameOfAddress(item.provinceCode == undefined ? '' : item.provinceCode, AddressType.PROVINCE, item)
+            getNameOfAddress(item.districtCode == undefined ? '' : item.districtCode, AddressType.DISTRICT, item);
+            getNameOfAddress(item.precinctCode == undefined ? '' : item.precinctCode, AddressType.PRECINCT, item);
         })
     }).then(() => {
         emit('setSpin', false)
-    }).catch((err)=>{
+    }).catch((err) => {
         emit('setSpin', false)
     });
 }
@@ -135,9 +135,9 @@ const changePage = async (page: number, pageSize: number) => {
         emit('setTotal', data.total);
     }).then(() => {
         companyActives.value.listData?.forEach((item) => {
-            getNameOfAddress(item.provinceCode, AddressType.PROVINCE, item);
-            getNameOfAddress(item.districtCode, AddressType.DISTRICT, item);
-            getNameOfAddress(item.precinctCode, AddressType.PRECINCT, item);
+            getNameOfAddress(item.provinceCode == undefined ? '' : item.provinceCode, AddressType.PROVINCE, item);
+            getNameOfAddress(item.districtCode == undefined ? '' : item.districtCode, AddressType.DISTRICT, item);
+            getNameOfAddress(item.precinctCode == undefined ? '' : item.precinctCode, AddressType.PRECINCT, item);
         })
     }).then(() => {
         emit('setSpin', false);
@@ -153,7 +153,7 @@ defineExpose({
     <a-table :columns="columns" :data-source="companyActives.listData" :scroll="{ x: 1300, y: 1000 }">
         <template #bodyCell="{ column, record }">
             <template v-if="column.key === 'star'">
-                <Rate :value="record.star" :isCanAccess="rateInteract"/>
+                <Rate :value="record.star" :isCanAccess="rateInteract" />
             </template>
             <template v-if="column.key === 'operation'">
                 <router-link v-if="record.id" :to="{ name: 'admin-company-edit', params: { id: record.id } }"><a>edit

@@ -1,6 +1,6 @@
 
 <script setup lang="ts">
-import { onMounted, ref, defineProps } from 'vue';
+import { onMounted, ref } from 'vue';
 const isSticky = ref(false);
 const showSidebar = ref(false);
 const menuOption = ref({
