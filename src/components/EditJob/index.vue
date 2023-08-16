@@ -60,10 +60,8 @@ const fetchJob = () => {
             changeSpinning();
         }).then(() => {
             if (formState.value.thumbnail) {
-                fileService.getSingleImage(formState.value.thumbnail).then((data) => {
-                    jobThumbnailImage.value = data;
-                    avatarUploadElement.value.setAvatar(jobThumbnailImage.value);
-                })
+                jobThumbnailImage.value = formState.value.thumbnail == undefined ? '' : formState.value.thumbnail;
+                avatarUploadElement.value.setAvatar(jobThumbnailImage.value);
             } else {
                 fileService.getNoImage().then((data) => {
                     jobThumbnailImage.value = data;
@@ -209,10 +207,8 @@ const jobThumbnailImage = ref<string>("");
 const setImageUrl = (imageAddressInServer: string) => {
     formState.value.thumbnail = imageAddressInServer;
     if (formState.value.thumbnail) {
-        fileService.getSingleImage(formState.value.thumbnail).then((data) => {
-            jobThumbnailImage.value = data;
-            avatarUploadElement.value.setAvatar(jobThumbnailImage.value);
-        })
+        jobThumbnailImage.value = formState.value.thumbnail == undefined ? '' : formState.value.thumbnail;
+        avatarUploadElement.value.setAvatar(jobThumbnailImage.value);
     } else {
         fileService.getNoImage().then((data) => {
             jobThumbnailImage.value = data;

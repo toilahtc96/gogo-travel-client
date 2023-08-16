@@ -25,9 +25,7 @@ const getComment = (objectId: number | undefined, reviewUserId: number | undefin
         }).then(() => {
             reviews.value?.forEach(review => {
                 if (review.reviewOwnerAvatar) {
-                    fileService.getSingleImage(review.reviewOwnerAvatar).then(data => {
-                        review.reviewOwnerAvatarSrc = data;
-                    })
+                    review.reviewOwnerAvatarSrc = review.reviewOwnerAvatar;
                 } else {
                     fileService.getNoImage().then(data => {
                         review.reviewOwnerAvatarSrc = data;
@@ -62,9 +60,7 @@ const change = async (page: number, pageSize: number) => {
         }).then(() => {
             reviews.value?.forEach(review => {
                 if (review.reviewOwnerAvatar) {
-                    fileService.getSingleImage(review.reviewOwnerAvatar).then(data => {
-                        review.reviewOwnerAvatarSrc = data;
-                    })
+                    review.reviewOwnerAvatarSrc = review.reviewOwnerAvatar;
                 } else {
                     fileService.getNoImage().then(data => {
                         review.reviewOwnerAvatarSrc = data;

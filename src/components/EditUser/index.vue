@@ -77,10 +77,8 @@ const fetchUser = () => {
             changeSpinning();
         }).then(() => {
             if (formState.value.user.avatarUrl) {
-                fileService.getSingleImage(formState.value.user.avatarUrl).then((data) => {
-                    avatarImage.value = data;
-                    avatarUploadElement.value.setAvatar(avatarImage.value);
-                })
+                avatarImage.value = formState.value.user.avatarUrl == undefined ? '' : formState.value.user.avatarUrl;
+                avatarUploadElement.value.setAvatar(avatarImage.value);
             } else {
                 fileService.getNoImage().then((data) => {
                     avatarImage.value = data;
@@ -215,10 +213,8 @@ const areaStype = ref("width: 100%");
 const setImageUrl = (imageAddressInServer: string) => {
     formState.value.user.avatarUrl = imageAddressInServer;
     if (formState.value.user.avatarUrl) {
-        fileService.getSingleImage(formState.value.user.avatarUrl).then((data) => {
-            avatarImage.value = data;
-            avatarUploadElement.value.setAvatar(avatarImage.value);
-        })
+        avatarImage.value = formState.value.user.avatarUrl == undefined ? '' : formState.value.user.avatarUrl;
+        avatarUploadElement.value.setAvatar(avatarImage.value);
     } else {
         fileService.getNoImage().then((data) => {
             avatarImage.value = data;

@@ -75,21 +75,17 @@ const fetchJob = () => {
             changeSpinning();
         }).then(() => {
             if (formState.value.thumbnail) {
-                fileService.getSingleImage(formState.value.thumbnail).then((data) => {
-                    jobThumbnailImage.value = data;
-                })
+                jobThumbnailImage.value = formState.value.thumbnail == undefined ? '' : formState.value.thumbnail;
             } else {
                 fileService.getNoImage().then((data) => {
                     jobThumbnailImage.value = data;
                 })
             }
             if (job.value && job.value.avatarUrl) {
-                fileService.getSingleImage(job.value.avatarUrl).then((data: string) => {
-                    if (job.value) {
-                        job.value.avatarUrlAfter = data;
-                        job.value.color = getColor(1);
-                    }
-                })
+                if (job.value) {
+                    job.value.avatarUrlAfter = job.value.avatarUrl;
+                    job.value.color = getColor(1);
+                }
             } else {
                 fileService.getNoImage().then((data: string) => {
                     if (job.value) {

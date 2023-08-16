@@ -33,7 +33,7 @@ const formState = ref<Job>({
     thumbnail: undefined,
     title: undefined,
     voucherId: undefined,
-    tags:undefined,
+    tags: undefined,
     reasonForChoosing: undefined
 });
 const fetchJob = () => {
@@ -55,14 +55,11 @@ const fetchJob = () => {
             formState.value.rangeSalaryMin = data.rangeSalaryMin;
             formState.value.status = data.status;
             formState.value.thumbnail = data.thumbnail;
-            
+
             changeSpinning();
         }).then(() => {
             if (formState.value.thumbnail) {
-                
-                fileService.getSingleImage(formState.value.thumbnail).then((data) => {
-                    jobThumbnailImage.value = data;
-                })
+                jobThumbnailImage.value = formState.value.thumbnail == undefined ? '' : formState.value.thumbnail;
             } else {
                 fileService.getNoImage().then((data) => {
                     jobThumbnailImage.value = data;

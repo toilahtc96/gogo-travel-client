@@ -20,9 +20,7 @@ const fetchThreeAgencySameJobType = () => {
     }).then(() => {
         agencySameJobTypes.value?.forEach((job) => {
             if (job.avatarUrl) {
-                fileService.getSingleImage(job.avatarUrl).then((data) => {
-                    job.avatarUrlAfter = data;
-                })
+                job.avatarUrlAfter = job.avatarUrl;
             } else {
                 fileService.getNoImage().then((data) => {
                     job.avatarUrlAfter = data;

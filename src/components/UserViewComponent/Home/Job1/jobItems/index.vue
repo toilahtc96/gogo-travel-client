@@ -6,7 +6,7 @@ import { JobResponse } from "@/type/JobResponse";
 import { FileService } from "@/services/fileService";
 import SocketRequest from '@/components/socket/SocketRequest.js';
 
-const emit = defineEmits(['setTotal','changeSpin']);
+const emit = defineEmits(['setTotal', 'changeSpin']);
 const props = defineProps(['defaultPage']);
 const fileService = new FileService();
 let socketRequest: any = SocketRequest.getInstance();
@@ -21,10 +21,8 @@ const findJob = () => {
    }).then(() => {
       listJob.value?.forEach((job, index) => {
          if (job.thumbnail) {
-            // fileService.getSingleImage(job.thumbnail).then((data) => {
-               job.thumbnailAfter = job.thumbnail;
-               job.color = getColor(index);
-            // })
+            job.thumbnailAfter = job.thumbnail;
+            job.color = getColor(index);
          } else {
             fileService.getNoImage().then((data) => {
                job.thumbnailAfter = data;
@@ -32,10 +30,8 @@ const findJob = () => {
             })
          }
          if (job.avatarUrl) {
-            fileService.getSingleImage(job.avatarUrl).then((data) => {
-               job.avatarUrlAfter = data;
-               job.color = getColor(index);
-            })
+            job.avatarUrlAfter = job.avatarUrl;
+            job.color = getColor(index);
          } else {
             fileService.getNoImage().then((data) => {
                job.avatarUrlAfter = data;
