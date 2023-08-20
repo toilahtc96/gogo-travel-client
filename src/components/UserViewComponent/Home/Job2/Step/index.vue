@@ -59,6 +59,9 @@ const finishProgress = () => {
 }
 
 const isShow = ref<string>("");
+const nextStep = () => {
+   next();
+}
 </script>
 <style scoped>
 .steps-content {
@@ -92,7 +95,7 @@ const isShow = ref<string>("");
             </a-steps>
             <div class="steps-content">
                <div v-if="current === 0">
-                  <FirstStep :agencyId="currentStep?.agencyId" />
+                  <FirstStep :agencyId="currentStep?.agencyId" @next-step="nextStep" />
                </div>
                <div v-if="current === 1">
                   <SecondStep />

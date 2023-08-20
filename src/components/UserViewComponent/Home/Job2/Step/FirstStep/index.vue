@@ -12,10 +12,11 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 // const editorConfig = ref({
 //     // The configuration of the editor.
 // });
+const props = defineProps(['agencyId']);
+const emit = defineEmits(['next-step']);
 const route = useRoute();
 
 const id = +route.params.id;
-const props = defineProps(['agencyId']);
 const jobService = new JobService();
 const userService = new UserService();
 const agency = ref<User>();
@@ -40,6 +41,10 @@ const formState = ref({
 const onFinish = () => {
     message.success('success');
 }
+const uploadCvSuccess = () => {
+    emit('next-step');
+
+}
 </script>
 
 <template>
@@ -52,7 +57,7 @@ const onFinish = () => {
                             <!-- <div id="app">
                                 <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
                             </div> -->
-                            <DragFile />
+                            <DragFile @upload-cv-success="uploadCvSuccess"/>
                         </a-form-item>
                     </div>
                 </div>

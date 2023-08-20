@@ -37,4 +37,13 @@ export class FileService {
             })
     }
 
+    uploadFileCV = (fileList: any) => {
+        const formData = new FormData();
+        formData.append("file", fileList);
+        return axios.post(`/api/v1/upload/upload-cv`, formData, this.config).then((data) => {return data.data;})
+        .catch((err)=> {
+            message.error("Has error when upload CV! " + err);
+        })
+    }
+
 }
