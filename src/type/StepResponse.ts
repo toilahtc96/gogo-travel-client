@@ -6,5 +6,6 @@ export interface StepResponse {
     code: StepCode|undefined|string,
     meaning: string|undefined,
     status: StatusType|undefined,
-    order: number|undefined
+    order: number|undefined,
+    icon: string|undefined
 }

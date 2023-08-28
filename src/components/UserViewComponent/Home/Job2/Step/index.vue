@@ -11,6 +11,14 @@ import FirstStep from "@/pages/user-pages/step/first-step/index.vue";
 import SecondStep from "@/pages/user-pages/step/second-step/index.vue";
 import { StepResponse } from "@/type/StepResponse";
 import { StepService } from "@/services/stepService";
+import { h } from 'vue';
+import {
+   UserOutlined,
+   SolutionOutlined,
+   ContainerOutlined,
+   LoadingOutlined,
+   FileDoneOutlined,
+} from '@ant-design/icons-vue';
 //onMounted 
 
 const route = useRoute();
@@ -28,6 +36,7 @@ onMounted(() => {
    progressService.getProgressOfUser(id).then((data) => {
       progresses.value = data;
       progresses.value?.forEach((item: ProgressResponse) => {
+         debugger;
          item.status === StatusType.ACTIVED;
          currentStep.value = item;
          if (currentStep.value?.order) {
@@ -62,6 +71,24 @@ const isShow = ref<string>("");
 const nextStep = () => {
    next();
 }
+
+const getIconAnt = (icon: string | undefined) => {
+   if (icon == undefined) {
+      return h(LoadingOutlined);
+   }
+   switch (icon) {
+      case "UserOutlined":
+         return h(UserOutlined);
+      case "ContainerOutlined":
+         return h(ContainerOutlined);
+      case "SolutionOutlined":
+         return h(SolutionOutlined);
+      case "FileDoneOutlined":
+         return h(FileDoneOutlined);
+      default:
+         return h(LoadingOutlined);
+   }
+}
 </script>
 <style scoped>
 .steps-content {
@@ -91,7 +118,7 @@ const nextStep = () => {
       <div class="container">
          <div>
             <a-steps :current="current">
-               <a-step v-for="item in stepes" :key="item.code" :title="item.meaning" />
+               <a-step v-for="item in stepes" :key="item.code" :title="item.meaning" :icon="getIconAnt(item.icon)" />
             </a-steps>
             <div class="steps-content">
                <div v-if="current === 0">
