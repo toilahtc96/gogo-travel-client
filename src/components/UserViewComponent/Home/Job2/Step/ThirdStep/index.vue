@@ -49,9 +49,6 @@ const formState = ref<Progress>({
 const onFinish = () => {
     message.success('success');
 }
-const editStep = () => {
-
-}
 </script>
 <style>
 body {
@@ -89,23 +86,21 @@ p {
 </style>
 <template>
     <div class="container">
-        <h2>Thông Báo Tiếp Nhận CV</h2>
-        <p>Chào bạn {{ formState.candidateName }},</p>
-        <p>Chúc mừng! Chúng tôi đã tiếp nhận thành công CV của bạn cho vị trí {{ formState.careerName }}. Dưới đây là một số
-            thông
-            tin liên quan đến quá trình gửi CV của bạn:</p>
+        <h2>Bước Hoàn Thành: Lịch Phỏng Vấn và Thông Tin Liên Quan</h2>
+        <p>Chào bạn [Tên Người Dùng],</p>
+        <p>Chúc mừng! CV của bạn đã được công ty [Tên Công Ty] nhận và họ đã quan tâm đến hồ sơ của bạn. Dưới đây là các
+            thông tin liên quan đến bước tiếp theo:</p>
         <ul>
-            <li><strong>Công ty:</strong> {{ formState.companyName }}</li>
-            <li><strong>Trạng thái CV:</strong> Đang được tiến hành gửi cho công ty</li>
-            <li><strong>Thời gian gửi:</strong> {{ formState.createdDate }}</li>
-            <li><strong>Thời gian dự kiến phản hồi từ công ty:</strong> {{ formState.createdDate }}</li>
+            <li><strong>Thời gian phỏng vấn:</strong> [Ngày/Giờ Phỏng Vấn]</li>
+            <li><strong>Địa điểm:</strong> [Địa Điểm Phỏng Vấn]</li>
+            <li><strong>Người liên hệ tại công ty:</strong> [Tên Người Liên Hệ]</li>
+            <li><strong>Số điện thoại liên hệ:</strong> [Số Điện Thoại Người Liên Hệ]</li>
         </ul>
-        <p>Để kiểm tra lại thông tin trong CV và xem trạng thái gửi, bạn có thể sử dụng link sau để truy cập vào trang xem
-            lại:</p>
-        <a class="btn" href="[Link Xem Lại CV]">Xem Lại CV</a>
-        <p>Chúng tôi đang tiến hành chuyển CV của bạn đến công ty và sẽ cập nhật trạng thái gửi trong thời gian sớm nhất.
-            Hãy kiểm tra thường xuyên để cập nhật thông tin mới nhất.</p>
-        <p>Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi và chúc bạn may mắn trong quá trình tìm kiếm việc làm!</p>
-        <p>Trân trọng,<br>Đội ngũ CV Connect</p>
+        <p>Vui lòng chuẩn bị kỹ cho buổi phỏng vấn và đảm bảo bạn đến đúng giờ. Đây là cơ hội tốt để bạn thể hiện năng lực
+            và thảo luận về kinh nghiệm của mình.</p>
+        <p>Nếu bạn cần hỗ trợ hoặc có bất kỳ câu hỏi nào, vui lòng liên hệ chúng tôi qua email [Địa Chỉ Email Hỗ Trợ] hoặc
+            số điện thoại [Số Điện Thoại Hỗ Trợ].</p>
+        <p>Chúc bạn thành công trong buổi phỏng vấn!</p>
+        <p>Trân trọng,<br>Đội ngũ [Tên Trang Web]</p>
     </div>
 </template>

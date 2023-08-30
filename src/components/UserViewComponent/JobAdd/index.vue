@@ -124,7 +124,6 @@ const selectCareer = (value: number) => {
 const avatarUploadElement = ref();
 const jobThumbnailImage = ref<string>("");
 const setImageUrl = (imageAddressInServer: string) => {
-   debugger;
    formState.value.thumbnail = imageAddressInServer;
    if (formState.value.thumbnail) {
       jobThumbnailImage.value = formState.value.thumbnail;

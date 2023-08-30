@@ -18,6 +18,9 @@ import {
    ContainerOutlined,
    LoadingOutlined,
    FileDoneOutlined,
+   BankTwoTone,
+   CloudUploadOutlined,
+
 } from '@ant-design/icons-vue';
 //onMounted 
 
@@ -33,10 +36,9 @@ const stepes = ref<StepResponse[]>();
 const stepService = new StepService();
 const stepLength = ref<number>(0);
 onMounted(() => {
-   progressService.getProgressOfUser(id).then((data) => {
+   progressService.getProgressOfUser(id, undefined).then((data) => {
       progresses.value = data;
       progresses.value?.forEach((item: ProgressResponse) => {
-         debugger;
          item.status === StatusType.ACTIVED;
          currentStep.value = item;
          if (currentStep.value?.order) {
@@ -85,6 +87,11 @@ const getIconAnt = (icon: string | undefined) => {
          return h(SolutionOutlined);
       case "FileDoneOutlined":
          return h(FileDoneOutlined);
+      case "BankTwoTone":
+         return h(BankTwoTone);
+      case "CloudUploadOutlined":
+         return h(CloudUploadOutlined);
+
       default:
          return h(LoadingOutlined);
    }
@@ -128,7 +135,7 @@ const getIconAnt = (icon: string | undefined) => {
                   <SecondStep />
                </div>
                <div v-if="current === 2">
-                  Trang 3
+                  <ThirdStep />
                </div>
             </div>
             <div class="steps-action">

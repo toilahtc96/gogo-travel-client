@@ -110,7 +110,6 @@ const searchCompany = (data: SearchCompany) => {
     emit('setSpin', true)
     emit('settingDataSearch', data)
     companyService.findCompany(data).then((data) => {
-        debugger;
         companyActives.value = { ...companyActives.value, listData: data.data };
         emit('setTotal', data.total);
     }).then(() => {

@@ -28,7 +28,6 @@ const formState = ref<SearchCompany>({
     size: 5
 })
 const onFinish = () => {
-    debugger;
     emit('searchCompany', formState.value);
 }
 

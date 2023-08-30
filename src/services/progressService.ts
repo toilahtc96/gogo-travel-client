@@ -19,7 +19,7 @@ export class ProgressService {
         }).then((data) => {
             return data.data;
         }).catch((err) => {
-            message.error("Has error when get user type data! "+ err);
+            message.error("Has error when get user type data! " + err);
         })
     }
     getProgressById = (id: any) => {
@@ -39,18 +39,19 @@ export class ProgressService {
         })
     }
 
-    getProgressOfUser(jobIb: number|string) {
+    getProgressOfUser(jobIb: number | string | undefined, candidateId: number | string | undefined) {
         return axios.get(`/api/v1/progress/get-by-candidate-job`, {
             headers: {
                 accessToken: localStorage.getItem("accessToken") || ''
             },
             params: {
-                jobIb
+                jobIb,
+                candidateId,
             }
         }).then((data) => {
             return data.data;
         }).catch((err) => {
-            message.error("Has error when get progress of user data! "+ err);
+            message.error("Has error when get progress of user data! " + err);
         })
     }
 }
