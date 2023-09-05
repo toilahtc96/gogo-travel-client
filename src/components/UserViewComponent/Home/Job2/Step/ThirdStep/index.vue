@@ -29,8 +29,6 @@ onMounted(() => {
                 formState.value = item;
             }
         })
-        console.log(formState.value);
-        debugger;
     })
 })
 const formState = ref<Progress>({

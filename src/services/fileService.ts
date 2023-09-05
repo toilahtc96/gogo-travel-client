@@ -40,11 +40,13 @@ export class FileService {
 
     uploadFileCV = (fileList: any, progressId: number) => {
         const uploadRequestBody = {
-            "progressId": 1
+            progressId: progressId
         };
+
         const formData = new FormData();
-        formData.append("uploadRequestBody", JSON.stringify(uploadRequestBody)); // Appe
         formData.append("file", fileList);
+        formData.append("uploadRequest", JSON.stringify(uploadRequestBody));
+
         return axios.post(`/api/v1/upload/upload-cv`, formData, this.config).then((data) => { return data.data; })
             .catch((err) => {
                 message.error("Has error when upload CV! " + err);
