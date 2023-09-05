@@ -12,13 +12,18 @@ const fileCv = ref();
 const handleChange = (info: UploadChangeParam) => {
     loading.value = true;
     if (info.file.status == 'uploading' && info.event == undefined) {
-        fileService.uploadFileCV(info.file.originFileObj).then((fileCvUpload: string) => {
+        fileService.uploadFileCV(info.file.originFileObj, 1).then((fileCvUpload: string) => {
             fileCv.value = fileCvUpload;
             loading.value = false;
-            emit('upload-cv-success');
+            debugger;
+            if (fileCvUpload !== undefined) {
+                emit('upload-cv-success');
+            }
+
         }).catch((err) => {
             loading.value = false;
             message.error('upload error');
+            throw err;
         });
     }
 };

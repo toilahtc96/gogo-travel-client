@@ -69,7 +69,6 @@ declare module '@vue/runtime-core' {
     CompanyAdd: typeof import('./src/components/UserViewComponent/CompanyAdd/index.vue')['default']
     ContactArea: typeof import('./src/components/UserViewComponent/ContactArea/index.vue')['default']
     ContactInfo: typeof import('./src/components/UserViewComponent/ContactInfo/index.vue')['default']
-    copy: typeof import('./src/components/UserViewComponent/Home/Job2/Step/SecondStep copy/index.vue')['default']
     Counter: typeof import('./src/components/UserViewComponent/Home/Counter/index.vue')['default']
     Cta: typeof import('./src/components/UserViewComponent/Home/Cta/index.vue')['default']
     CurriculumTab: typeof import('./src/components/UserViewComponent/Home/Job2/CurriculumTab/index.vue')['default']
