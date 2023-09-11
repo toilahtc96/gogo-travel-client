@@ -37,7 +37,6 @@ watch(() => props.listCareer, () => {
         });
         setTimeout(() => {
             openSelect.value = true;
-            console.log(options.value);
         }, 100)
 
     }

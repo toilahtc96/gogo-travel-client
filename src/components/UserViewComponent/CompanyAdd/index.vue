@@ -29,7 +29,6 @@ const changeSpin = ()=>{
    spinning.value= !spinning.value;
 }
 const onFinish = () => {
-   console.log(formState.value);
    changeSpin();
    companyService.addCompany(formState.value).then(()=>{
       router.replace("/job-add");
@@ -81,8 +80,6 @@ const changeProvince = (value: string, isResetValue: boolean) => {
    formState.value.districtCode = '';
    addressService.getByTypeAndParentCode(AddressType.DISTRICT, value).then(data => {
       if (data) {
-         console.log(temp);
-         console.log(formState.value);
          listDistrict.value = data;
          if (!isResetValue) {
             formState.value.districtCode = temp;
@@ -101,7 +98,6 @@ const changeDistrict = (value: string | undefined, isResetValue: boolean) => {
          if (!isResetValue) {
             formState.value.precinctCode = temp;
          }
-         console.log(formState.value)
          comboAddress.value.changeDistrict(formState.value.districtCode)
          comboAddress.value.changePrecinct(formState.value.precinctCode)
       }

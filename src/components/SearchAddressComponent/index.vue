@@ -27,7 +27,6 @@ const formState = ref<SearchAddress>({
     size: props.defaultPage.size
 })
 const onFinish = () => {
-    console.log("searchAddress")
     emit('searchAddress', formState.value);
 }
 const settingDefaultPage = (size: number) => {

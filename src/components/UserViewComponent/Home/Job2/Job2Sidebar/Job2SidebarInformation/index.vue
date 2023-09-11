@@ -8,7 +8,6 @@ onMounted(() => {
 const job = ref<JobResponse>();
 const setupJobSideBar = (jobData: JobResponse) => {
    job.value = jobData;
-   console.log(job.value)
 }
 defineExpose({
    setupJobSideBar

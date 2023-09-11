@@ -78,7 +78,6 @@ const changePage = async (
     dataSearch.value.precinctCode = precinctCode;
     dataSearch.value.precinctName = precinctName;
     dataSearch.value.type = type;
-    console.log(dataSearch.value);
     addressService.findAddress(dataSearch.value).then((data) => {
         listAddress.value = { ...listAddress.value, listData: data.data };
         emit('setTotal', data.total);

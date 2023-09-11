@@ -57,7 +57,6 @@ const formState = ref<Job>({
     reasonForChoosing: undefined
 });
 const onFinish = (event: Event) => {
-    console.log(event);
     if (formState.value.rangeSalaryMin && formState.value.rangeSalaryMax) {
         if (formState.value.rangeSalaryMin > formState.value.rangeSalaryMax) {
             message.error("Min Salary great than Max Salary");

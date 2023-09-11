@@ -103,8 +103,6 @@ const changeProvince = (value: string, isResetValue: boolean) => {
     formState.value.company.districtCode = '';
     addressService.getByTypeAndParentCode(AddressType.DISTRICT,value).then(data => {
         if (data) {
-            console.log(temp);
-            console.log(formState.value.company);
             listDistrict.value = data;
             if (!isResetValue) {
                 formState.value.company.districtCode = temp;
@@ -123,7 +121,6 @@ const changeDistrict = (value: string, isResetValue: boolean) => {
             if (!isResetValue) {
                 formState.value.company.precinctCode = temp;
             }
-            console.log(formState.value.company)
             comboAddress.value.changeDistrict(formState.value.company.districtCode)
             comboAddress.value.changePrecinct(formState.value.company.precinctCode)
         }

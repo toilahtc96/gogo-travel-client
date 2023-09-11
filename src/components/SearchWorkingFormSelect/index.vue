@@ -36,7 +36,6 @@ watch(() => props.listWorkingForm, () => {
         });
         setTimeout(() => {
             openSelect.value = true;
-            console.log(options.value);
         }, 100)
 
     }
@@ -67,7 +66,6 @@ const handleBlur = () => {
 };
 const handleFocus = () => {
     openSelect.value = true;
-    console.log('focus');
 };
 let openSelect = ref<boolean>(false);
 const workingFormId = ref();

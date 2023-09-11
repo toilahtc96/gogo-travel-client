@@ -1,5 +1,6 @@
 import axios from "@/core/httpClient";
 import { Progress } from "@/type/Progress";
+import { UpdateCvLinkOfProcessRequest } from "@/type/UpdateCvLinkOfProcessRequest";
 import { message } from "ant-design-vue";
 export class ProgressService {
     config = {
@@ -52,6 +53,14 @@ export class ProgressService {
             return data.data;
         }).catch((err) => {
             message.error("Has error when get progress of user data! " + err);
+        })
+    }
+
+    updateCvLinkAfterUpload = (updateCvLink: UpdateCvLinkOfProcessRequest) => {
+        return axios.post(`/api/v1/progress/update-cv-by-candidate-agency-job`, updateCvLink, this.config).then((data) => {
+            return data;
+        }).catch((err) => {
+            message.error("Has error when update cv link to progress");
         })
     }
 }

@@ -61,7 +61,6 @@ const resetForm = () => {
     formRef.value?.resetFields();
 };
 const handleValidate = (...args: any[]) => {
-    console.log(args);
 };
 </script>
 <template>

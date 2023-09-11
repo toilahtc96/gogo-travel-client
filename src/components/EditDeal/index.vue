@@ -55,7 +55,6 @@ const layout = {
 };
 
 const onFinish = (values: any) => {
-    console.log(formState.value.progress)
     changeSpinning();
     progressService.editProgress(values.progress)
         .then(
@@ -134,7 +133,6 @@ const candidateFilterOption = (input: string, option: any) => {
 }
 const editStep = (current: number) => {
     formState.value.progress.stepId = current;
-    console.log(formState.value.progress);
 }
 </script>
 <template>

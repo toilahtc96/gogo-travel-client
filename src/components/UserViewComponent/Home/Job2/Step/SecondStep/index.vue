@@ -2,13 +2,14 @@
 import { UserService } from "@/services/userService";
 import { ProgressService } from "@/services/progressService";
 import { User } from "@/type/User";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { JobService } from "@/services/jobService";
 import { message } from "ant-design-vue";
 import { StatusType } from "@/type/StatusType";
 import { Progress } from "@/type/Progress";
 import { Item } from "ant-design-vue/lib/menu";
+import { DateService } from "@/services/dateService";
 const route = useRoute();
 
 const progressService = new ProgressService();
@@ -17,20 +18,32 @@ const props = defineProps(['agencyId']);
 const jobService = new JobService();
 const userService = new UserService();
 const agency = ref<User>();
+const dateService = new DateService();
 const getAgency = (agencyId: number) => {
     userService.getUserById(agencyId)?.then((data) => {
         agency.value = data;
     })
 }
+watch(props.agencyId, () => {
+    progressService.getProgressOfUser(id, props.agencyId).then((data: Progress[]) => {
+        data.forEach(item => {
+            formState.value = item;
+        })
+    }).then(() => {
+        if (formState.value.createdDate != undefined) {
+            console.log(typeof (formState.value.createdDate))
+        }
+    })
+})
 onMounted(() => {
     progressService.getProgressOfUser(id, props.agencyId).then((data: Progress[]) => {
         data.forEach(item => {
-            if (item.stepId == id) {
-                formState.value = item;
-            }
+            formState.value = item;
         })
-        console.log(formState.value);
-        debugger;
+    }).then(() => {
+        if (formState.value.createdDate != undefined && typeof (formState.value.createdDate) == 'string') {
+            formState.value.createdDate = dateService.convertDateFormat(formState.value.createdDate);
+        }
     })
 })
 const formState = ref<Progress>({
@@ -45,12 +58,16 @@ const formState = ref<Progress>({
     companyName: undefined,
     careerName: undefined,
     createdDate: undefined,
+    cvLink: undefined
 });
 const onFinish = () => {
     message.success('success');
 }
 const editStep = () => {
 
+}
+const addDateAndConvert = (inputDate: string, day: number): string => {
+    return dateService.addDaysAndConvert(inputDate, day);
 }
 </script>
 <style>
@@ -98,11 +115,12 @@ p {
             <li><strong>Công ty:</strong> {{ formState.companyName }}</li>
             <li><strong>Trạng thái CV:</strong> Đang được tiến hành gửi cho công ty</li>
             <li><strong>Thời gian gửi:</strong> {{ formState.createdDate }}</li>
-            <li><strong>Thời gian dự kiến phản hồi từ công ty:</strong> {{ formState.createdDate }}</li>
+            <li><strong>Thời gian dự kiến phản hồi từ công ty:</strong> {{ formState.createdDate }}
+            </li>
         </ul>
         <p>Để kiểm tra lại thông tin trong CV và xem trạng thái gửi, bạn có thể sử dụng link sau để truy cập vào trang xem
             lại:</p>
-        <a class="btn" href="[Link Xem Lại CV]">Xem Lại CV</a>
+        <a class="btn" :href=formState.cvLink>Xem Lại CV</a>
         <p>Chúng tôi đang tiến hành chuyển CV của bạn đến công ty và sẽ cập nhật trạng thái gửi trong thời gian sớm nhất.
             Hãy kiểm tra thường xuyên để cập nhật thông tin mới nhất.</p>
         <p>Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi và chúc bạn may mắn trong quá trình tìm kiếm việc làm!</p>

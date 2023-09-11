@@ -4,8 +4,9 @@ import { User } from "@/type/User";
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { JobService } from "@/services/jobService";
+import { ProgressService } from "@/services/progressService";
 import { message } from "ant-design-vue";
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { UpdateCvLinkOfProcessRequest } from "@/type/UpdateCvLinkOfProcessRequest";
 
 // const editor = ClassicEditor;
 // const editorData = ref('<p>Content of the editor.</p>');
@@ -19,6 +20,7 @@ const route = useRoute();
 const id = +route.params.id;
 const jobService = new JobService();
 const userService = new UserService();
+const progressService = new ProgressService();
 const agency = ref<User>();
 const getAgency = (agencyId: number) => {
     userService.getUserById(agencyId)?.then((data) => {
@@ -41,9 +43,17 @@ const formState = ref({
 const onFinish = () => {
     message.success('success');
 }
-const uploadCvSuccess = () => {
-    emit('next-step');
+const uploadCvSuccess = (cvLink: string) => {
+    updateCvLinkToProgress(cvLink);
+    emit('next-step', cvLink);
 
+}
+const updateCvLinkToProgress = (cvLink: string) => {
+    progressService.updateCvLinkAfterUpload({
+        agencyId: props.agencyId,
+        jobId: id,
+        cvLink: cvLink
+    });
 }
 </script>
 
@@ -57,7 +67,7 @@ const uploadCvSuccess = () => {
                             <!-- <div id="app">
                                 <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
                             </div> -->
-                            <DragFile @upload-cv-success="uploadCvSuccess"/>
+                            <DragFile @upload-cv-success="uploadCvSuccess" />
                         </a-form-item>
                     </div>
                 </div>

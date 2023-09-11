@@ -33,7 +33,6 @@ const formState = ref<SearchUserForm>({
     size: props.defaultPage.size
 });
 const onFinish = () => {
-    console.log(formState.value);
     emit('searchUser', formState.value);
 }
 let listCompany = ref({

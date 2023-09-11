@@ -15,7 +15,6 @@ let options = ref<SelectProps['options']>([
 
 ]);
 const handleChange = (value: string) => {
-    console.log(`selected ${value}`);
 };
 
 const inputKeyDown = (key: KeyboardEvent) => {
@@ -38,13 +37,11 @@ watch(() => props.listVoucher, () => {
         openSelect.value = false;
         loading.value = false;
         options.value = [];
-        console.log(options.value);
         Object.values(props.listVoucher.listData).forEach((item: any) => {
             options.value?.push({ value: item.id, label: `${item.title} - ( ${item.voucherType} : ${item.value} )`, key: item.id });
         });
         setTimeout(() => {
             openSelect.value = true;
-            console.log(options.value)
         }, 100)
 
     }

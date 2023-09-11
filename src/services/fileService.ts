@@ -38,14 +38,9 @@ export class FileService {
             })
     }
 
-    uploadFileCV = (fileList: any, progressId: number) => {
-        const uploadRequestBody = {
-            progressId: progressId
-        };
-
+    uploadFileCV = (fileList: any) => {
         const formData = new FormData();
         formData.append("file", fileList);
-        formData.append("uploadRequest", JSON.stringify(uploadRequestBody));
 
         return axios.post(`/api/v1/upload/upload-cv`, formData, this.config).then((data) => { return data.data; })
             .catch((err) => {

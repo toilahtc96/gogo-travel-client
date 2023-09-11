@@ -31,13 +31,11 @@ watch(() => props.listCompany, () => {
         openSelect.value = false;
         loading.value = false;
         options.value = [];
-        console.log(options.value);
         Object.values(props.listCompany.listData).forEach((item: any) => {
             options.value?.push({ value: item.id, label: item.name, key: item.id });
         });
         setTimeout(() => {
             openSelect.value = true;
-            console.log(options.value)
         }, 100)
 
     }
