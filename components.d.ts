@@ -63,6 +63,7 @@ declare module '@vue/runtime-core' {
     Blog: typeof import('./src/components/UserViewComponent/Home/Blog/index.vue')['default']
     BrandArea: typeof import('./src/components/common/BrandArea/index.vue')['default']
     Breadcrumb: typeof import('./src/components/common/Breadcrumb/index.vue')['default']
+    CartCv: typeof import('./src/components/CartCv/index.vue')['default']
     ComboAddress: typeof import('./src/components/ComboAddress/index.vue')['default']
     Comments: typeof import('./src/components/UserViewComponent/Home/Job2/ReviewTab/Comments/index.vue')['default']
     Company: typeof import('./src/components/Company/index.vue')['default']

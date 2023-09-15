@@ -6,9 +6,7 @@ import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { JobService } from "@/services/jobService";
 import { message } from "ant-design-vue";
-import { StatusType } from "@/type/StatusType";
 import { Progress } from "@/type/Progress";
-import { Item } from "ant-design-vue/lib/menu";
 const route = useRoute();
 
 const progressService = new ProgressService();
@@ -25,9 +23,8 @@ const getAgency = (agencyId: number) => {
 onMounted(() => {
     progressService.getProgressOfUser(id, props.agencyId).then((data: Progress[]) => {
         data.forEach(item => {
-            if (item.stepId == id) {
-                formState.value = item;
-            }
+            debugger;
+            formState.value = item;
         })
     })
 })
@@ -86,7 +83,7 @@ p {
 <template>
     <div class="container">
         <h2>Bước Hoàn Thành: Lịch Phỏng Vấn và Thông Tin Liên Quan</h2>
-        <p>Chào bạn [Tên Người Dùng],</p>
+        <p>Chào bạn {{ formState.candidateName }},</p>
         <p>Chúc mừng! CV của bạn đã được công ty [Tên Công Ty] nhận và họ đã quan tâm đến hồ sơ của bạn. Dưới đây là các
             thông tin liên quan đến bước tiếp theo:</p>
         <ul>

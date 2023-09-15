@@ -6,10 +6,7 @@ import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { JobService } from "@/services/jobService";
 import { message } from "ant-design-vue";
-import { StatusType } from "@/type/StatusType";
 import { Progress } from "@/type/Progress";
-import { Item } from "ant-design-vue/lib/menu";
-import { DateService } from "@/services/dateService";
 const route = useRoute();
 
 const progressService = new ProgressService();
@@ -18,7 +15,6 @@ const props = defineProps(['agencyId']);
 const jobService = new JobService();
 const userService = new UserService();
 const agency = ref<User>();
-const dateService = new DateService();
 const getAgency = (agencyId: number) => {
     userService.getUserById(agencyId)?.then((data) => {
         agency.value = data;
@@ -40,10 +36,6 @@ onMounted(() => {
         data.forEach(item => {
             formState.value = item;
         })
-    }).then(() => {
-        if (formState.value.createdDate != undefined && typeof (formState.value.createdDate) == 'string') {
-            formState.value.createdDate = dateService.convertDateFormat(formState.value.createdDate);
-        }
     })
 })
 const formState = ref<Progress>({
@@ -65,9 +57,6 @@ const onFinish = () => {
 }
 const editStep = () => {
 
-}
-const addDateAndConvert = (inputDate: string, day: number): string => {
-    return dateService.addDaysAndConvert(inputDate, day);
 }
 </script>
 <style>

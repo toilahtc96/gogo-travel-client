@@ -44,6 +44,7 @@ onMounted(() => {
          if (currentStep.value?.order) {
             current.value = currentStep.value?.order;
          }
+         current.value = currentStep.value.stepId !== undefined ? currentStep.value.stepId : 0;
          return;
       })
    }).catch((err) => {
@@ -59,10 +60,6 @@ let current = ref<number>(0);
 
 const next = () => {
    current.value = current.value + 1;
-};
-const prev = () => {
-   current.value = current.value - 1;
-
 };
 const finishProgress = () => {
    message.success("Chúc mừng bạn đã hoàn thành tiến trình");
@@ -138,13 +135,13 @@ const getIconAnt = (icon: string | undefined) => {
                   <ThirdStep />
                </div>
             </div>
-            <div class="steps-action">
+            <!-- <div class="steps-action">
                <a-button v-if="current < stepLength - 1" type="primary" @click="next">Tiếp theo</a-button>
                <a-button v-if="current == stepLength - 1" type="primary" @click="finishProgress">
                   Hoàn Thành
                </a-button>
                <a-button v-if="current > 0" style="margin-left: 8px" @click="prev" :style="isShow">Quay Lại</a-button>
-            </div>
+            </div> -->
          </div>
       </div>
    </section>

@@ -17,6 +17,7 @@ import Step from "@/pages/user-pages/step/index.vue";
 import Voucher from "@/pages/user-pages/voucher/index.vue";
 import VoucherAddClient from "@/pages/user-pages/voucher/add/index.vue";
 import VoucherEditClient from "@/pages/user-pages/voucher/edit/index.vue";
+import CartCv from "@/pages/user-pages/cart-cv/index.vue";
 import { message } from "ant-design-vue";
 
 const router = createRouter({
@@ -205,8 +206,21 @@ const router = createRouter({
         }
         next(!noToken);
       },
-    }
-
+    },
+    {
+      name: "cart-cv",
+      path: "/cart-cv/:id",
+      component: CartCv,
+      meta: { needsAuth: true },
+      beforeEnter: (to, from, next) => {
+        const noToken: boolean = !localStorage.getItem("accessToken");
+        if (noToken) {
+          message.error("You need Login!");
+          router.push("/login")
+        }
+        next(!noToken);
+      }
+    },
   ],
   linkActiveClass: 'active',
   scrollBehavior(to, from, savedPosition) {
