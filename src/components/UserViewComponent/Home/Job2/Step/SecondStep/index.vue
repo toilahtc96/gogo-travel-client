@@ -70,7 +70,7 @@ const addDateAndConvert = (inputDate: string, day: number): string => {
     return dateService.addDaysAndConvert(inputDate, day);
 }
 </script>
-<style>
+<style scoped>
 body {
     font-family: Arial, sans-serif;
     margin: 0;

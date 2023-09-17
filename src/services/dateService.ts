@@ -1,22 +1,4 @@
-import { parseISO, format } from 'date-fns';
-
 export class DateService {
-    convertIsoDateFormat = (inputDate: string): string => {
-        try {
-            // Chuyển đổi chuỗi ngày tháng thành đối tượng Date
-            debugger;
-            const date = parseISO(inputDate);
-
-            // Định dạng lại ngày tháng
-            const formattedDate = format(date, 'HH:mm:ss dd/MM/yyyy');
-
-            return formattedDate;
-        } catch (error) {
-            // Xử lý lỗi nếu có
-            console.error('Lỗi chuyển đổi định dạng:', error);
-            return 'Ngày không hợp lệ';
-        }
-    }
 
     convertDateFormat(inputDate: string): string {
         // Tách thông tin ngày, tháng và năm từ chuỗi đầu vào
