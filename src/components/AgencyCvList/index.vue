@@ -1,7 +1,8 @@
 <script  lang="ts" setup>
+import { onMounted, ref } from "vue";
 import { ProgressService } from "@/services/ProgressService";
 import { Progress } from "@/type/Progress";
-import { onMounted, ref } from "vue";
+
 const progressService = new ProgressService();
 let defaultPage = ref({
     page: 0,
