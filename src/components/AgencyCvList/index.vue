@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script  lang="ts" setup>
 import { ProgressService } from "@/services/ProgressService";
 import { Progress } from "@/type/Progress";
 import { onMounted, ref } from "vue";

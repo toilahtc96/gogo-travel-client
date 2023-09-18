@@ -50,7 +50,10 @@ const formState = ref<Progress>({
     companyName: undefined,
     careerName: undefined,
     createdDate: undefined,
-    cvLink: undefined
+    cvLink: undefined,
+    candidateSendCvTime:undefined,
+    companyId:undefined,
+    sendCvCompanyTime:undefined
 });
 const onFinish = () => {
     message.success('success');
