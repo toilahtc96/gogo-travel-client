@@ -12,5 +12,8 @@ export interface Progress {
     companyName:string|undefined,
     careerName:string|undefined,
     createdDate:string|Date|undefined,
-    cvLink: string|undefined,
+    cvLink: string|undefined,    
+    sendCvCompanyTime: string|undefined,
+    candidateSendCvTime: string|undefined,
+    companyId: number|undefined
 }

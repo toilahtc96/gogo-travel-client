@@ -63,4 +63,20 @@ export class ProgressService {
             message.error("Has error when update cv link to progress");
         })
     }
+
+    getListProgressOfAgency(page: Number, size: Number) {
+        return axios.get(`/api/v1/progress/get-active-of-agency`, {
+            headers: {
+                accessToken: localStorage.getItem("accessToken") || ''
+            },
+            params: {
+                page,
+                size
+            }
+        }).then((data) => {
+            return data.data;
+        }).catch((err) => {
+            message.error("Has error when get getListProgressOfAgency! " + err);
+        })
+    }
 }

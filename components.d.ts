@@ -30,6 +30,7 @@ declare module '@vue/runtime-core' {
     AddWorkingForm: typeof import('./src/components/AddWorkingForm/index.vue')['default']
     AForm: typeof import('ant-design-vue/es')['Form']
     AFormItem: typeof import('ant-design-vue/es')['FormItem']
+    AgencyCvList: typeof import('./src/components/AgencyCvList/index.vue')['default']
     AgencySameJobType: typeof import('./src/components/UserViewComponent/common/AgencySameJobType/index.vue')['default']
     AInput: typeof import('ant-design-vue/es')['Input']
     AInputNumber: typeof import('ant-design-vue/es')['InputNumber']
