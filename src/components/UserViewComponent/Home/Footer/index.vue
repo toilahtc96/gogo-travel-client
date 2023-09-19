@@ -53,7 +53,7 @@ const getFooterBg = (footerBgTwo: boolean) => {
                                 <div class="footer__widget-body">
                                     <div :class="`${footerBgTwo ? 'footer__link-2' : 'footer__link'}`">
                                         <ul>
-                                            <li><a href="#">About</a></li>
+                                            <li><a href="/agency-cv-list">List CV Received</a></li>
                                             <li><a href="#">Courses</a></li>
                                             <li><a href="#">Events</a></li>
                                             <li><a href="#">Instructor</a></li>

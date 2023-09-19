@@ -143,7 +143,7 @@ onMounted(() => {
                                         <li class="has-dropdown">
                                             <router-link to="/">Pages</router-link>
                                             <ul class="submenu">
-                                                <li><router-link to="/about">About</router-link></li>
+                                                <li><router-link to="/agency-cv-list">List CV Received</router-link></li>
                                                 <li><router-link to="/">Instructor</router-link></li>
                                                 <li>
                                                     <router-link to="/">
@@ -254,7 +254,7 @@ onMounted(() => {
                             :class="[menuOption.pagesDropDown === true ? 'active' : '',]">
                             <a @click="menuOption.pagesDropDown = !menuOption.pagesDropDown">Pages</a>
                             <ul class="sub-menu" :class="[menuOption.pagesDropDown === true ? 'active' : '',]">
-                                <li><router-link to="/about">About</router-link></li>
+                                <li><router-link to="/agency-cv-list">List CV Received</router-link></li>
                                 <li><router-link to="/">Instructor</router-link></li>
                                 <li>
                                     <router-link to="/">
