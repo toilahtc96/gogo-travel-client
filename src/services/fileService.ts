@@ -1,12 +1,12 @@
 import axios from "@/core/httpClient";
 
 import { message } from "ant-design-vue";
-import { json } from "stream/consumers";
 export class FileService {
     config = {
         headers: {
             accessToken: localStorage.getItem("accessToken") || '',
-            contentType: "multipart/form-data",
+            // contentType: "multipart/form-data",
+            'Content-Type': 'multipart/form-data'
         },
 
     }

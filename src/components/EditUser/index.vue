@@ -4,7 +4,6 @@ import { useRoute } from "vue-router";
 import { message } from "ant-design-vue";
 import router from "@/router/router";
 import { StatusType } from "@/type/StatusType";
-import { ProgressService } from "@/services/progressService";
 import { UserService } from "@/services/userService";
 import { User } from "@/type/User";
 import { UserTypeService } from "@/services/userTypeService";
@@ -29,7 +28,6 @@ let defaultPage = ref({
     page: 0,
     size: 10
 });
-const progressService = new ProgressService();
 const route = useRoute();
 const spinning = ref<boolean>(false);
 const changeSpinning = () => {
@@ -58,6 +56,7 @@ const avatarImage = ref<string>("");
 const fetchUser = () => {
     const id = route.params.id;
     if (id) {
+        debugger;
         changeSpinning();
         userService.getUserById(id)?.then((data) => {
             formState.value.user.id = data.id;
