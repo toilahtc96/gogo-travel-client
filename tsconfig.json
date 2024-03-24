@@ -37,5 +37,9 @@
     {
       "path": "./tsconfig.node.json"
     }
+  ],
+  "types": [
+    "vite/client", // if using vite
+    // ...
   ]
 }

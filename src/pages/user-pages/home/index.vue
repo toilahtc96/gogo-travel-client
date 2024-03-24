@@ -6,7 +6,7 @@
     <HeroArea />
     <Services />
     <!-- <AboutArea/> -->
-    <JobItem />
+    <Testimonial />
     <WhatArea />
     <!-- <WhyArea/> -->
     <Counter />
