@@ -1,19 +1,27 @@
 <script lang="ts" setup>
+import { ref } from 'vue';
 
+const number = ref([
+    {},
+    {},
+    {}
+])
 </script>
 <template>
     <Header />
     <HeroArea />
     <Services />
+    <div v-for="i in number">
+        <Testimonial />
+    </div>
     <!-- <AboutArea/> -->
-    <Testimonial />
-    <WhatArea />
+    <!-- <WhatArea /> -->
     <!-- <WhyArea/> -->
-    <Counter />
-    <!-- <Testimonial/> -->
-    <Blog />
+    <!-- <Counter /> -->
+
+    <!-- <Blog /> -->
     <!-- <Cta/> -->
     <!-- <BackTop /> -->
-    <InitChat />
+    <!-- <InitChat /> -->
     <Footer footerPadding="true" />
 </template>

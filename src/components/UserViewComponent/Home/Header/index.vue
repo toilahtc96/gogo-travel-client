@@ -45,7 +45,7 @@ onMounted(() => {
                         <div class="header__left d-flex">
                             <div class="logo">
                                 <router-link to="/">
-                                    <img src="@/assets/img/logo/logo.png" alt="logo">
+                                    <img src="@/assets/img/logo/ggo-logo.png" alt="logo">
                                 </router-link>
                             </div>
                             <div class="header__category d-none d-lg-block">
@@ -79,14 +79,10 @@ onMounted(() => {
                                                         </g>
                                                     </svg>
                                                 </div>
-                                                <span>Category</span>
+                                                <span>Menu</span>
                                             </router-link>
                                             <ul class="cat-submenu">
-                                                <li><router-link to="/">English Learning</router-link></li>
-                                                <li><router-link to="/">Web Development</router-link></li>
-                                                <li><router-link to="/">Logo Design</router-link></li>
-                                                <li><router-link to="/">Motion Graphics</router-link></li>
-                                                <li><router-link to="/">Video Edition</router-link></li>
+                                                <li><router-link to="/">Xem Chuyến Đi</router-link></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -100,69 +96,14 @@ onMounted(() => {
                                 <nav id="mobile-menu" class="d-none d-xl-block">
                                     <ul style="width: 160%;">
                                         <li style="padding-right:5%;">
-                                            <router-link to="/">Home</router-link>
+                                            <router-link to="/">Trang Chủ</router-link>
                                         </li>
-                                        <li class="has-dropdown">
-                                            <router-link to="/">Jobs</router-link>
-                                            <ul class="submenu">
-                                                <li>
-                                                    <router-link to="/">Jobs</router-link>
-                                                </li>
-                                                <li>
-                                                    <router-link to="/">Job List</router-link>
-                                                </li>
-                                                <li>
-                                                    <router-link to="/job-add">Push New Job
-                                                    </router-link>
-                                                </li>
-                                                <li>
-                                                    <router-link to="/">Course Details
-                                                    </router-link>
-                                                </li>
-                                            </ul>
+                                        <li>
+                                            <router-link to="/">Xem Chuyến Đi</router-link>
                                         </li>
-                                        <li class="has-dropdown">
-                                            <router-link to="/">Companies</router-link>
-                                            <ul class="submenu">
-                                                <li>
-                                                    <router-link to="/companies">Company List</router-link>
-                                                </li>
-                                                <li>
-                                                    <router-link to="/company-add">Push New Company
-                                                    </router-link>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="has-dropdown">
-                                            <router-link to="/voucher">Voucher</router-link>
-                                            <ul class="submenu">
-                                                <li><router-link to="/voucher">Voucher</router-link></li>
-                                                <li><router-link to="/voucher/add">Add New Voucher</router-link></li>
-                                            </ul>
-                                        </li>
-                                        <li class="has-dropdown">
-                                            <router-link to="/">Pages</router-link>
-                                            <ul class="submenu">
-                                                <li><router-link to="/agency-cv-list">List CV Received</router-link></li>
-                                                <li><router-link to="/">Instructor</router-link></li>
-                                                <li>
-                                                    <router-link to="/">
-                                                        Instructor Details</router-link>
-                                                </li>
-                                                <li><router-link to="/">Event Details</router-link></li>
-                                                <li><router-link to="/">My Cart</router-link></li>
-                                                <li><router-link to="/">Checkout</router-link></li>
-                                                <li><router-link to="/login">Sign In</router-link></li>
-                                                <li><router-link to="/register">Sign Up</router-link></li>
-                                                <li><router-link to="/">Error</router-link></li>
-                                            </ul>
-                                        </li>
-                                        <li><router-link to="/contact">Contact</router-link></li>
+                                        <li><router-link to="/contact">Liên hệ</router-link></li>
                                     </ul>
                                 </nav>
-                            </div>
-                            <div class="header__btn header__btn-2 ml-50 d-none d-sm-block">
-                                <router-link to="/register" class="e-btn">Sign up</router-link>
                             </div>
                             <div class="sidebar__menu d-xl-none">
                                 <div @click="handleSidebar" class="sidebar-toggle-btn ml-30" id="sidebar-toggle">
@@ -178,125 +119,6 @@ onMounted(() => {
         </div>
     </header>
 
-    <!-- sidebar area start -->
-    <div :class="`${showSidebar ? 'sidebar__area sidebar-opened' : 'sidebar__area'}`">
-        <div class="sidebar__wrapper">
-            <div @click="handleSidebarClose" class="sidebar__close">
-                <button class="sidebar__close-btn" id="sidebar__close-btn">
-                    <span><i class="fal fa-times"></i></span>
-                    <span>close</span>
-                </button>
-            </div>
-            <div class="sidebar__content">
-                <div class="logo mb-40">
-                    <router-link to="/">
-                        <img src="@/assets/img/logo/logo.png" alt="logo">
-                    </router-link>
-                </div>
-
-                <div class="side-info-content sidebar-menu mm-menu">
-
-                    <ul>
-                        <li class="menu-item-has-children has-droupdown"
-                            v-bind:class="[menuOption.homeDropdown === true ? 'active' : '']">
-                            <a @click="menuOption.homeDropdown = !menuOption.homeDropdown">Home</a>
-                            <ul class="sub-menu" :class="[menuOption.homeDropdown === true ? 'active' : '',]">
-                                <li>
-                                    <router-link to="/">Home Style 1</router-link>
-                                </li>
-                                <li>
-                                    <router-link to="/">Home Style 2</router-link>
-                                </li>
-                                <li>
-                                    <router-link to="/">Home Style 3</router-link>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="menu-item-has-children has-droupdown"
-                            :class="[menuOption.coursesDropdown === true ? 'active' : '',]">
-                            <a @click="menuOption.coursesDropdown = !menuOption.coursesDropdown">Courses</a>
-                            <ul class="sub-menu" :class="[menuOption.coursesDropdown === true ? 'active' : '',]">
-                                <li>
-                                    <router-link to="/">Courses</router-link>
-                                </li>
-                                <li>
-                                    <router-link to="/">Course List</router-link>
-                                </li>
-                                <li>
-                                    <router-link to="/">Course sidebar
-                                    </router-link>
-                                </li>
-                                <li>
-                                    <router-link to="/">Course Details
-                                    </router-link>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="menu-item-has-children has-droupdown"
-                            :class="[menuOption.blogDropdown === true ? 'active' : '']">
-
-                            <a v-on:click="menuOption.blogDropdown = !menuOption.blogDropdown">Blog</a>
-                            <ul class="sub-menu" :class="[menuOption.blogDropdown === true ? 'active' : '',]">
-                                <li>
-                                    <router-link to="/">Blog</router-link>
-                                </li>
-                                <li>
-                                    <router-link to="/">Blog Details</router-link>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="menu-item-has-children has-droupdown"
-                            :class="[menuOption.pagesDropDown === true ? 'active' : '',]">
-                            <a @click="menuOption.pagesDropDown = !menuOption.pagesDropDown">Pages</a>
-                            <ul class="sub-menu" :class="[menuOption.pagesDropDown === true ? 'active' : '',]">
-                                <li><router-link to="/agency-cv-list">List CV Received</router-link></li>
-                                <li><router-link to="/">Instructor</router-link></li>
-                                <li>
-                                    <router-link to="/">
-                                        Instructor Details</router-link>
-                                </li>
-                                <li><router-link to="/">Event Details</router-link></li>
-                                <li><router-link to="/">My Cart</router-link></li>
-                                <li><router-link to="/">Checkout</router-link></li>
-                                <li><router-link to="/login">Sign In</router-link></li>
-                                <li><router-link to="/register">Sign Up</router-link></li>
-                                <li><router-link to="/">Error</router-link></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <router-link to="/contact" class="border-0">Contact</router-link>
-                        </li>
-
-                    </ul>
-                </div>
-
-                <div class="sidebar__search p-relative mt-40 ">
-                    <form action="#">
-                        <input type="text" placeholder="Search...">
-                        <button type="submit"><i class="fad fa-search"></i></button>
-                    </form>
-                </div>
-                <div class="sidebar__cart mt-30">
-                    <a href="#">
-                        <div class="header__cart-icon">
-                            <svg viewBox="0 0 24 24">
-                                <circle class="st0" cx="9" cy="21" r="1" />
-                                <circle class="st0" cx="20" cy="21" r="1" />
-                                <path class="st0" d="M1,1h4l2.7,13.4c0.2,1,1,1.6,2,1.6h9.7c1,0,1.8-0.7,2-1.6L23,6H6" />
-                            </svg>
-                        </div>
-                        <span class="cart-item">2</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
     <div @click="handleSidebarClose" :class="[showSidebar ? 'body-overlay opened' : 'body-overlay']"></div>
     <!-- sidebar area end -->
 </template>
