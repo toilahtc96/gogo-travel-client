@@ -111,8 +111,8 @@ const getStyleBG = () => {
                         <img src="@/assets/img/what/what-2.jpg" alt="">
                     </div>
                     <div class="what__content p-absolute text-center">
-                        <h3 class="what__title white-color">Become <br> an Instructor</h3>
-                        <router-link to="/contact" class="e-btn e-btn-border-2">Start teaching</router-link>
+                        <h3 class="what__title white-color">Liên hệ <br> Với chúng tôi</h3>
+                        <router-link to="/contact" class="e-btn e-btn-border-2">Bắt đầu hành trình của bạn</router-link>
                     </div>
                 </div>
             </div>
