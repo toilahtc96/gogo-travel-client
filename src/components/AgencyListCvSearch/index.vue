@@ -12,7 +12,15 @@ let defaultPage = ref({
 });
 const styleInput = "float: left; width: 30%;";
 const formState = ref<SearchAgencyCvForm>({
-    companyId: undefined
+    companyId: undefined,
+    value:  undefined,
+    status:  undefined,
+    title:  undefined,
+    voucherType:  undefined,
+    from: undefined,
+    to: undefined,
+    page: 0,
+    size: 10,
 });
 const companyService = new CompanyService();
 let listCompany = ref({

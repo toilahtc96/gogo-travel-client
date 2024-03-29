@@ -42,13 +42,12 @@ const getStyleBG = () => {
 }
 </style>
 <template>
-    <section class="testimonial__area testimonial__overlay pt-175 pb-170" style="background: url(http://localhost:3000/src/assets/img/testimonial/home-3/hg-bg.jpg);   /* Full height */
-  height: 100%;
-
-  /* Center and scale the image nicely */
+    <section class="testimonial__area testimonial__overlay pt-175 pb-170" style="background: url('@/assets/img/testimonial/home-3/hg-bg.jpg'); /* Full height */
+  height: 100%; /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;">
+
             <div class=" container">
         <div class="row">
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-10">

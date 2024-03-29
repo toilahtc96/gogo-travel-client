@@ -4,6 +4,7 @@ import { voucherType } from "./VoucherType";
 import { Dayjs } from "dayjs";
 
 export interface SearchAgencyCvForm {
+    companyId: number |undefined,
     value: number | undefined,
     status: StatusType | undefined,
     title: string | undefined,
