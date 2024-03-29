@@ -82,7 +82,7 @@ onMounted(() => {
                                                 <span>Menu</span>
                                             </router-link>
                                             <ul class="cat-submenu">
-                                                <li><router-link to="/">Xem Chuyến Đi</router-link></li>
+                                                <li><router-link to="/login">Login</router-link></li>
                                             </ul>
                                         </li>
                                     </ul>

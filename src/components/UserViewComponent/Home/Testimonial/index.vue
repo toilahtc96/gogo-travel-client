@@ -32,7 +32,6 @@ const getImgUrl = (pic: string) => {
 };
 const modules = ref([Navigation, EffectFade]);
 const getStyleBG = () => {
-    console.log('{background:' + new URL(`../../../../assets/img/testimonial/home-3/hg-bg.jpg`, import.meta.url).href + "}");
     return '{background:' + new URL(`../../../../assets/img/testimonial/home-3/hg-bg.jpg`, import.meta.url).href + "}";
 }
 </script>
@@ -42,7 +41,7 @@ const getStyleBG = () => {
 }
 </style>
 <template>
-    <section class="testimonial__area testimonial__overlay pt-175 pb-170" style="background: url('@/assets/img/testimonial/home-3/hg-bg.jpg'); /* Full height */
+    <section class="testimonial__area testimonial__overlay pt-175 pb-170" style="background: url('https://gogo-front-bucket.s3.ap-south-1.amazonaws.com/file-user-upload/hg-bg.jpg'); /* Full height */
   height: 100%; /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
