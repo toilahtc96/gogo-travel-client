@@ -1,10 +1,4 @@
 <script lang="ts" setup>
-import {
-  LayoutContent as ALayoutContent,
-  Breadcrumb as ABreadcrumb,
-  BreadcrumbItem as ABreadcrumbItem,
-} from "ant-design-vue";
-import { RouterView } from "vue-router";
 </script>
 
 <template>
@@ -14,8 +8,11 @@ import { RouterView } from "vue-router";
       <a-breadcrumb-item>List</a-breadcrumb-item>
       <a-breadcrumb-item>App</a-breadcrumb-item>
     </a-breadcrumb>
-    <div :style="{ background: '#fff', padding: '24px', minHeight: '80vh' }">
-      <router-view /> 
+    <div :style="{
+      background: '#fff', padding: '24px',height: '100vh',
+      overflowY: 'auto', paddingBottom: '3%'
+    }">
+      <router-view />
     </div>
   </a-layout-content>
 </template>
