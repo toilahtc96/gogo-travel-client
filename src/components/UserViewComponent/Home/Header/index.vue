@@ -83,6 +83,7 @@ onMounted(() => {
                                             </router-link>
                                             <ul class="cat-submenu">
                                                 <li><router-link to="/login">Login</router-link></li>
+                                                <li><router-link to="/admin">admin</router-link></li>
                                             </ul>
                                         </li>
                                     </ul>
