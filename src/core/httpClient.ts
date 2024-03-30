@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = 'https://d1wiizqgthxah8.cloudfront.net/';
+axios.defaults.baseURL = 'https://ec2-3-109-200-19.ap-south-1.compute.amazonaws.com:8080/';
 axios.defaults.headers.common["Content-Type"] = "application/json";
 
 axios.interceptors.request.use(
