@@ -3,7 +3,7 @@
 const props = defineProps(['title', 'subtitle'])
 
 const getImgUrl = (pic: string) => {
-   return new URL("assets/img/page-title/" + pic, 'http://127.0.0.1:3000/src/').href;
+   return new URL("assets/img/banner/" + pic, 'http://localhost:3000/src/').href;
 };
 </script>
 
@@ -11,7 +11,7 @@ const getImgUrl = (pic: string) => {
 
 <template>
    <section class="page__title-area page__title-height page__title-overlay d-flex align-items-center"
-      :style="{ background: 'url(' + getImgUrl('page-title.jpg') + ')', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }">
+      :style="{ background: 'url(' + getImgUrl('Gogo-Travel.png') + ')', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }">
       <div class="container">
          <div class="row">
             <div class="col-xxl-12">
@@ -19,10 +19,10 @@ const getImgUrl = (pic: string) => {
                   <h3 class="page__title"> {{ title }}</h3>
                   <nav aria-label="breadcrumb">
                      <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                           <router-link to="/">Home</router-link>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">
+                        <li class="breadcrumb-item ">
+                           <router-link to="/">Trang Chủ ></router-link>
+                        </li> 
+                        <li class="breadcrumb-item active" style="padding-left: 10px;" aria-current="page">
                            {{ subtitle }}</li>
                      </ol>
                   </nav>
