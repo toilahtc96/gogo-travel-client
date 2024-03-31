@@ -7,8 +7,6 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-<<<<<<< HEAD
-=======
     About: typeof import('./src/components/UserViewComponent/About/index.vue')['default']
     AboutArea: typeof import('./src/components/common/AboutArea/index.vue')['default']
     ABreadcrumb: typeof import('ant-design-vue/es')['Breadcrumb']
@@ -43,7 +41,6 @@ declare module '@vue/runtime-core' {
     ALayoutHeader: typeof import('ant-design-vue/es')['LayoutHeader']
     AMenu: typeof import('ant-design-vue/es')['Menu']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
->>>>>>> 64f7f9b2ca7309785e1cd43e9edddc17f10b2a03
     AMenuItemGroup: typeof import('ant-design-vue/es')['MenuItemGroup']
     AModal: typeof import('ant-design-vue/es')['Modal']
     APagination: typeof import('ant-design-vue/es')['Pagination']

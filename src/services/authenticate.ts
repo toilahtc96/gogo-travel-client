@@ -9,17 +9,11 @@ export class AuthenticationService {
         localStorage.removeItem("accessToken");
         axios.post(`/api/v1/authentication/login`, formLogin)
             .then((data: any) => {
-                if (!data.data.accessToken) {
+                if (!data) {
                     message.error("Has error when login! Please contact developer");
                 } else {
-                    localStorage.setItem("accessToken", data.data.accessToken);
-                    //todo: đưa vào switch case, viết tách riêng logic đoạn này
-
-                    if (data.data.roleCode === "ADMIN" && data.data.userTypeCode === "ADMIN") {
-                        window.location.href = "/admin"
-                    } else {
-                        window.location.href = "/"
-                    }
+                    localStorage.setItem("accessToken", data);
+                    window.location.href = "/admin"
                 }
             }).catch((err: any) => {
                 message.error("Has error call login! Please contact developer");
