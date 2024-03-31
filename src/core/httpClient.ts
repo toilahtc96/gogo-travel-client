@@ -1,6 +1,6 @@
 import axios from "axios";
 
-axios.defaults.baseURL = 'http://ec2-3-109-200-19.ap-south-1.compute.amazonaws.com:8080/';
+axios.defaults.baseURL = 'http://103.245.237.198:8080/';
 axios.defaults.headers.common["Content-Type"] = "application/json";
 
 axios.interceptors.request.use(
