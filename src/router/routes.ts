@@ -1,5 +1,6 @@
 import { RouteRecordRaw } from "vue-router";
 import Company from '@/pages/admin/company/index.vue';
+import CompanyInformation from '@/pages/admin/company-information/index.vue';
 import AddCompany from '@/pages/admin/company/add/index.vue';
 import EditCompany from '@/pages/admin/company/edit/index.vue';
 import Address from '@/pages/admin/address/index.vue';
@@ -56,10 +57,10 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    name: "admin-company",
-    path: "/admin/company",
+    name: "admin-company-information",
+    path: "/admin/company-information",
     meta: { needsAuth: true },
-    component: Company,
+    component: CompanyInformation,
     beforeEnter: (to, from, next) => {
       const noToken: boolean = !localStorage.getItem("accessToken");
       if (noToken) {
@@ -70,8 +71,8 @@ const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    name: "admin-company-add",
-    path: "/admin/company/add",
+    name: "admin-company-information-add",
+    path: "/admin/company-information/add",
     meta: { needsAuth: true },
     component: AddCompany,
     beforeEnter: (to, from, next) => {
@@ -84,8 +85,8 @@ const routes: Array<RouteRecordRaw> = [
     }
   },
   {
-    name: "admin-company-edit",
-    path: "/admin/company/edit/:id",
+    name: "admin-company-information-edit",
+    path: "/admin/company-information/edit/:id",
     meta: { needsAuth: true },
     component: EditCompany,
     beforeEnter: (to, from, next) => {

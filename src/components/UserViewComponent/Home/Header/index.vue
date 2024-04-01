@@ -98,9 +98,9 @@ onMounted(() => {
                                         <li style="padding-right:5%;">
                                             <router-link to="/">Trang Chủ</router-link>
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                             <router-link to="/">Xem Chuyến Đi</router-link>
-                                        </li>
+                                        </li> -->
                                         <li><router-link to="/contact">Liên hệ</router-link></li>
                                     </ul>
                                 </nav>

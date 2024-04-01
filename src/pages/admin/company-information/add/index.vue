@@ -1,8 +1,5 @@
 <script lang="ts" setup>
 </script>
-
 <template>
-  <div>
-    HOME PAGES
-  </div>
+  <AddCompany />
 </template>
