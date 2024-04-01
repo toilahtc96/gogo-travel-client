@@ -28,8 +28,7 @@ const getFooterBg = (footerBgTwo: boolean) => {
                                     </div>
                                 </div>
                                 <div :class="`${footerBgTwo ? 'footer__widget-body-2' : 'footer__widget-body'}`">
-                                    <p>Great lesson ideas and lesson plans for ESL teachers! Educators can customize lesson
-                                        plans to best.</p>
+                                    <p>GoGo Travel hân hạnh mang đến cho quý khách những ý tưởng du lịch sáng tạo và các kế hoạch du lịch hoàn hảo, được thiết kế riêng để đáp ứng nhu cầu của từng cá nhân. Đội ngũ chuyên gia du lịch giàu kinh nghiệm của chúng tôi sẽ đồng hành cùng bạn trong suốt hành trình, từ khâu lên kế hoạch cho đến khi bạn trở về nhà an toàn.</p>
 
                                     <div class="footer__social">
                                         <ul>
@@ -43,66 +42,25 @@ const getFooterBg = (footerBgTwo: boolean) => {
                                 </div>
                             </div>
                         </div>
-                        <div
-                            class="col-xxl-2 offset-xxl-1 col-xl-2 offset-xl-1 col-lg-3 offset-lg-0 col-md-2 offset-md-1 col-sm-5 offset-sm-1">
-                            <div class="footer__widget mb-50">
-                                <div class="footer__widget-head mb-22">
-                                    <h3 :class="`${footerBgTwo ? 'footer__widget-title-2' : 'footer__widget-title'}`">
-                                        Company</h3>
-                                </div>
-                                <div class="footer__widget-body">
-                                    <div :class="`${footerBgTwo ? 'footer__link-2' : 'footer__link'}`">
-                                        <ul>
-                                            <li><a href="/agency-cv-list">List CV Received</a></li>
-                                            <li><a href="#">Courses</a></li>
-                                            <li><a href="#">Events</a></li>
-                                            <li><a href="#">Instructor</a></li>
-                                            <li><a href="#">Career</a></li>
-                                            <li><a href="#">Become a Teacher</a></li>
-                                            <li><a href="#">Contact</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-2 col-xl-2 col-lg-2 offset-lg-0 col-md-3 offset-md-1 col-sm-6">
-                            <div class="footer__widget mb-50">
-                                <div class="footer__widget-head mb-22">
-                                    <h3 :class="`${footerBgTwo ? 'footer__widget-title-2' : 'footer__widget-title'}`">
-                                        Platform</h3>
-                                </div>
-                                <div class="footer__widget-body">
-                                    <div :class="`${footerBgTwo ? 'footer__link-2' : 'footer__link'}`">
-                                        <ul>
-                                            <li><a href="#">Browse Library</a></li>
-                                            <li><a href="#">Library</a></li>
-                                            <li><a href="#">Partners</a></li>
-                                            <li><a href="#">News & Blogs</a></li>
-                                            <li><a href="#">FAQs</a></li>
-                                            <li><a href="#">Tutorials</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-5 col-sm-6">
+                        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-5 col-sm-3"></div>
+                        <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-5 col-sm-6" style="float: right;">
                             <div class="footer__widget footer__pl-70 mb-50">
                                 <div class="footer__widget-head mb-22">
                                     <h3 :class="`${footerBgTwo ? 'footer__widget-title-2' : 'footer__widget-title'}`">
-                                        Subscribe</h3>
+                                        Nhận thông tin các chuyến đi mới</h3>
                                 </div>
                                 <div class="footer__widget-body">
                                     <div :class="`${footerBgTwo ? 'footer__subscribe-2' : 'footer__subscribe'}`">
                                         <form action="#">
                                             <div class="footer__subscribe-input mb-15">
-                                                <input type="email" placeholder="Your email address">
+                                                <input type="email" placeholder="Email của bạn">
                                                 <button type="submit">
                                                     <i class="far fa-arrow-right"></i>
                                                     <i class="far fa-arrow-right"></i>
                                                 </button>
                                             </div>
                                         </form>
-                                        <p>Get the latest news and updates right at your inbox.</p>
+                                        <p>Nhận tin tức và cập nhật mới nhất ngay tại hộp thư đến của bạn.</p>
                                     </div>
                                 </div>
                             </div>
@@ -116,8 +74,7 @@ const getFooterBg = (footerBgTwo: boolean) => {
                         <div class="col-xxl-12">
                             <div
                                 :class="`${footerBgTwo ? 'footer__copyright-2 text-center' : 'footer__copyright text-center'}`">
-                                <p>© 2022 Educal, All Rights Reserved. Design By <router-link to="/">Theme
-                                        Pure</router-link></p>
+                                <p>© 2023 GogoTravel, All Rights Reserved. Design By <router-link to="/">HTC</router-link></p>
                             </div>
                         </div>
                     </div>

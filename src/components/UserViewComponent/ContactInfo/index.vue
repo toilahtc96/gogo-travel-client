@@ -46,7 +46,7 @@ companyInformationService.getFirstActive().then(data => {
                         <h4>{{ formState.companyCityAddress }} Office</h4>
                         <p><a target="_blank"
                               href="https://www.google.com/maps/place/Dhaka/@23.7806207,90.3492859,12z/data=!3m1!4b1!4m5!3m4!1s0x3755b8b087026b81:0x8fa563bbdd5904c2!8m2!3d23.8104753!4d90.4119873">
-                           {{ formState.companyAddress }}</a></p>
+                              {{ formState.companyAddress }}</a></p>
 
                      </div>
                   </div>
@@ -84,9 +84,9 @@ companyInformationService.getFirstActive().then(data => {
             <div class="contact__social pl-30">
                <h4>Follow Us</h4>
                <ul>
-                  <li><a v-bind:href="formState.facebookLink" class="fb"><i class="bi bi-facebook"></i></a></li>
-                  <li><a href="#" class="tw"><i class="icon-twitter"></i></a></li>
-                  <li><a href="#" class="pin"><i class="social_pinterest"></i></a></li>
+                  <li><a v-bind:href="formState.facebookLink" class="fb"> <i class="fab fa-facebook-f"> </i></a></li>
+                  <li><a href="#" class="tw"><i class="fab fa-facebook-f"> </i></a></li>
+                  <li><a href="#" class="pin"><i class="fa-brands fa-tiktok"></i></a></li>
                </ul>
             </div>
          </div>

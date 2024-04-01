@@ -1,4 +1,4 @@
 export enum StatusType {
-    ACTIVED = "ACTIVED",
-    DISABLED = "DISABLED"
+    ACTIVED = "ACTIVE",
+    BLOCK = "BLOCK"
 }

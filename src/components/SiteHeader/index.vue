@@ -17,6 +17,12 @@
             <router-link to="/admin/company-information/add">Thêm mới</router-link>
           </a-menu-item>
         </a-sub-menu>
+        <a-sub-menu key="registration">
+          <template #title>Thông tin Người đăng ký</template>
+          <a-menu-item key="registrations">
+            <router-link to="/admin/registration">Xem</router-link>
+          </a-menu-item>
+        </a-sub-menu>
       </a-menu>
 
     </div>

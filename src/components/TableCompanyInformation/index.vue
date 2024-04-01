@@ -8,7 +8,7 @@ import { StatusType } from '@/type/StatusType';
 
 const props = defineProps(['companyActives'])
 const columns: TableColumnsType = [
-    { title: 'Tên Công Ty', dataIndex: 'companyName', key: 'companyName' },
+    { title: 'Tên Công Ty', dataIndex: 'companyName', key: 'companyName', fixed: 'left' },
     { title: 'Địa Chỉ Chính', width: 300, dataIndex: 'companyAddress', key: 'companyAddress', fixed: 'left' },
     { title: 'Thành Phố', width: 100, dataIndex: 'companyCityAddress', key: 'companyCityAddress', fixed: 'left' },
     { title: 'Email', dataIndex: 'companyEmail', key: 'companyEmail' },
@@ -30,7 +30,7 @@ let companyInformationActives = ref({
 });
 onMounted(async () => {
     companyInformationService.getFirstActive().then((data: [CompanyInformation]) => {
-        companyInformationActives.value = { ...companyInformationActives.value, listData: data };
+        companyInformationActives.value = { ...companyInformationActives.value, listData: [data] };
         console.log(companyInformationActives.value)
     });
     

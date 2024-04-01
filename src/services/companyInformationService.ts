@@ -18,18 +18,28 @@ export class CompanyInformationService {
     // getAll, edit, 
 
     editCompanyInformation = (companyInformation: CompanyInformation) => {
-        return axios.post(`/api/v1/company-information/edit`, companyInformation, this.config).then((data) => {
+        return axios.patch(`/api/v1/company-information/edit`, companyInformation, this.config).then((data) => {
             return data;
         }).catch((err) => {
             message.error("Has error when edit company");
         })
     }
 
-    addCompany = (companyInformation: CompanyInformation) => {
+    addCompanyInformation = (companyInformation: CompanyInformation) => {
         return axios.post(`/api/v1/company-information/add`, companyInformation, this.config).then((data) => {
             return data;
         }).catch((err) => {
             message.error("Has error when add company");
         })
+    }
+
+    getCompanyInformationById = (id: any) => {
+        if (id) {
+            return axios.get(`/api/v1/company-information/get-by-id?id=` + id, this.config).then((data) => {
+                return data.data;
+            }).catch((err) => {
+                message.error("Has error when get company by Id! " + id);
+            })
+        }
     }
 }
