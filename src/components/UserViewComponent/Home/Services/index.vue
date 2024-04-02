@@ -6,10 +6,10 @@
             <div class="row">
                 <div class="col-xxl-6 offset-xxl-3 col-xl-6 offset-xl-3">
                     <div class="section__title-wrapper section-padding mb-60 text-center">
-                        <h2 class="section__title">Why an <span class="yellow-bg">scholercity
+                        <h2 class="section__title">Tại sao nên<span class="yellow-bg"> Đồng Hành
                                 <img src="@/assets/img/shape/yellow-bg-2.png" alt="">
-                            </span> out of The ordinary</h2>
-                        <p>You don't have to struggle alone, you've got our assistance and help.</p>
+                            </span> cùng Gogo Travel</h2>
+                        <p>Bạn chỉ cần tận hưởng chuyến đi, mọi vấn đề đã có chúng tôi đồng hành cùng bạn</p>
                     </div>
                 </div>
             </div>
@@ -36,9 +36,9 @@
                         </div>
                         <div class="services__content">
                             <h3 class="services__title">
-                                <router-link to="/about">4,000 <br> Online courses</router-link>
+                                <router-link to="/about">Đội ngũ <br> Tư vấn miễn phí</router-link>
                             </h3>
-                            <p>Arse over tit morish wind up gormless butty.!</p>
+                            <p>Giúp bạn lựa chọn tour du lịch phù hợp nhất với sở thích và nhu cầu của bạn.!</p>
 
                             <router-link to="/about" class="link-btn-2">
                                 <i class="far fa-arrow-right"></i>
@@ -69,9 +69,9 @@
                         </div>
                         <div class="services__content">
                             <h3 class="services__title">
-                                <router-link to="/about">Job placement<br> Support</router-link>
+                                <router-link to="/about">Hỗ trợ đặt <br> tour</router-link>
                             </h3>
-                            <p>Arse over tit morish wind up gormless butty.!</p>
+                            <p>Đặt tour du lịch đơn giản, nhanh chóng và tiện lợi hơn bao giờ hết.!</p>
 
                             <router-link to="/about" class="link-btn-2">
                                 <i class="far fa-arrow-right"></i>
@@ -112,9 +112,9 @@
                         </div>
                         <div class="services__content">
                             <h3 class="services__title">
-                                <router-link to="/about">Lifetime<br> Slack chat support</router-link>
+                                <router-link to="/about">Dịch vụ <br> chu đáo</router-link>
                             </h3>
-                            <p>Arse over tit morish wind up gormless butty.!</p>
+                            <p>Đảm bảo bạn có một trải nghiệm du lịch hoàn hảo và an toàn.!</p>
 
                             <router-link to="/about" class="link-btn-2">
                                 <i class="far fa-arrow-right"></i>
@@ -137,9 +137,9 @@
                         </div>
                         <div class="services__content">
                             <h3 class="services__title">
-                                <router-link to="/about">Research<br> and Innovation</router-link>
+                                <router-link to="/about">Giá cả <br> hợp lý</router-link>
                             </h3>
-                            <p>Arse over tit morish wind up gormless butty.!</p>
+                            <p>Mang đến cho bạn những trải nghiệm du lịch giá trị với mức chi phí phù hợp.!</p>
 
                             <router-link to="/about" class="link-btn-2">
                                 <i class="far fa-arrow-right"></i>
