@@ -4,6 +4,9 @@ import type Registration from '@/type/Registration';
 import { StatusType } from '@/type/StatusType';
 import { RegistrationService } from '@/services/registrationService';
 import { message } from 'ant-design-vue';
+import router from "@/router/router";
+import { useRoute } from "vue-router";
+const route = useRoute();
 const registrationService = new RegistrationService();
 let formState = ref<Registration>({
    id: undefined,
@@ -20,6 +23,7 @@ const onFinish = () => {
    registrationService.addRegistration(formState.value).then((data: any) => {
       if (data && data.status == 204) {
          message.success("Cảm ơn bạn đã đăng kí, Chúng tôi sẽ sớm liên lạc cho bạn");
+         router.push("/");
       } else {
          message.error("Có chút lỗi nhỏ, Hãy liên hệ chúng tôi qua facebook để được giải đáp");
       }

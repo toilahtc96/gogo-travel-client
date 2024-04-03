@@ -29,7 +29,7 @@ let companyInformationActives = ref({
     listData: ref<[CompanyInformation]>()
 });
 onMounted(async () => {
-    companyInformationService.getFirstActive().then((data: [CompanyInformation]) => {
+    companyInformationService.getFirstActive().then((data: CompanyInformation) => {
         companyInformationActives.value = { ...companyInformationActives.value, listData: [data] };
         console.log(companyInformationActives.value)
     });

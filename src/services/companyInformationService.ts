@@ -11,7 +11,7 @@ export class CompanyInformationService {
         return axios.get(`/public/company-information/get-first-active`).then((data) => {
             return data.data;
         }).catch((err) => {
-            message.error("Has error when get company data!");
+            message.error("Has error when get company information data!");
         })
     }
 
@@ -21,7 +21,7 @@ export class CompanyInformationService {
         return axios.patch(`/api/v1/company-information/edit`, companyInformation, this.config).then((data) => {
             return data;
         }).catch((err) => {
-            message.error("Has error when edit company");
+            message.error("Has error when edit company information");
         })
     }
 
@@ -29,7 +29,7 @@ export class CompanyInformationService {
         return axios.post(`/api/v1/company-information/add`, companyInformation, this.config).then((data) => {
             return data;
         }).catch((err) => {
-            message.error("Has error when add company");
+            message.error("Has error when add company information");
         })
     }
 
@@ -38,7 +38,7 @@ export class CompanyInformationService {
             return axios.get(`/api/v1/company-information/get-by-id?id=` + id, this.config).then((data) => {
                 return data.data;
             }).catch((err) => {
-                message.error("Has error when get company by Id! " + id);
+                message.error("Has error when get company information by Id! " + id);
             })
         }
     }

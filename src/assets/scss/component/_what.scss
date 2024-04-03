@@ -17,9 +17,9 @@
             background: rgba($color: $black, $alpha: .5);
         }
         &:hover{
-            &::after{
-                background: rgba($color: $e-blue, $alpha: .9) ;
-            }
+            // &::after{
+            //     background: rgba($color: $e-blue, $alpha: .9) ;
+            // }
             & .what__thumb{
                 & img{
                     @include transform(scale(1.1));

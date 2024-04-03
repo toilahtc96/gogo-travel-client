@@ -11,19 +11,19 @@ export class MainInformationService {
         return axios.get(`/public/main-information/get-first-active`).then((data) => {
             return data.data;
         }).catch((err) => {
-            message.error("Has error when get company data!");
+            message.error("Has error when get main information data!");
         })
     }
 
     // // getAll, edit, 
 
-    // editCompanyInformation = (companyInformation: CompanyInformation) => {
-    //     return axios.patch(`/api/v1/company-information/edit`, companyInformation, this.config).then((data) => {
-    //         return data;
-    //     }).catch((err) => {
-    //         message.error("Has error when edit company");
-    //     })
-    // }
+    edit = (MainInformationType: MainInformationType) => {
+        return axios.patch(`/api/v1/main-information/edit`, MainInformationType, this.config).then((data) => {
+            return data;
+        }).catch((err) => {
+            message.error("Has error when main information");
+        })
+    }
 
     // addCompanyInformation = (companyInformation: CompanyInformation) => {
     //     return axios.post(`/api/v1/company-information/add`, companyInformation, this.config).then((data) => {
@@ -33,13 +33,13 @@ export class MainInformationService {
     //     })
     // }
 
-    // getCompanyInformationById = (id: any) => {
-    //     if (id) {
-    //         return axios.get(`/api/v1/company-information/get-by-id?id=` + id, this.config).then((data) => {
-    //             return data.data;
-    //         }).catch((err) => {
-    //             message.error("Has error when get company by Id! " + id);
-    //         })
-    //     }
-    // }
+    getById = (id: any) => {
+        if (id) {
+            return axios.get(`/api/v1/main-information/get-by-id?id=` + id, this.config).then((data) => {
+                return data.data;
+            }).catch((err) => {
+                message.error("Has error when get main information by Id! " + id);
+            })
+        }
+    }
 }

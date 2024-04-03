@@ -62,7 +62,6 @@ const onFinish = (values: any) => {
                 changeSpinning();
             }
         ).then(() => {
-            debugger;
             router.replace("/admin/company-information")
         })
         .catch(

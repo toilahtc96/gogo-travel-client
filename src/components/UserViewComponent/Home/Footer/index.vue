@@ -5,9 +5,9 @@ const props = defineProps(['footerBgTwo', 'footerPadding'])
 const getFooterBg = (footerBgTwo: boolean) => {
     // return new URL(imgSrc, import.meta.url).href;
     if (footerBgTwo) {
-        return new URL('../../../../@/assets/img/logo/logo.png', import.meta.url).href;
+        return new URL('../../../../@/assets/img/logo/low-res-logo.png', import.meta.url).href;
     } else {
-        return new URL('../../../../assets/img/logo/logo-2.png', import.meta.url).href;
+        return new URL('../../../../assets/img/logo/low-res-logo.png', import.meta.url).href;
 
     }
 }
@@ -23,7 +23,7 @@ const getFooterBg = (footerBgTwo: boolean) => {
                                 <div class="footer__widget-head mb-22">
                                     <div class="footer__logo">
                                         <router-link to="/">
-                                            <img :src="getFooterBg(footerBgTwo)" alt="">
+                                            <img :src="getFooterBg(footerBgTwo)" alt="" style="width: 100px; margin-left: 50px">
                                         </router-link>
                                     </div>
                                 </div>

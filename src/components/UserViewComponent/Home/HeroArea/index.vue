@@ -8,10 +8,10 @@ import { onMounted, ref } from 'vue';
 const mainInformationService = new MainInformationService();
 let mainInformation = ref<MainInformationType>({
     id: undefined,
-    title: "Kiến tạo Trải nghiệm du lịch tuyệt vời cho bạn",
-    subtitle: "Với hơn 10+ gói tour du lịch đa dạng",
-    smallInformation1: "Cung cấp hướng dẫn cụ thể cho bạn với từng chặng đường",
-    smallInformation2: "Sứ mệnh của chúng tôi là giúp bạn có những trải nghiệm tuyệt vời nhất",
+    title: undefined,
+    subtitle: undefined,
+    smallInformation1: undefined,
+    smallInformation2: undefined,
     heroImage: undefined,
     status: StatusType.ACTIVED
 
@@ -19,7 +19,19 @@ let mainInformation = ref<MainInformationType>({
 onMounted(() => {
     mainInformationService.getFirstActive().then((data) => {
         if (data) {
-            mainInformation = data;
+            mainInformation.value = data;
+            console.log(data);
+        } else {
+            mainInformation = ref({
+                id: undefined,
+                title: "Kiến tạo Trải nghiệm du lịch tuyệt vời cho bạn",
+                subtitle: "Với hơn 10+ gói tour du lịch đa dạng",
+                smallInformation1: "Cung cấp hướng dẫn cụ thể cho bạn với từng chặng đường",
+                smallInformation2: "Sứ mệnh của chúng tôi là giúp bạn có những trải nghiệm tuyệt vời nhất",
+                heroImage: undefined,
+                status: StatusType.ACTIVED
+
+            })
         }
     })
 })
@@ -57,7 +69,7 @@ onMounted(() => {
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                         <div class="hero__thumb-wrapper mb--120">
                             <div class="hero__thumb-2 scene">
-                                <img class="hero-big" src="https://i.ibb.co/k4PQBH3/image.png" alt="">
+                                <img class="hero-big" :src=" mainInformation.heroImage" alt="">
                                 <img class="hero-shape-purple" src="@/assets/img/hero/hero-2/hero-shape-purple.png"
                                     alt="">
                             </div>

@@ -21,8 +21,6 @@ export class DateService {
         try {
             // Chuyển đổi chuỗi ngày tháng thành đối tượng Date
             const date = new Date(inputDate);
-            debugger;
-
             // Cộng thêm số ngày vào ngày tháng
             date.setDate(date.getDate() + daysToAdd);
             const partsTime = inputDate.split('T')[1].split(':');

@@ -45,7 +45,7 @@ onMounted(() => {
                         <div class="header__left d-flex">
                             <div class="logo">
                                 <router-link to="/">
-                                    <img src="@/assets/img/logo/ggo-logo.png" alt="logo">
+                                    <img src="@/assets/img/logo/ggo-logo.png" alt="logo" style="width: 50px;">
                                 </router-link>
                             </div>
                             <div class="header__category d-none d-lg-block">
