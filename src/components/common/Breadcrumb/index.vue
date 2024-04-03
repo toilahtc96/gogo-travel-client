@@ -1,9 +1,8 @@
-
 <script lang="ts" setup>
 const props = defineProps(['title', 'subtitle'])
 
-const getImgUrl = (pic: string) => {
-   return new URL("assets/img/banner/" + pic, 'http://localhost:3000/src/').href;
+const getImgUrl = () => {
+   return new URL("https://i.ibb.co/vhvyP7N/Gogo-Travel.png").href;
 };
 </script>
 
@@ -11,7 +10,7 @@ const getImgUrl = (pic: string) => {
 
 <template>
    <section class="page__title-area page__title-height page__title-overlay d-flex align-items-center"
-      :style="{ background: 'url(' + getImgUrl('Gogo-Travel.png') + ')', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }">
+      :style="{ background: 'url(' + getImgUrl() + ')', backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }">
       <div class="container">
          <div class="row">
             <div class="col-xxl-12">
@@ -21,7 +20,7 @@ const getImgUrl = (pic: string) => {
                      <ol class="breadcrumb">
                         <li class="breadcrumb-item ">
                            <router-link to="/">Trang Chủ ></router-link>
-                        </li> 
+                        </li>
                         <li class="breadcrumb-item active" style="padding-left: 10px;" aria-current="page">
                            {{ subtitle }}</li>
                      </ol>

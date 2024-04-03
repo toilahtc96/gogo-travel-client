@@ -44,8 +44,7 @@ companyInformationService.getFirstActive().then(data => {
                      </div>
                      <div class="contact__info-text">
                         <h4>{{ formState.companyCityAddress }} Office</h4>
-                        <p><a target="_blank"
-                              href="https://www.google.com/maps/place/Dhaka/@23.7806207,90.3492859,12z/data=!3m1!4b1!4m5!3m4!1s0x3755b8b087026b81:0x8fa563bbdd5904c2!8m2!3d23.8104753!4d90.4119873">
+                        <p><a target="_blank" href="">
                               {{ formState.companyAddress }}</a></p>
 
                      </div>
