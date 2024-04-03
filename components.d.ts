@@ -43,7 +43,6 @@ declare module '@vue/runtime-core' {
     CompanyInformation: typeof import('./src/components/CompanyInformation/index.vue')['default']
     ContactArea: typeof import('./src/components/UserViewComponent/ContactArea/index.vue')['default']
     ContactInfo: typeof import('./src/components/UserViewComponent/ContactInfo/index.vue')['default']
-    copy: typeof import('./src/components/EditReasonChoose copy/index.vue')['default']
     DragFile: typeof import('./src/components/common/DragFile/index.vue')['default']
     EditCompanyInformation: typeof import('./src/components/EditCompanyInformation/index.vue')['default']
     EditMainInformation: typeof import('./src/components/EditMainInformation/index.vue')['default']

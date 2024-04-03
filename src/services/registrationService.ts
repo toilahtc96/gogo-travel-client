@@ -23,7 +23,7 @@ export class RegistrationService {
         })
     }
     addRegistration = (registration: Registration) => {
-        return axios.post(`api/v1/registration/add`, registration, this.config).then((data) => {
+        return axios.post(`public/registration/add`, registration, this.config).then((data) => {
             return data;
         }).catch((err) => {
             message.error("Has error when add job");
