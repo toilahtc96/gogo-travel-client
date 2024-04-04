@@ -1,4 +1,17 @@
 <script lang="ts" setup>
+
+import { useRoute } from "vue-router";
+import router from "@/router/router";
+import { onMounted } from "vue";
+import { watch } from "vue";
+import { ref } from "vue";
+const route = useRoute();
+const whereOfCustomer = ref("");
+onMounted(()=>{
+   if(route.params.where) {
+      whereOfCustomer.value = route.params.where.toString();
+   }
+})
 </script>
 
 <template>
@@ -13,7 +26,7 @@
                      <p>Hãy để chúng tôi giúp bạn! Cung cấp thông tin liên hệ của bạn để được tư vấn miễn phí.</p>
                   </div>
                   <div class="contact__form">
-                     <Registration />
+                     <Registration :whereOfCustomer="whereOfCustomer"/>
                   </div>
                </div>
             </div>
@@ -22,6 +35,3 @@
       </div>
    </section>
 </template>
-
-   
-   

@@ -30,7 +30,6 @@ companyInformationService.getFirstActive().then(data => {
          <div class="contact__shape">
             <img class="contact-shape-1" src="@/assets/img/contact/contact-shape-1.png" alt="">
             <img class="contact-shape-2" src="@/assets/img/contact/contact-shape-2.png" alt="">
-            <img class="contact-shape-3" src="@/assets/img/contact/contact-shape-3.png" alt="">
          </div>
          <div class="contact__info-inner white-bg">
             <ul>
@@ -83,9 +82,11 @@ companyInformationService.getFirstActive().then(data => {
             <div class="contact__social pl-30">
                <h4>Follow Us</h4>
                <ul>
-                  <li><a v-bind:href="formState.facebookLink" class="fb"> <i class="fab fa-facebook-f"> </i></a></li>
-                  <li><a href="#" class="tw"><i class="fab fa-facebook-f"> </i></a></li>
-                  <li><a href="#" class="pin"><i class="fa-brands fa-tiktok"></i></a></li>
+                  <li style="margin-left: 0px !important;"><a :href=formState.facebookLink target="_blank"><i
+                           class="fab fa-facebook-f"></i></a></li>
+                  <li><a :href=formState.tikTokLink class="tw" target="_blank"><i class="fab fa-tiktok"></i></a></li>
+                  <li style="margin-left: 10px;margin-right: 0;" target="_blank"><a :href=formState.instagramLink
+                        class="pin"><i class="fab fa-instagram"></i></a></li>
                </ul>
             </div>
          </div>

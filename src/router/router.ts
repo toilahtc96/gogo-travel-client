@@ -57,6 +57,11 @@ const router = createRouter({
       path: "/contact",
       component: Contact,
     },
+    {
+      name: "contact-param",
+      path: "/contact/:where",
+      component: Contact,
+    },
   ],
   linkActiveClass: 'active',
   scrollBehavior(to, from, savedPosition) {

@@ -4,8 +4,18 @@ import { MainInformationService } from '@/services/mainInformationService';
 import MainInformationType from '@/type/MainInformationType';
 import { StatusType } from '@/type/StatusType';
 import { onMounted, ref } from 'vue';
+import { useRoute } from "vue-router";
+import router from "@/router/router";
+const route = useRoute();
 
 const mainInformationService = new MainInformationService();
+const formHeader = ref({
+    where: undefined
+});
+const onFinish = () => {
+    route.params
+    router.push({ name: 'contact-param', params: { where: formHeader.value.where } })
+}
 let mainInformation = ref<MainInformationType>({
     id: undefined,
     title: undefined,
@@ -55,13 +65,17 @@ onMounted(() => {
                             <p>{{ mainInformation.smallInformation1 }}</p>
 
                             <div class="hero__search">
-                                <form action="#">
+                                <a-form :model="formHeader" @finish="onFinish">
                                     <div class="hero__search-input mb-10">
-                                        <input type="text" placeholder="Bạn muốn đi đến nơi nào?"
-                                            style="text-align: right;">
+                                        <a-form-item :name="['where']"
+                                            :rules="[{ required: true, message: 'Vui lòng nhập điểm đến bạn nghĩ tới' }]">
+                                            <a-input type="text" placeholder="Bạn muốn đi đến nơi nào?"
+                                                style="text-align: right;" v-model:value="formHeader.where" />
+                                        </a-form-item>
+
                                         <button type="submit"><i class="fad fa-search"></i></button>
                                     </div>
-                                </form>
+                                </a-form>
                                 <p>{{ mainInformation.smallInformation2 }}</p>
                             </div>
                         </div>
@@ -69,7 +83,7 @@ onMounted(() => {
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6">
                         <div class="hero__thumb-wrapper mb--120">
                             <div class="hero__thumb-2 scene">
-                                <img class="hero-big" :src=" mainInformation.heroImage" alt="">
+                                <img class="hero-big" :src="mainInformation.heroImage" alt="">
                                 <img class="hero-shape-purple" src="@/assets/img/hero/hero-2/hero-shape-purple.png"
                                     alt="">
                             </div>

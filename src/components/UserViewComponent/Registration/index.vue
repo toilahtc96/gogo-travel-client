@@ -6,6 +6,9 @@ import { RegistrationService } from '@/services/registrationService';
 import { message } from 'ant-design-vue';
 import router from "@/router/router";
 import { useRoute } from "vue-router";
+import { watch } from 'vue';
+
+const props = defineProps(["whereOfCustomer"]);
 const route = useRoute();
 const registrationService = new RegistrationService();
 let formState = ref<Registration>({
@@ -29,6 +32,10 @@ const onFinish = () => {
       }
    })
 }
+
+watch(() => props.whereOfCustomer, () => {
+   formState.value.tourName = props.whereOfCustomer;
+})
 </script>
 <template>
    <a-form :model="formState" name="nest-messages" @finish="onFinish">

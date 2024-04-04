@@ -1,4 +1,3 @@
-
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 const isSticky = ref(false);
@@ -119,6 +118,38 @@ onMounted(() => {
         </div>
     </header>
 
+    <!-- sidebar area start -->
+    <div :class="`${showSidebar ? 'sidebar__area sidebar-opened' : 'sidebar__area'}`">
+        <div class="sidebar__wrapper">
+            <div style="float: right;width: 100%;" >
+                <div @click="handleSidebarClose" class="sidebar__close" style="float: right;">
+                    <button class="sidebar__close-btn" id="sidebar__close-btn">
+                        <span><i class="fal fa-times"></i></span>
+                        <span>close</span>
+                    </button>
+                </div>
+            </div>
+            <div class="sidebar__content">
+                <div class="logo mb-40">
+                    <router-link to="/">
+                        <img src="@/assets/img/logo/ggo-logo.png" alt="logo" width="50px">
+                    </router-link>
+                </div>
+
+                <div class="side-info-content sidebar-menu mm-menu">
+
+                    <ul>
+                        <li>
+                            <router-link to="/" class="border-0">Trang chủ</router-link>
+                        </li>
+                        <li>
+                            <router-link to="/contact" class="border-0">Liên Hệ</router-link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <div @click="handleSidebarClose" :class="[showSidebar ? 'body-overlay opened' : 'body-overlay']"></div>
     <!-- sidebar area end -->
 </template>
