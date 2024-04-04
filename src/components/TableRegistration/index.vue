@@ -16,6 +16,7 @@ const columns: TableColumnsType = [
     { title: 'Số Điện Thoại', dataIndex: 'phone', key: 'phone' },
     { title: 'Tour Quan Tâm', dataIndex: 'tourName', key: 'tourName' },
     { title: 'Thông Tin Thêm', dataIndex: 'information', key: 'information' },
+    { title: 'Tình Trạng Thông báo qua mail', dataIndex: 'sendMail', key: 'sendMail' },
 ];
 const defaultPage = ref({
     page: 0,
@@ -30,8 +31,12 @@ onMounted(async () => {
     changeSpinning();
     registrationService.getListRegistration(defaultPage.value.page, defaultPage.value.size).then((data: [Registration]) => {
         registrations.value = { ...registrations.value, listData: data };
-        changeSpinning();
-    });
+    }).then(() => {
+        registrationService.getAll().then((data) => {
+            setTotal(data.length);
+            changeSpinning();
+        });
+    })
 
 })
 const setTotal = (total: Number) => {
@@ -53,6 +58,7 @@ const change = async (page: number, pageSize: number) => {
     registrationService.getAll().then((data) => {
         setTotal(data.length);
     });
+    pageSetting.value.current=++page;
 }
 const showSizeChange = (current: number, size: number) => {
     defaultPage.value.size = size;
@@ -64,6 +70,15 @@ const showSizeChange = (current: number, size: number) => {
     <a-spin :spinning="spinning">
         <a-table :columns="columns" :data-source="registrations.listData" :scroll="{ x: 1300, y: 1000 }">
             <template #bodyCell="{ column, record }">
+                <template v-if="column.key === 'sendMail'">
+                    <template v-if="record.sendMail == true">
+                        Đã gửi
+                    </template>
+                    <template v-else>
+                        Chưa thông báo qua mail
+                    </template>
+                </template>
+
             </template>
         </a-table>
     </a-spin>

@@ -8,6 +8,7 @@ export default interface Registration {
     email: string | undefined,
     tourName: string | undefined,
     information: string | undefined,
+    sendMail: boolean | undefined,
     status: StatusType | undefined
 }
 
